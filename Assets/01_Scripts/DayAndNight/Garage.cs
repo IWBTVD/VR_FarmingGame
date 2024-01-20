@@ -1,39 +1,39 @@
-// using System.Collections;
-// using System.Collections.Generic;
-// using UnityEngine;
-// using EPOOutline;
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
-// public class Garage : MonoBehaviour
-// {
-//     private Outlinable outlinable;
 
-//     void Start()
-//     {
-//         outlinable = GetComponent<Outlinable>();
+public class Garage : MonoBehaviour
+{
+    public TextMeshProUGUI text;
 
-//         // Outline 기본 상태를 비활성화
-//         outlinable.enabled = false;
-//     }
+    void Start()
+    {
 
-//     void OnTriggerEnter(Collider other)
-//     {
-//         // "Item" 태그를 가진 물체와 충돌했을 때
-//         if (other.CompareTag("Item"))
-//         {
-//             // Outline 활성화
-//             outlinable.enabled = true;
-//             Debug.Log("Outline");
-//         }
-//     }
 
-//     void OnTriggerExit(Collider other)
-//     {
-//         // "Item" 태그를 가진 물체와 충돌에서 벗어났을 때
-//         if (other.CompareTag("Item"))
-//         {
-//             // Outline 비활성화
-//             outlinable.enabled = false;
-//             Debug.Log("Outline Off");
-//         }
-//     }
-// }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        // "Item" 태그를 가진 물체와 충돌했을 때
+        if (other.CompareTag("Item"))
+        {
+            // 충돌한 물체의 Item 스크립트를 가져옴
+            Item item = other.GetComponent<Item>();
+            text.text = item.GetType();
+            Debug.Log("Outline");
+        }
+    }
+
+    // void OnTriggerExit(Collider other)
+    // {
+    //     // "Item" 태그를 가진 물체와 충돌에서 벗어났을 때
+    //     if (other.CompareTag("Item"))
+    //     {
+
+    //         Debug.Log("Outline Off");
+    //     }
+    // }
+}
