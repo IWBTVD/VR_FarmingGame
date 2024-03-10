@@ -4,7 +4,7 @@ using Photon.Pun;
 public class WateringCan : MonoBehaviourPunCallbacks, IPunObservable
 {
     public float maxWaterAmount = 100f;
-    private float currentWaterAmount;
+    public float currentWaterAmount;
 
     // Add other necessary variables, like particle system, angles, etc.
     public bool playAura = false;
@@ -16,9 +16,10 @@ public class WateringCan : MonoBehaviourPunCallbacks, IPunObservable
         particleObject = GetComponent<ParticleSystem>();
     }
 
-    private void OnTriggerEnter(Collider other)
+
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.CompareTag("Well"))
+        if (collision.collider.CompareTag("Well"))
         {
             photonView.RPC("RefillWater", RpcTarget.AllBuffered);
         }
@@ -39,17 +40,17 @@ public class WateringCan : MonoBehaviourPunCallbacks, IPunObservable
             // Implement logic for lowering the watering can and decreasing water amount
             float currentXAngle = transform.rotation.eulerAngles.x;
 
-            if (currentXAngle >= 35f)
+            if ((currentXAngle >= 35f && currentXAngle <= 100f) || currentWaterAmount <= 0)
             {
                 playAura = true;
-                currentWaterAmount--;
+                currentWaterAmount -= 0.1f;
             }
             else
             {
                 playAura = false;
             }
 
-            if (!playAura && currentWaterAmount!=0)
+            if (!playAura )
             {
                 particleObject.Stop();
             }
