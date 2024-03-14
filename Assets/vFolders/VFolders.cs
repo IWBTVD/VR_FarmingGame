@@ -356,45 +356,48 @@ namespace VFolders
         {
             void loadData()
             {
-                void loadAtLastKnowPath()
-                {
-                    if (data) return;
+                data = AssetDatabase.LoadAssetAtPath<VFoldersData>(EditorPrefs.GetString("vFolders-lastKnownDataPath-" + GetProjectId()));
 
-                    data = AssetDatabase.LoadAssetAtPath<VFoldersData>(EditorPrefs.GetString("vFolders-lastKnownDataPath"));
 
-                }
-                void find()
-                {
-                    if (data) return;
+                if (data) return;
 
-                    data = AssetDatabase.FindAssets("t:VFoldersData").Select(r => AssetDatabase.LoadAssetAtPath<VFoldersData>(r.ToPath())).FirstOrDefault();
+                data = AssetDatabase.FindAssets("t:VFoldersData").Select(guid => AssetDatabase.LoadAssetAtPath<VFoldersData>(guid.ToPath())).FirstOrDefault();
 
-                }
-                void create()
-                {
-                    if (data) return;
 
-                    EditorApplication.delayCall += () =>
-                    {
-                        data = ScriptableObject.CreateInstance<VFoldersData>();
-                        AssetDatabase.CreateAsset(data, GetScriptPath("vFolders").GetParentPath().CombinePath("vFolders Data.asset"));
-                    };
+                if (!data) return;
 
-                }
-                void updateLastKnownPath()
-                {
-                    if (!data) return;
-
-                    EditorPrefs.SetString("vFolders-lastKnownDataPath", data.GetPath());
-
-                }
-
-                loadAtLastKnowPath();
-                find();
-                create();
-                updateLastKnownPath();
+                EditorPrefs.SetString("vFolders-lastKnownDataPath-" + GetProjectId(), data.GetPath());
 
             }
+            void createData()
+            {
+                if (data) return;
+
+                data = ScriptableObject.CreateInstance<VFoldersData>();
+
+                AssetDatabase.CreateAsset(data, GetScriptPath("VFolders").GetParentPath().CombinePath("vFolders Data.asset"));
+
+            }
+            void loadDataDelayed()
+            {
+                if (data) return;
+
+                EditorApplication.delayCall += () => EditorApplication.delayCall += loadData;
+
+                // AssetDatabase isn't up to date at this point (it gets updated after InitializeOnLoadMethod)
+                // and if current AssetDatabase state doesn't contain the data - it won't be loaded during Init()
+                // so here we schedule an additional, delayed attempt to load the data
+                // this addresses reports of data loss when trying to load it on a new machine
+
+            }
+            void createDataDelayed()
+            {
+                if (data) return;
+
+                EditorApplication.delayCall += () => EditorApplication.delayCall += createData;
+
+            }
+
             void subscribe()
             {
                 EditorApplication.projectWindowItemOnGUI -= ItemGUI;
@@ -405,15 +408,19 @@ namespace VFolders
 
             }
 
+
             subscribe();
+
             loadData();
+            loadDataDelayed();
+            createDataDelayed();
 
         }
 
         public static VFoldersData data;
 
 
-        const string version = "1.0.13";
+        const string version = "1.0.14";
 
     }
 }
