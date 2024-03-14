@@ -1,18 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;   
+using Photon.Realtime; 
 
-public class NetworkPlayer : MonoBehaviour
+public class NetworkPlayer : MonoBehaviourPunCallbacks
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject mainCamera;
+
+    private void Start()
     {
-        
+        if(photonView.IsMine)
+        {
+            mainCamera.gameObject.SetActive(true);
+        }else{
+            mainCamera.gameObject.SetActive(false);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+       if(photonView.IsMine)
+        {
+            //Do something
+            if(Input.GetKeyDown(KeyCode.W))
+            {
+                transform.position += Vector3.forward;
+            }
+            if(Input.GetKeyDown(KeyCode.S))
+            {
+                transform.position += Vector3.back;
+            }
+            if(Input.GetKeyDown(KeyCode.A))
+            {
+                transform.position += Vector3.left;
+            }
+            if(Input.GetKeyDown(KeyCode.D))
+            {
+                transform.position += Vector3.right;
+            }
+        }
     }
+
 }
