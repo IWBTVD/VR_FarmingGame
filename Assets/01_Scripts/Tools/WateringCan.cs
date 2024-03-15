@@ -40,7 +40,7 @@ public class WateringCan : MonoBehaviourPunCallbacks, IPunObservable
             // Implement logic for lowering the watering can and decreasing water amount
             float currentXAngle = transform.rotation.eulerAngles.x;
 
-            if ((currentXAngle >= 35f && currentXAngle <= 100f) || currentWaterAmount >= 0)
+            if ((currentXAngle >= 35f && currentXAngle <= 100f) && currentWaterAmount >= 0)
             {
                 playAura = true;
                 currentWaterAmount -= 0.1f;
@@ -58,8 +58,7 @@ public class WateringCan : MonoBehaviourPunCallbacks, IPunObservable
             {
                 particleObject.Play();
             }
-            // Update other necessary variables, angles, etc.
-            // Use PhotonView.RPC to synchronize the changes
+
         }
     }
 
