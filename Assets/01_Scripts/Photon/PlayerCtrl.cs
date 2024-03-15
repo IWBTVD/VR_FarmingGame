@@ -14,6 +14,10 @@ public class PlayerCtrl : MonoBehaviourPun, IPunObservable
     public GameObject TrackerOffsets;
     public GameObject AutoHandPlayer;
 
+    // 다른 사람들 눈에 보이는 내 게임 오브젝트
+    public GameObject OtherModel;
+
+
     public Transform[] myBody;
     public Transform[] otherBody;
 
@@ -29,10 +33,8 @@ public class PlayerCtrl : MonoBehaviourPun, IPunObservable
         }
         else
         {
-            for (int i = 0; i < otherBody.Length; i++)
-            {
-                otherBody[i].gameObject.SetActive(true);
-            }
+
+            OtherModel.SetActive(true );
         }
 
         if (!photonView.IsMine)

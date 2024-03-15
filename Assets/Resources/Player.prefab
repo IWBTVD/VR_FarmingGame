@@ -10463,7 +10463,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5922563920900922009
 Transform:
   m_ObjectHideFlags: 0
@@ -16719,9 +16719,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TrackerOffsets: {fileID: 5922563920401643946}
   AutoHandPlayer: {fileID: 5922563921514327476}
+  A: {fileID: 5922563921255998764}
   myBody:
-  - {fileID: 5922563920196980519}
-  - {fileID: 5922563920214476344}
+  - {fileID: 5922563921732976991}
+  - {fileID: 5922563920065579551}
   - {fileID: 5922563920975432997}
   otherBody:
   - {fileID: 5922563921084573025}
