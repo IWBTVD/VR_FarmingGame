@@ -4,103 +4,124 @@ using Photon;
 
 public class ChangeMaterial : MonoBehaviourPunCallbacks, IPunObservable
 {
+    public enum GroundState { Dry , Wet }
+
+    public GroundState currentState = GroundState.Dry;
+
+    //Material[0] = Dry, Material[1] = Wet
     public Material[] materials;
     private GameObject[] childObjects;
-    private ParticleCollisionEvent[] collisionEvents; // 충돌 이벤트 배열
+    private ParticleCollisionEvent[] collisionEvents;
 
-    public bool isWet;
-    private float DRY_TIME = 3f; // 건조 시간
-    public float timeElapsed; // 경과 시간
+    private float DRY_TIME = 3f; // ???? ????
+    public float timeElapsed; // ???? ????
 
     int numCollisionEvents = 0;
 
     void Start()
     {
-        // 자식 오브젝트의 개수에 맞게 배열 초기화
         childObjects = new GameObject[transform.childCount];
-        collisionEvents = new ParticleCollisionEvent[16]; // 충돌 이벤트 배열 초기화
+        collisionEvents = new ParticleCollisionEvent[16]; 
 
         for (int i = 0; i < transform.childCount; i++)
         {
-            childObjects[i] = transform.GetChild(i).gameObject; // 자식 오브젝트를 가져옴
-            Debug.Log(childObjects[i]);
+            childObjects[i] = transform.GetChild(i).gameObject;
         }
     }
 
     void Update()
     {
-        // isWet이 true이고, 아직 건조하지 않은 경우 경과 시간을 누적
-        if (isWet && timeElapsed < DRY_TIME)
+        if (currentState == GroundState.Wet && timeElapsed < DRY_TIME)
         {
             timeElapsed += Time.deltaTime;
 
-            // 건조 시간이 지나면
+            // ???? ?????? ??????
             if (timeElapsed >= DRY_TIME)
             {
-                // 자식 오브젝트의 메테리얼을 변경하고 isWet을 false로 설정
-                for (int i = 0; i < childObjects.Length - 1; i++)
-                {
-                    childObjects[i].GetComponent<Renderer>().material = materials[0]; // 기본 메테리얼로 변경
-                }
-                isWet = false;
-                timeElapsed = 0f; // 경과 시간 초기화
+                SetState(GroundState.Dry);
+                UpdateMaterial();
+                timeElapsed = 0f;
                 numCollisionEvents = 0;
-                /*photonView.RPC("OnWat", RpcTarget.AllBuffered);*/
+                photonView.RPC("SyncState", RpcTarget.AllBuffered, (int)currentState);
             }
         }
+
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            SetState(GroundState.Wet);
+            UpdateMaterial();
+            photonView.RPC("SyncState", RpcTarget.AllBuffered, (int)currentState);
+        }
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            SetState(GroundState.Dry);
+            UpdateMaterial();
+            photonView.RPC("SyncState", RpcTarget.AllBuffered, (int)currentState);
+        }
+    }
+
+    void SetState(GroundState newState)
+    {
+        currentState = newState;
     }
 
     private void OnParticleCollision(GameObject other)
     {
-        // 충돌한 오브젝트가 파티클 시스템인지 확인
+        
         if (other.GetComponent<ParticleSystem>() != null)
         {
-            // 충돌 이벤트 수를 가져옴
+            
             numCollisionEvents = other.GetComponent<ParticleSystem>().GetCollisionEvents(gameObject, collisionEvents);
 
-            // 충돌 이벤트 수가 특정 값 이상인 경우에만 메테리얼 변경
-            if (numCollisionEvents >= 5 && !isWet) // 충돌 이벤트가 5개 이상이고 아직 물에 젖지 않았을 때
+            
+            if (numCollisionEvents >= 5 && currentState == GroundState.Dry) // ???? ???????? 5?? ???????? ???? ???? ???? ?????? ??
             {
-                Debug.Log("파티클과 충돌함! 충돌 이벤트 수: " + numCollisionEvents);
-                // 자식 오브젝트의 메테리얼을 변경하고 isWet을 true로 설정
-                for (int i = 0; i < childObjects.Length - 1; i++)
-                {
-                    childObjects[i].GetComponent<Renderer>().material = materials[1]; // 물에 젖은 메테리얼로 변경
-                }
-                isWet = true;
-               /* photonView.RPC("OnWat", RpcTarget.AllBuffered);*/
+                SetState(GroundState.Wet);
+                UpdateMaterial();
+                photonView.RPC("SyncState", RpcTarget.AllBuffered, (int)currentState);
             }
         }
     }
 
     [PunRPC]
-    private void OnWat()
+    void SyncState(int state)
     {
-        if (isWet)
+        currentState = (GroundState)state;
+        UpdateMaterial();
+    }
+
+
+    [PunRPC]
+    private void UpdateMaterial()
+    {
+        switch (currentState)
         {
-            for (int i = 0; i < childObjects.Length - 1; i++)
-            {
-                childObjects[i].GetComponent<Renderer>().material = materials[1]; // 기본 메테리얼로 변경
-            }
-        }
-        else
-        {
-            for (int i = 0; i < childObjects.Length - 1; i++)
-            {
-                childObjects[i].GetComponent<Renderer>().material = materials[0]; // 기본 메테리얼로 변경
-            }
-        }
+            case GroundState.Wet:
+                for (int i = 0; i < childObjects.Length - 1; i++)
+                {
+                    childObjects[i].GetComponent<Renderer>().material = materials[1]; // ???? ?????????? ????
+                }
+                break;
+        
+            case GroundState.Dry:
+                for (int i = 0; i < childObjects.Length - 1; i++)
+                {
+                    childObjects[i].GetComponent<Renderer>().material = materials[0]; // ???? ?????????? ????
+                }
+                break;
+         }
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
         {
-            stream.SendNext(isWet);
+            stream.SendNext((int)currentState);
         }
         else
         {
-            isWet = (bool)stream.ReceiveNext();
+            currentState = (GroundState)stream.ReceiveNext();
+            UpdateMaterial();
         }
     }
 }

@@ -23,7 +23,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
  
-        PhotonNetwork.Instantiate("Player", new Vector3(0, 0.555f, -1f), Quaternion.identity);
+        Quaternion rotation = Quaternion.Euler(0f, 90f, 0f);
+        PhotonNetwork.Instantiate("Player", new Vector3(-2f, 0.5f, 3f), rotation);
 
     }
 }
