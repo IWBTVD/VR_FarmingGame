@@ -82,7 +82,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1207473898
 Transform:
   m_ObjectHideFlags: 0
@@ -9814,9 +9814,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 120c7579fe38ed94c960e227879de8f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mineGameObjectList:
+  - {fileID: 1097720418667309473}
+  - {fileID: 1097720418841452217}
   headTransform: {fileID: 7250283658193888242}
   leftHandTransform: {fileID: 3912871030317551400}
   rightHandTransform: {fileID: 8490903197231655480}
+  notMineGameObjectList:
+  - {fileID: 1207473897}
+  - {fileID: 342657276}
+  - {fileID: 266733955}
   avatarHead: {fileID: 1207473898}
   avatarLeftHand: {fileID: 342657277}
   avatarRightHand: {fileID: 266733956}

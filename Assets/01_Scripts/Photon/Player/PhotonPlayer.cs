@@ -7,6 +7,7 @@ namespace Gun.Photon.Player
 {
     public class PhotonPlayer : MonoBehaviourPun, IPunObservable
     {
+        [SerializeField] private List<GameObject> mineGameObjectList = new(); 
         [SerializeField] private Transform headTransform;
         [SerializeField] private Transform leftHandTransform;
         [SerializeField] private Transform rightHandTransform;
@@ -16,13 +17,37 @@ namespace Gun.Photon.Player
         private SyncStruct rightHand;
 
         [Space]
+        [SerializeField] private List<GameObject> notMineGameObjectList = new(); 
         [SerializeField] private Transform avatarHead;
         [SerializeField] private Transform avatarLeftHand;
         [SerializeField] private Transform avatarRightHand;
 
         void Start()
         {
+            Debug.Log($"플레이어 주인 : {photonView.IsMine}");
 
+            if(photonView.IsMine)
+            {
+                foreach(var go in mineGameObjectList)
+                {
+                    go.SetActive(true);
+                }
+                foreach(var go in notMineGameObjectList)
+                {
+                    go.SetActive(false);
+                }
+            }
+            else
+            {
+                foreach (var go in mineGameObjectList)
+                {
+                    go.SetActive(false);
+                }
+                foreach (var go in notMineGameObjectList)
+                {
+                    go.SetActive(true);
+                }
+            }
         }
         void Update()
         {
@@ -36,10 +61,6 @@ namespace Gun.Photon.Player
 
                 rightHand.position = rightHandTransform.position;
                 rightHand.rotation = rightHandTransform.rotation;
-
-                avatarHead.SetPositionAndRotation(head.position, head.rotation);
-                avatarLeftHand.SetPositionAndRotation(leftHand.position, leftHand.rotation);
-                avatarRightHand.SetPositionAndRotation(rightHand.position, rightHand.rotation);
             }
             else
             {
