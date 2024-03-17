@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Autohand.Demo;
-using System;
 using NaughtyAttributes;
 using UnityEngine.Serialization;
 
@@ -10,7 +8,8 @@ using UnityEngine.Serialization;
 using UnityEditor;
 #endif
 
-namespace Autohand {
+namespace Autohand
+{
     public enum RotationType {
         snap,
         smooth
