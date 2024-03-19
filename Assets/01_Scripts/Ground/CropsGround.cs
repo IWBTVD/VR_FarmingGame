@@ -22,7 +22,7 @@ public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField]
     GameObject cultivationObject;
     private bool IsCultivation;
-    private bool IsSeedlings;
+    public bool IsSeedlings = false;
     private const float MAXCULTOVATIONTIME = 5f;
     public float cultivationTime = 0f;
 
@@ -45,13 +45,18 @@ public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
+    // public bool GetIsSeedlings()
+    // {
+    //     return IsSeedlings;
+    // }   
+
     void Update()
     {
         DryGround();
 
         SeedGrowing();
 
-        TestCode();
+        // TestCode();
     }
 
     private void DryGround()
@@ -70,13 +75,17 @@ public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
     }
-    public bool GetIsSeedlings()
-    {
-        return IsSeedlings;
-    }   
+    
     public void ReceiveSeed(GameObject IncomeSeed)
     {
         seedlings = IncomeSeed;
+        IsSeedlings = true;
+        photonView.RPC("SyncSeedlings", RpcTarget.AllBuffered, IsSeedlings);
+    }
+
+    public void PlantCrops(GameObject IncomeCrops)
+    {
+        seedlings = IncomeCrops;
         IsSeedlings = true;
         photonView.RPC("SyncSeedlings", RpcTarget.AllBuffered, IsSeedlings);
     }
@@ -90,6 +99,7 @@ public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
             {
                 Instantiate(seedlings, cultivationObject.transform);
                 IsCultivation = false;
+                IsSeedlings = false;
                 cultivationTime = 0f;
             }
         }
@@ -100,6 +110,7 @@ public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
             {
                 Instantiate(seedlings, cultivationObject.transform);
                 IsCultivation = false;
+                IsSeedlings = false;
                 cultivationTime = 0f;
             }
         }
@@ -187,7 +198,6 @@ public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
                 for(int i = 0; i < cultivationObject.transform.childCount -1 ; i++)
                 {
                     cultivationObject.transform.GetChild(i).GetComponent<Renderer>().material = materials[1];
-                    Debug.Log(cultivationObject.transform.GetChild(i).name);
                 }
                 break;
         
@@ -199,7 +209,6 @@ public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
                 for(int i = 0; i < cultivationObject.transform.childCount -1 ; i++)
                 {
                     cultivationObject.transform.GetChild(i).GetComponent<Renderer>().material = materials[0];
-                    Debug.Log(cultivationObject.transform.GetChild(i).name);
                 }
                 break;
          }
