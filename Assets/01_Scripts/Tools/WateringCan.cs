@@ -1,5 +1,6 @@
 using UnityEngine;
 using Photon.Pun;
+using Unity.VisualScripting;
 
 public class WateringCan : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -61,6 +62,13 @@ public class WateringCan : MonoBehaviourPunCallbacks, IPunObservable
 
         }
     }
+
+    // 내가 닿은 오브젝트에 대한 정보를 출력하는 함수(테스트용)
+    // void OnParticleCollision(GameObject other)
+    // {
+    //     // Print the name of the object that the particle collided with
+    //     Debug.Log(other.name);
+    // }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
