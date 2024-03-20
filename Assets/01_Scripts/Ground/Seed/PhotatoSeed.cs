@@ -1,5 +1,4 @@
 using UnityEngine;
-using Photon.Pun;
 
 namespace Jun.Ground.Crops
 {
@@ -7,7 +6,7 @@ namespace Jun.Ground.Crops
     {
         private void Start()
         {
-            seedType = SeedType.Seed;
+            seedType = SeedType.Crops;
         }
     }
 } 

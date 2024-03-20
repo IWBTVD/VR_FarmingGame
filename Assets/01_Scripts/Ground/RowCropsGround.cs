@@ -3,27 +3,30 @@ using UnityEngine;
 using Photon;
 using Unity.VisualScripting;
 using Jun.Ground.Crops;
+using System.Collections.Generic;
 
-public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
+public class RowCropsGround : MonoBehaviourPunCallbacks, IPunObservable
 {
     public enum GroundState { Dry , Wet }
 
     
     public GroundState currentState = GroundState.Dry;
 
-    //Material[0] = Dry, Material[1] = Wet
+    /// <summary>
+    /// Material[0] = Dry, Material[1] = Wet
+    /// </summary>
     public Material[] materials;
-    [SerializeField]public GameObject[] childObjects;
-    private ParticleCollisionEvent[] collisionEvents;
+    private GameObject[] CropsRows;
+    private List<ParticleCollisionEvent> collisionEvents = new List<ParticleCollisionEvent>();
 
-    public float DRY_TIME = 3f;
+    public float DRY_TIME = 300f;
     private float timeElapsed;
 
     [SerializeField]
     GameObject cultivationObject;
-    private bool IsCultivation = true;
+    private bool IsCultivation;
     public bool IsSeedlings = false;
-    private const float MAXCULTOVATIONTIME = 2f;
+    private const float MAXCULTOVATIONTIME = 5f;
     public float cultivationTime = 0f;
 
     [SerializeField]
@@ -36,15 +39,13 @@ public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
 
     void Start()
     {
-        childObjects = new GameObject[2];
-        collisionEvents = new ParticleCollisionEvent[16]; 
+        CropsRows = new GameObject[transform.childCount];
 
-    }
-
-    // public bool GetIsSeedlings()
-    // {
-    //     return IsSeedlings;
-    // }   
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            CropsRows[i] = transform.GetChild(i).gameObject;
+        }
+    } 
 
     void Update()
     {
@@ -52,7 +53,7 @@ public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
 
         SeedGrowing();
 
-        // TestCode();
+        TestCode();
     }
 
     private void DryGround()
@@ -64,6 +65,7 @@ public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
             if (timeElapsed >= DRY_TIME)
             {
                 SetState(GroundState.Dry);
+                UpdateMaterial();
                 timeElapsed = 0f;
                 numCollisionEvents = 0;
                 photonView.RPC("SyncState", RpcTarget.AllBuffered, (int)currentState);
@@ -114,12 +116,39 @@ public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
 
     private void OnTriggerEnter(Collider other)
     {
+        // if (other.gameObject.tag == "Tool")
+        // {
+        //     IsCultivation = true;
+        //     cultivationObject.SetActive(true);
+        //     photonView.RPC("SyncCultivation", RpcTarget.AllBuffered, IsCultivation);
+        // }
+
+        TestTriggerByPosition(other);
+    }
+
+    private void TestTriggerByPosition(Collider other)
+    {
         if (other.gameObject.tag == "Tool")
         {
-            IsCultivation = true;
-            cultivationObject.SetActive(true);
-            photonView.RPC("SyncCultivation", RpcTarget.AllBuffered, IsCultivation);
+            Debug.Log("다른 물체가 해당 물체에 닿았습니다.");
+            Vector3 objectBounds = transform.GetComponent<Collider>().bounds.size;
+            Vector3 objectBottomLeft = transform.position - new Vector3(objectBounds.x / 2, objectBounds.y / 2, 0);
+
+            Vector3 collisionPoint = other.transform.position;
+
+            float sectionWidth = objectBounds.x / 5;
+            for (int i = 0; i < 5; i++)
+            {
+                float sectionStartX = objectBottomLeft.x + (sectionWidth * i);
+                float sectionEndX = sectionStartX + sectionWidth;
+
+                if (collisionPoint.x >= sectionStartX && collisionPoint.x <= sectionEndX && collisionPoint.y <= objectBottomLeft.y)
+                {
+                    Debug.Log("다른 물체가 해당 물체의 왼쪽 아래에 닿았습니다. (Section: " + (i + 1) + ")");
+                }
+            }
         }
+
     }
 
     void SetState(GroundState newState)
@@ -143,6 +172,7 @@ public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
             if (numCollisionEvents >= 5 && currentState == GroundState.Dry)
             {
                 SetState(GroundState.Wet);
+                UpdateMaterial();
                 photonView.RPC("SyncState", RpcTarget.AllBuffered, (int)currentState);
             }
         }
@@ -165,6 +195,7 @@ public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
     void SyncState(int state)
     {
         currentState = (GroundState)state;
+        UpdateMaterial();
     }
     [PunRPC]
     void SyncCultivation(bool state)
@@ -177,6 +208,22 @@ public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
         IsSeedlings = state;
     }
 
+
+    [PunRPC]
+    private void UpdateMaterial()
+    {
+        switch (currentState)
+        {
+            case GroundState.Wet:
+                transform.GetComponent<Renderer>().material = materials[1];
+                break;
+        
+        
+            case GroundState.Dry:
+                transform.GetComponent<Renderer>().material = materials[0];
+                break;
+         }
+    }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
@@ -191,6 +238,7 @@ public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
             currentState = (GroundState)stream.ReceiveNext();
             IsCultivation = (bool)stream.ReceiveNext();
             IsSeedlings = (bool)stream.ReceiveNext();
+            UpdateMaterial();
         }
     }
 
@@ -199,11 +247,13 @@ public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
         if (Input.GetKeyDown(KeyCode.R))
         {
             SetState(GroundState.Wet);
+            UpdateMaterial();
             photonView.RPC("SyncState", RpcTarget.AllBuffered, (int)currentState);
         }
         if (Input.GetKeyDown(KeyCode.T))
         {
             SetState(GroundState.Dry);
+            UpdateMaterial();
             photonView.RPC("SyncState", RpcTarget.AllBuffered, (int)currentState);
         }
         if(Input.GetKeyDown(KeyCode.Y))

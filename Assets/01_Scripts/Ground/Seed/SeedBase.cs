@@ -13,33 +13,32 @@ namespace Jun.Ground.Crops
             Crops
         }
         
-        [SerializeField]
-        public SeedType seedType;
-        public GameObject CurrentCrops;
+        [SerializeField] public SeedType seedType;
+        [SerializeField] public GameObject currentCropsPrefab;
 
-        private ParticleSystem ps;
+        [SerializeField] public ParticleSystem ps;
 
         [Header("Test")]
         public bool StartSeed = false;
 
-        private void Start()
-        {
-            switch (seedType)
-            {
-                case SeedType.Seed:
-                    ps = GetComponent<ParticleSystem>();
-                    break;
-                case SeedType.Crops:
-                    break;
-            }
-        }
+        // private void Start()
+        // {
+        //     switch (seedType)
+        //     {
+        //         case SeedType.Seed:
+        //             ps = GetComponent<ParticleSystem>();
+        //             break;
+        //         case SeedType.Crops:
+        //             break;
+        //     }
+        // }
 
-        public void Update()
-        {
-            TestCode();
-        }
+        // public void Update()
+        // {
+        //     TestCode();
+        // }
 
-        private void TestCode()
+        public void TestCode()
         {
             if (StartSeed)
             {
@@ -74,7 +73,7 @@ namespace Jun.Ground.Crops
                     
                     if (!IsSeedlingsGround)
                     {
-                        other.GetComponent<CropsGround>().ReceiveSeed(CurrentCrops);
+                        other.GetComponent<CropsGround>().ReceiveSeed(currentCropsPrefab);
                     }
                     else
                     {
@@ -91,7 +90,7 @@ namespace Jun.Ground.Crops
                 if (other.CompareTag("Ground"))
                 {
                     Debug.Log("Plant Crops");
-                    other.GetComponent<CropsGround>().PlantCrops(CurrentCrops);
+                    other.GetComponent<CropsGround>().PlantCrops(currentCropsPrefab);
                 }
             }
         }
