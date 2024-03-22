@@ -6,14 +6,15 @@ using Jun.Ground.Crops;
 
 public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
 {
-    public enum GroundState { Dry , Wet }
+    // 안쓸 코드
+    public enum GroundState { Dry, Wet }
 
-    
+
     public GroundState currentState = GroundState.Dry;
 
     //Material[0] = Dry, Material[1] = Wet
     public Material[] materials;
-    [SerializeField]public GameObject[] childObjects;
+    [SerializeField] public GameObject[] childObjects;
     private ParticleCollisionEvent[] collisionEvents;
 
     public float DRY_TIME = 3f;
@@ -32,12 +33,12 @@ public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
 
 
     int numCollisionEvents = 0;
-    
+
 
     void Start()
     {
         childObjects = new GameObject[2];
-        collisionEvents = new ParticleCollisionEvent[16]; 
+        collisionEvents = new ParticleCollisionEvent[16];
 
     }
 
@@ -66,11 +67,13 @@ public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
                 SetState(GroundState.Dry);
                 timeElapsed = 0f;
                 numCollisionEvents = 0;
-                photonView.RPC("SyncState", RpcTarget.AllBuffered, (int)currentState);
+                childObjects[0].GetComponent<MeshRenderer>().material = materials[0];
+                childObjects[1].GetComponent<MeshRenderer>().material = materials[0];
+                // photonView.RPC("SyncState", RpcTarget.AllBuffered, (int)currentState);
             }
         }
     }
-    
+
     public void ReceiveSeed(GameObject IncomeSeed)
     {
         seedlings = IncomeSeed;
@@ -129,15 +132,17 @@ public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
 
     private void OnParticleCollision(GameObject other)
     {
-        
+
         if (other.GetComponent<ParticleSystem>() != null && other.tag == "Water")
         {
-            
+
             numCollisionEvents = other.GetComponent<ParticleSystem>().GetCollisionEvents(gameObject, collisionEvents);
 
-            if(currentState == GroundState.Wet)
+            if (currentState == GroundState.Wet)
             {
                 timeElapsed = 0f;
+                childObjects[0].GetComponent<MeshRenderer>().material = materials[1];
+                childObjects[1].GetComponent<MeshRenderer>().material = materials[1];
             }
 
             if (numCollisionEvents >= 5 && currentState == GroundState.Dry)
@@ -206,10 +211,10 @@ public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
             SetState(GroundState.Dry);
             photonView.RPC("SyncState", RpcTarget.AllBuffered, (int)currentState);
         }
-        if(Input.GetKeyDown(KeyCode.Y))
+        if (Input.GetKeyDown(KeyCode.Y))
         {
             //cultivationObject.SetActive(true) 이면 다시 누르면 false로 바꿔주기;
-            if(cultivationObject.activeSelf == true)
+            if (cultivationObject.activeSelf == true)
             {
                 cultivationObject.SetActive(false);
             }
@@ -217,9 +222,9 @@ public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
             {
                 cultivationObject.SetActive(true);
             }
-            
+
         }
-        if(Input.GetKeyDown(KeyCode.U))
+        if (Input.GetKeyDown(KeyCode.U))
         {
             IsSeedlings = true;
         }

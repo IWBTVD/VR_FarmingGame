@@ -12,7 +12,7 @@ namespace Jun.Ground.Crops
             Seed,
             Crops
         }
-        
+
         [SerializeField] public SeedType seedType;
         [SerializeField] public GameObject currentCropsPrefab;
 
@@ -70,7 +70,7 @@ namespace Jun.Ground.Crops
                 {
                     Debug.Log("Send Seed");
                     bool IsSeedlingsGround = other.GetComponent<CropsGround>().IsSeedlings;
-                    
+
                     if (!IsSeedlingsGround)
                     {
                         other.GetComponent<CropsGround>().ReceiveSeed(currentCropsPrefab);
@@ -94,5 +94,19 @@ namespace Jun.Ground.Crops
                 }
             }
         }
+
+
+        public void PlayParticleByAngle(float currentXAngle)
+        {
+            if ((currentXAngle >= 35f && currentXAngle <= 100f))
+            {
+                StartSeed = true;
+            }
+            else
+            {
+                StartSeed = false;
+            }
+        }
+
     }
 }

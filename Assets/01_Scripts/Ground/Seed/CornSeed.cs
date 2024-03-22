@@ -5,6 +5,7 @@ namespace Jun.Ground.Crops
     public class CornSeed : SeedBase
     {
         public GameObject prefab;
+        public float currentXAngle;
         private void Start()
         {
             ps = GetComponent<ParticleSystem>();
@@ -14,6 +15,8 @@ namespace Jun.Ground.Crops
 
         public void Update()
         {
+            currentXAngle = transform.rotation.eulerAngles.x;
+            PlayParticleByAngle(currentXAngle);
             TestCode();
         }
 

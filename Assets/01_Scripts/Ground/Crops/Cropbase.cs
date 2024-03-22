@@ -17,7 +17,7 @@ namespace Jun.Ground.Crops
         public float CultivationTime;
 
         public PhotonView pv;
-                
+
         public virtual void ChangePotatoPrefab()
         {
             for (int i = 0; i < CropsPrefabs.Length; i++)
@@ -32,7 +32,7 @@ namespace Jun.Ground.Crops
             CurrentState = newState;
             // pv.RPC(nameof(ChangePotatoPrefab), RpcTarget.AllBuffered);
             ChangePotatoPrefab();
-            
+
         }
 
         public virtual void CropGrowing()
