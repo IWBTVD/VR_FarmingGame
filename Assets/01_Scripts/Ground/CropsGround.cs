@@ -7,7 +7,6 @@ using Jun.Ground.Crops;
 public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
 {
     public enum GroundState { Dry , Wet }
-
     
     public GroundState currentState = GroundState.Dry;
 
@@ -30,10 +29,8 @@ public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
     //추후 씨앗에 따라 다른 작물이 나오게 하기
     private GameObject seedlings;
 
-
     int numCollisionEvents = 0;
     
-
     void Start()
     {
         childObjects = new GameObject[2];
