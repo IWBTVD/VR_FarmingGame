@@ -17,6 +17,11 @@ namespace Gun
             cultivationField = GetComponentInParent<CultivationField>();
         }
 
+        private void OnEnable()
+        {
+            meshRenderer.material = cultivationField.WetMaterial;
+        }
+
         public void FullyWatered(Material wetMaterial)
         {
             meshRenderer.material = wetMaterial;

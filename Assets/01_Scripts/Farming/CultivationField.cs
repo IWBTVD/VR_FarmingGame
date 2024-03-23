@@ -31,6 +31,7 @@ namespace Gun
         [Space()]
         [SerializeField] private Material dryMaterial;
         [SerializeField] private Material wetMaterial;
+        public Material WetMaterial => wetMaterial;
 
         [Space()]
         [SerializeField] private DirtRow dirtRow;

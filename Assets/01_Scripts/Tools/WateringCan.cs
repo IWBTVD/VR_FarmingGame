@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -19,10 +19,12 @@ namespace Gun
         public Vector3 neckDirection;
 
         private AudioSource audioSource;
+        private Autohand.Grabbable grabbable;
 
         private void Awake()
         {
             audioSource = GetComponent<AudioSource>();
+            grabbable = GetComponent<Autohand.Grabbable>();
         }
 
         void Start()
@@ -33,6 +35,8 @@ namespace Gun
 
         void Update()
         {
+            if (!grabbable.IsHeld()) return;
+
             neckDirection = (neckStartTransform.position - neckEndTransform.position).normalized;
 
             if (neckDirection.y > -0.2f)
@@ -47,9 +51,10 @@ namespace Gun
 
         private void Watering(bool isOn)
         {
-            
             if (isOn)
             {
+                if (wateringParticle.isPlaying && audioSource.isPlaying) return;
+
                 wateringParticle.Play();
                 audioSource.clip = wateringSoundClips[Random.Range(0, wateringSoundClips.Count -1)];
                 audioSource.Play();
