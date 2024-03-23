@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Gun
 {
-    public class WateringCanExample : MonoBehaviour
+    public class WateringCan : MonoBehaviour
     {
         [Header("물뿌리개 출수구 방향 시작점과 끝점")]
         public Transform neckStartTransform;
