@@ -1,90 +1,64 @@
-using UnityEngine;
-using Photon.Pun;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEngine;
 
-namespace Jun
+namespace Gun
 {
-    public class WateringCan : MonoBehaviourPunCallbacks, IPunObservable
+    public class WateringCan : MonoBehaviour
     {
-        public float maxWaterAmount = 100f;
-        public float currentWaterAmount;
+        [Header("물뿌리개 출수구 방향 시작점과 끝점")]
+        public Transform neckStartTransform;
+        public Transform neckEndTransform;
 
-        // Add other necessary variables, like particle system, angles, etc.
-        public bool playAura = false;
-        private ParticleSystem particleObject;
+        [Header("물뿌리기 파티클")]
+        public ParticleSystem wateringParticle;
+        public List<AudioClip> wateringSoundClips = new();
 
-        private void Start()
+        [Space]
+        public Vector3 neckDirection;
+
+        private AudioSource audioSource;
+
+        private void Awake()
         {
-            currentWaterAmount = maxWaterAmount;
-            particleObject = GetComponent<ParticleSystem>();
+            audioSource = GetComponent<AudioSource>();
         }
 
-
-        private void OnCollisionEnter(Collision collision)
+        void Start()
         {
-            if (collision.collider.CompareTag("Well"))
+            wateringParticle.Stop();
+            audioSource.Stop();
+        }
+
+        void Update()
+        {
+            neckDirection = (neckStartTransform.position - neckEndTransform.position).normalized;
+
+            if (neckDirection.y > -0.2f)
             {
-                photonView.RPC("RefillWater", RpcTarget.AllBuffered);
-            }
-        }
-
-        [PunRPC]
-        private void RefillWater()
-        {
-            currentWaterAmount = maxWaterAmount;
-        }
-
-        private void Update()
-        {
-            //float currentXAngle = transform.rotation.eulerAngles.x;
-            //Debug.Log(currentXAngle);
-            if (photonView.IsMine)
-            {
-                // Implement logic for lowering the watering can and decreasing water amount
-                float currentXAngle = transform.rotation.eulerAngles.x;
-
-                if ((currentXAngle >= 35f && currentXAngle <= 100f) && currentWaterAmount >= 0)
-                {
-                    playAura = true;
-                    currentWaterAmount -= 0.1f;
-                }
-                else
-                {
-                    playAura = false;
-                }
-
-                if (!playAura)
-                {
-                    particleObject.Stop();
-                }
-                else
-                {
-                    particleObject.Play();
-                }
-
-            }
-        }
-
-        // 내가 닿은 오브젝트에 대한 정보를 출력하는 함수(테스트용)
-        // void OnParticleCollision(GameObject other)
-        // {
-        //     // Print the name of the object that the particle collided with
-        //     Debug.Log(other.name);
-        // }
-
-        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-        {
-            if (stream.IsWriting)
-            {
-                stream.SendNext(currentWaterAmount);
-                stream.SendNext(playAura);
+                Watering(true);
             }
             else
             {
-                currentWaterAmount = (float)stream.ReceiveNext();
-                playAura = (bool)stream.ReceiveNext();
+                Watering(false);
+            }
+        }
+
+        private void Watering(bool isOn)
+        {
+            
+            if (isOn)
+            {
+                wateringParticle.Play();
+                audioSource.clip = wateringSoundClips[Random.Range(0, wateringSoundClips.Count -1)];
+                audioSource.Play();
+            }
+            else
+            {
+                wateringParticle.Stop();
+                audioSource.Stop();
             }
         }
     }
-
 }
