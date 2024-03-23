@@ -5,7 +5,7 @@ using System.Collections;
 
 namespace Jun.Ground.Crops
 {
-    public class CropPoint : MonoBehaviourPunCallbacks, IPunObservable
+    public class CropPoint : MonoBehaviourPun, IPunObservable
     {
         public enum GroundState { Dry, Wet }
         public GroundState currentState = GroundState.Dry;

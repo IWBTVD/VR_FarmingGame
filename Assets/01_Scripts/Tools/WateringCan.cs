@@ -2,7 +2,7 @@ using UnityEngine;
 using Photon.Pun;
 using Unity.VisualScripting;
 
-public class WateringCan : MonoBehaviourPunCallbacks, IPunObservable
+public class WateringCan : MonoBehaviourPun, IPunObservable
 {
     public float maxWaterAmount = 100f;
     public float currentWaterAmount;
@@ -51,7 +51,7 @@ public class WateringCan : MonoBehaviourPunCallbacks, IPunObservable
                 playAura = false;
             }
 
-            if (!playAura )
+            if (!playAura)
             {
                 particleObject.Stop();
             }

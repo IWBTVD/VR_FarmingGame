@@ -4,7 +4,7 @@ using Photon;
 using Unity.VisualScripting;
 using Jun.Ground.Crops;
 
-public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
+public class CropsGround : MonoBehaviourPun, IPunObservable
 {
     // 안쓸 코드
     public enum GroundState { Dry, Wet }
@@ -69,7 +69,7 @@ public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
                 numCollisionEvents = 0;
                 childObjects[0].GetComponent<MeshRenderer>().material = materials[0];
                 childObjects[1].GetComponent<MeshRenderer>().material = materials[0];
-                // photonView.RPC("SyncState", RpcTarget.AllBuffered, (int)currentState);
+
             }
         }
     }
@@ -78,14 +78,14 @@ public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
     {
         seedlings = IncomeSeed;
         IsSeedlings = true;
-        photonView.RPC("SyncSeedlings", RpcTarget.AllBuffered, IsSeedlings);
+
     }
 
     public void PlantCrops(GameObject IncomeCrops)
     {
         seedlings = IncomeCrops;
         IsSeedlings = true;
-        photonView.RPC("SyncSeedlings", RpcTarget.AllBuffered, IsSeedlings);
+
     }
 
     private void SeedGrowing()
@@ -121,7 +121,7 @@ public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
         {
             IsCultivation = true;
             cultivationObject.SetActive(true);
-            photonView.RPC("SyncCultivation", RpcTarget.AllBuffered, IsCultivation);
+
         }
     }
 
@@ -148,40 +148,11 @@ public class CropsGround : MonoBehaviourPunCallbacks, IPunObservable
             if (numCollisionEvents >= 5 && currentState == GroundState.Dry)
             {
                 SetState(GroundState.Wet);
-                photonView.RPC("SyncState", RpcTarget.AllBuffered, (int)currentState);
+
             }
         }
 
-        // if(other.GetComponent<ParticleSystem>() != null && other.tag == "Seed" && IsCultivation)
-        // {
-        //     // 씨앗 정보에 따라 다른 작물이 나오게 하기
-        //     Seed seed = other.GetComponent<Seed>();
-        //     numCollisionEvents = other.GetComponent<ParticleSystem>().GetCollisionEvents(gameObject, collisionEvents);
-        //     if (numCollisionEvents >= 5 && currentState == GroundState.Wet)
-        //     {
-        //         IsSeedlings = true;
-        //         photonView.RPC("SyncSeedlings", RpcTarget.AllBuffered, IsSeedlings);
-        //     }
-
-        // }
     }
-
-    [PunRPC]
-    void SyncState(int state)
-    {
-        currentState = (GroundState)state;
-    }
-    [PunRPC]
-    void SyncCultivation(bool state)
-    {
-        IsCultivation = state;
-    }
-    [PunRPC]
-    void SyncSeedlings(bool state)
-    {
-        IsSeedlings = state;
-    }
-
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {

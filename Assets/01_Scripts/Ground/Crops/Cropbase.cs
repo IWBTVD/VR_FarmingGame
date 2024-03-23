@@ -3,7 +3,7 @@ using Photon.Pun;
 
 namespace Jun.Ground.Crops
 {
-    public class Cropbase : MonoBehaviourPunCallbacks
+    public class Cropbase : MonoBehaviourPun
     {
         public enum CropsState
         {
@@ -30,7 +30,6 @@ namespace Jun.Ground.Crops
         {
 
             CurrentState = newState;
-            // pv.RPC(nameof(ChangePotatoPrefab), RpcTarget.AllBuffered);
             ChangePotatoPrefab();
 
         }
@@ -56,33 +55,26 @@ namespace Jun.Ground.Crops
 
         public virtual void HarvestCrops()
         {
-            if (pv.IsMine)
+
+            switch (CurrentState)
             {
-                switch (CurrentState)
-                {
-                    case CropsState.Sprout:
-                        Debug.Log("아직 열리지 않음");
-                        pv.RPC("DestroyCrops", RpcTarget.AllBuffered);
-                        break;
-                    case CropsState.Growing:
-                        Debug.Log("한개 떨어짐");
-                        pv.RPC("DestroyCrops", RpcTarget.AllBuffered);
-                        break;
-                    case CropsState.Harvest:
-                        Debug.Log("모두 떨어짐");
-                        pv.RPC("DestroyCrops", RpcTarget.AllBuffered);
-                        break;
-                }
+                case CropsState.Sprout:
+                    Debug.Log("아직 열리지 않음");
+                    break;
+                case CropsState.Growing:
+                    Debug.Log("한개 떨어짐");
+                    break;
+                case CropsState.Harvest:
+                    Debug.Log("모두 떨어짐");
+                    break;
             }
+
+
             CropPoint cropPoint = GetComponentInParent<CropPoint>();
             cropPoint.Harvet();
-        }
-
-        [PunRPC]
-        private void DestroyCrops()
-        {
             Destroy(gameObject);
         }
+
 
         public void OnPhotonSerializeView(PhotonStream stream)
         {

@@ -8,7 +8,7 @@ using System;
 
 namespace Jun.Ground.Crops
 {
-    public class RowCropsGround : MonoBehaviourPunCallbacks, IPunObservable
+    public class RowCropsGround : MonoBehaviourPun, IPunObservable
     {
         public static Dictionary<string, GameObject> cropPoints = new Dictionary<string, GameObject>();
 

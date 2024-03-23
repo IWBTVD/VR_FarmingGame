@@ -5,7 +5,7 @@ using Photon.Pun;
 
 namespace Jun.Ground.Crops
 {
-    public class SeedBase : MonoBehaviourPunCallbacks
+    public class SeedBase : MonoBehaviourPun
     {
         public enum SeedType
         {
