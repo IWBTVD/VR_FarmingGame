@@ -74,6 +74,8 @@ namespace Jun.Ground.Crops
                         break;
                 }
             }
+            CropPoint cropPoint = GetComponentInParent<CropPoint>();
+            cropPoint.Harvet();
         }
 
         [PunRPC]

@@ -73,7 +73,7 @@ namespace Jun.Ground.Crops
 
                     if (!IsSeedlingsGround)
                     {
-                        other.GetComponent<CropsGround>().ReceiveSeed(currentCropsPrefab);
+                        other.GetComponent<CropPoint>().ReceiveSeed(currentCropsPrefab);
                     }
                     else
                     {
@@ -90,7 +90,7 @@ namespace Jun.Ground.Crops
                 if (other.CompareTag("Ground"))
                 {
                     Debug.Log("Plant Crops");
-                    other.GetComponent<CropsGround>().PlantCrops(currentCropsPrefab);
+                    other.GetComponent<CropPoint>().PlantCrops(currentCropsPrefab);
                 }
             }
         }
