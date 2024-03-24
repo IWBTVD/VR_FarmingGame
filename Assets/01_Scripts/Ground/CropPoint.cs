@@ -32,6 +32,10 @@ namespace Jun.Ground.Crops
 
         public void ReceiveSeed(GameObject IncomeSeed)
         {
+            if (IsSeedlings == true)
+            {
+                return;
+            }
             seedlings = IncomeSeed;
             IsSeedlings = true;
             rowCropsGround.NotifyAddCrop(this.gameObject, seedlings);
@@ -40,6 +44,10 @@ namespace Jun.Ground.Crops
 
         public void PlantCrops(GameObject IncomeCrops)
         {
+            if (IsSeedlings == true)
+            {
+                return;
+            }
             seedlings = IncomeCrops;
             IsSeedlings = true;
             rowCropsGround.NotifyAddCrop(this.gameObject, seedlings);

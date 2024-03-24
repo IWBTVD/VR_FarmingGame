@@ -49,19 +49,16 @@ namespace Jun.Ground.Crops
         {
             if (seedType == SeedType.Seed)
             {
-                if (other.CompareTag("Ground"))
+                if (other.CompareTag("CropPoint"))
                 {
                     Debug.Log("Send Seed");
-                    bool IsSeedlingsGround = other.GetComponent<CropsGround>().IsSeedlings;
+                    bool IsSeedlingsGround = other.GetComponent<CropPoint>().IsSeedlings;
 
                     if (!IsSeedlingsGround)
                     {
                         other.GetComponent<CropPoint>().ReceiveSeed(currentCropsPrefab);
                     }
-                    else
-                    {
-                        Destroy(gameObject);
-                    }
+
                 }
             }
         }
@@ -70,7 +67,7 @@ namespace Jun.Ground.Crops
         {
             if (seedType == SeedType.Crops)
             {
-                if (other.CompareTag("Ground"))
+                if (other.CompareTag("CropPoint"))
                 {
                     Debug.Log("Plant Crops");
                     other.GetComponent<CropPoint>().PlantCrops(currentCropsPrefab);
@@ -79,17 +76,17 @@ namespace Jun.Ground.Crops
         }
 
 
-        public void PlayParticleByAngle(float currentXAngle)
-        {
-            if ((currentXAngle >= 35f && currentXAngle <= 100f))
-            {
-                StartSeed = true;
-            }
-            else
-            {
-                StartSeed = false;
-            }
-        }
+        // public void PlayParticleByAngle(float currentXAngle)
+        // {
+        //     if ((currentXAngle >= 35f))
+        //     {
+        //         StartSeed = true;
+        //     }
+        //     else
+        //     {
+        //         StartSeed = false;
+        //     }
+        // }
 
     }
 }

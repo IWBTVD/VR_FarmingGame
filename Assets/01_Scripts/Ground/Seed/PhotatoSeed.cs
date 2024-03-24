@@ -9,4 +9,4 @@ namespace Jun.Ground.Crops
             seedType = SeedType.Crops;
         }
     }
-} 
+}
