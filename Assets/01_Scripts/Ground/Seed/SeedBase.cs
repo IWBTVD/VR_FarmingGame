@@ -21,23 +21,6 @@ namespace Jun.Ground.Crops
         [Header("Test")]
         public bool StartSeed = false;
 
-        // private void Start()
-        // {
-        //     switch (seedType)
-        //     {
-        //         case SeedType.Seed:
-        //             ps = GetComponent<ParticleSystem>();
-        //             break;
-        //         case SeedType.Crops:
-        //             break;
-        //     }
-        // }
-
-        // public void Update()
-        // {
-        //     TestCode();
-        // }
-
         public void TestCode()
         {
             if (StartSeed)
