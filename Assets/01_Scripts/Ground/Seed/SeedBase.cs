@@ -71,6 +71,7 @@ namespace Jun.Ground.Crops
                 {
                     Debug.Log("Plant Crops");
                     other.GetComponent<CropPoint>().PlantCrops(currentCropsPrefab);
+                    Destroy(gameObject);
                 }
             }
         }

@@ -14,12 +14,20 @@ namespace Jun.Ground.Crops
 
         public void NotifyAddCrop(GameObject cropPoint, GameObject seedlings)
         {
+            if (cropPoints.ContainsKey(cropPoint.name))
+            {
+                return;
+            }
             cropPoints.Add(cropPoint.name, seedlings);
             Debug.Log("Add Crop" + cropPoints.Keys + cropPoints.Values);
         }
 
         public void NotifyRemoveCrop(GameObject cropPoint, GameObject seedlings)
         {
+            if (cropPoints.ContainsKey(cropPoint.name))
+            {
+                return;
+            }
             cropPoints.Remove(cropPoint.name);
             Debug.Log("Remove Crop" + cropPoints.Keys + cropPoints.Values);
         }
