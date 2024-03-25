@@ -10,17 +10,20 @@ namespace Jun.Ground.Crops
         public GroundState currentState = GroundState.Dry;
         public GameObject seedlings;
         private RowCropsGround rowCropsGround;
-        public bool IsSeedlings = false;
-        public bool IsCultivation = false;
         public GameObject cultivationObject;
         public ParticleSystem ps;
+
+
         private const float MAXCULTOVATIONTIME = 2f;
         private float cultivationTime = 0f;
+
+        public bool IsSeedlings = false;
+        public bool IsCultivation = false;
+        public bool IsPsPlaying = false;
 
         public void Start()
         {
             ps = GetComponentInChildren<ParticleSystem>();
-            // 파티클 시스템을 비활성화
             seedlings = null;
             rowCropsGround = GetComponentInParent<RowCropsGround>();
             cultivationObject = transform.gameObject;
@@ -29,6 +32,22 @@ namespace Jun.Ground.Crops
         public void Update()
         {
             SeedGrowing();
+
+            if (IsPsPlaying)
+            {
+                if (!ps.isPlaying)
+                {
+                    ps.Play();
+                    IsPsPlaying = false;
+                }
+            }
+            else
+            {
+                if (ps.isPlaying)
+                {
+                    ps.Stop();
+                }
+            }
         }
 
         public void ReceiveSeed(GameObject IncomeSeed)
@@ -41,7 +60,7 @@ namespace Jun.Ground.Crops
             IsSeedlings = true;
             rowCropsGround.NotifyAddCrop(this.gameObject, seedlings);
             // 파티클 시스템 활성화
-            ps.Play();
+            IsPsPlaying = true;
         }
 
         public void PlantCrops(GameObject IncomeCrops)
@@ -54,7 +73,7 @@ namespace Jun.Ground.Crops
             IsSeedlings = true;
             rowCropsGround.NotifyAddCrop(this.gameObject, seedlings);
             // 파티클 시스템 활성화
-            ps.Play();
+            IsPsPlaying = true;
         }
 
         private void SeedGrowing()
@@ -91,13 +110,6 @@ namespace Jun.Ground.Crops
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
             throw new System.NotImplementedException();
-        }
-
-        // EnableChanged 이벤트를 감지하여 파티클 시스템을 제어
-        private void OnEnable()
-        {
-            // enable될 때 파티클을 멈추도록 설정
-            ps.Stop();
         }
     }
 }
