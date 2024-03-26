@@ -9,12 +9,13 @@ namespace Jun
 {
     public class NPCbase : MonoBehaviour
     {
+        public GameObject gameObjectUI;
         public TextMeshProUGUI TalkText;
 
         // Start is called before the first frame update
         void Start()
         {
-            // TalkText = GetComponentInChildren<Text>();
+            gameObjectUI.SetActive(false);
 
         }
 

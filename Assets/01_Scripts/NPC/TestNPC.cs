@@ -11,9 +11,21 @@ namespace Jun
     {
         public override void Interact()
         {
+            StopCoroutine(CoroutineName());
+            StartCoroutine(CoroutineName());
+
+        }
+
+        IEnumerator CoroutineName()
+        {
+            gameObjectUI.SetActive(true);
             Debug.Log("Interacting with TestNPC");
-            String talk1 = "Hello, I am a TestNPC";
+            string talk1 = "Hello, I am a TestNPC";
             TalkText.text = talk1;
+            yield return new WaitForSeconds(2f);
+
+            // 2초 후에 UI 창을 비활성화합니다.
+            gameObjectUI.SetActive(false);
         }
     }
 
