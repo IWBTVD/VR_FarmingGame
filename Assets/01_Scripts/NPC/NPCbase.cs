@@ -1,14 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Jun
 {
     public class NPCbase : MonoBehaviour
     {
+        public TextMeshProUGUI TalkText;
+
         // Start is called before the first frame update
         void Start()
         {
+            // TalkText = GetComponentInChildren<Text>();
 
         }
 
@@ -25,3 +31,5 @@ namespace Jun
     }
 
 }
+
+

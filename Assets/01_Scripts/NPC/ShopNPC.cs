@@ -9,6 +9,8 @@ namespace Jun
         public override void Interact()
         {
             Debug.Log("Interacting with ShopNPC");
+            string talk1 = "Hello, I am a ShopNPC";
+            TalkText.text = talk1;
         }
     }
 
