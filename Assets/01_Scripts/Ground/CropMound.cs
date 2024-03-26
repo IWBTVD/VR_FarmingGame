@@ -8,8 +8,11 @@ using System;
 
 namespace Jun.Ground.Crops
 {
-    public class RowCropsGround : MonoBehaviourPun, IPunObservable
+    public class CropMound : MonoBehaviourPun, IPunObservable
     {
+        [SerializeField] private List<CropPoint> _cropPointList = new();
+        public List<CropPoint> CropPointList => _cropPointList;
+
         public static Dictionary<string, GameObject> cropPoints = new Dictionary<string, GameObject>();
 
         public void NotifyAddCrop(GameObject cropPoint, GameObject seedlings)

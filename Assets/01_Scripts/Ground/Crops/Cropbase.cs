@@ -3,26 +3,27 @@ using Photon.Pun;
 
 namespace Jun.Ground.Crops
 {
-    public class Cropbase : MonoBehaviourPun
+    public class CropBase : MonoBehaviourPun
     {
+        public float MAX_CULTIVATION_TIME;
+
         public enum CropsState
         {
+            Seed,
             Sprout,
-            Growing,
-            Harvest
+            ReadyForHarvest
         }
         public CropsState CurrentState;
-        public GameObject[] CropsPrefabs;
-        public float MAXCULTOVATIONTIME;
-        public float CultivationTime;
 
-        public PhotonView pv;
+        [SerializeField] protected GameObject[] _cropVisualList;
+        
+        public float growingTime;
 
         public virtual void ChangePotatoPrefab()
         {
-            for (int i = 0; i < CropsPrefabs.Length; i++)
+            for (int i = 0; i < _cropVisualList.Length; i++)
             {
-                CropsPrefabs[i].SetActive(i == (int)CurrentState);
+                _cropVisualList[i].SetActive(i == (int)CurrentState);
             }
         }
 
@@ -36,21 +37,23 @@ namespace Jun.Ground.Crops
 
         public virtual void CropGrowing()
         {
-            if (CurrentState == CropsState.Harvest)
+            if (CurrentState == CropsState.ReadyForHarvest)
             {
                 return;
             }
 
-            CultivationTime += Time.deltaTime;
+            growingTime += Time.deltaTime;
 
-            if (CultivationTime >= MAXCULTOVATIONTIME / 2 && CurrentState == CropsState.Sprout)
+            /*
+            if (cultivationTime >= MAX_CULTIVATION_TIME / 2 && CurrentState == CropsState.Sprout)
             {
                 ChangeState(CropsState.Growing);
             }
-            else if (CultivationTime >= MAXCULTOVATIONTIME && CurrentState == CropsState.Growing)
+            else if (cultivationTime >= MAX_CULTIVATION_TIME && CurrentState == CropsState.Growing)
             {
                 ChangeState(CropsState.Harvest);
             }
+            */
         }
 
         public virtual void HarvestCrops()
@@ -58,37 +61,41 @@ namespace Jun.Ground.Crops
 
             switch (CurrentState)
             {
+                /*
                 case CropsState.Sprout:
                     Debug.Log("아직 열리지 않음");
                     break;
                 case CropsState.Growing:
                     Debug.Log("한개 떨어짐");
                     break;
-                case CropsState.Harvest:
+                */
+                case CropsState.ReadyForHarvest:
                     Debug.Log("모두 떨어짐");
                     break;
             }
 
 
             CropPoint cropPoint = GetComponentInParent<CropPoint>();
-            cropPoint.Harvet();
+            cropPoint.Harvest();
             Destroy(gameObject);
         }
 
 
         public void OnPhotonSerializeView(PhotonStream stream)
         {
+            /*
             if (stream.IsWriting)
             {
                 stream.SendNext(CurrentState);
-                stream.SendNext(CultivationTime);
+                stream.SendNext(cultivationTime);
             }
             else
             {
                 CurrentState = (CropsState)stream.ReceiveNext();
                 ChangeState(CurrentState);
-                CultivationTime = (float)stream.ReceiveNext();
+                cultivationTime = (float)stream.ReceiveNext();
             }
+            */
         }
     }
 }

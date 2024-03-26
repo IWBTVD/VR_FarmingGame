@@ -3,21 +3,19 @@ using UnityEngine;
 
 namespace Jun.Ground.Crops
 {
-    public class Tomato : Cropbase
+    public class Tomato : CropBase
     {
         public void Start()
         {
-            pv = GetComponent<PhotonView>();
-
             CurrentState = CropsState.Sprout;
-            MAXCULTOVATIONTIME = 10f;
+            MAX_CULTIVATION_TIME = 10f;
 
             // Setup the CrobsPrefabs array
-            CropsPrefabs = new GameObject[transform.childCount];
+            _cropVisualList = new GameObject[transform.childCount];
             for (int i = 0; i < transform.childCount; i++)
             {
-                CropsPrefabs[i] = transform.GetChild(i).gameObject;
-                CropsPrefabs[i].SetActive(false);
+                _cropVisualList[i] = transform.GetChild(i).gameObject;
+                _cropVisualList[i].SetActive(false);
             }
             ChangePotatoPrefab();
         }
@@ -31,28 +29,9 @@ namespace Jun.Ground.Crops
 
         private void OnTriggerEnter(Collider other)
         {
-            if (pv.IsMine && other.gameObject.CompareTag("HarvestTool"))
+            if (photonView.IsMine && other.gameObject.CompareTag("HarvestTool"))
             {
                 HarvestCrops();
-            }
-        }
-
-        private void TestCode()
-        {
-            if (pv.IsMine)
-            {
-                if (Input.GetKeyDown(KeyCode.Alpha1))
-                {
-                    ChangeState(CropsState.Sprout);
-                }
-                if (Input.GetKeyDown(KeyCode.Alpha2))
-                {
-                    ChangeState(CropsState.Growing);
-                }
-                if (Input.GetKeyDown(KeyCode.Alpha3))
-                {
-                    ChangeState(CropsState.Harvest);
-                }
             }
         }
 

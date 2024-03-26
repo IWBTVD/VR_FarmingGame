@@ -1,15 +1,14 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Jun.Ground.Crops;
 
 namespace Gun
 {
-    public class DirtRow : MonoBehaviour
+    public class MoundsVisual : MonoBehaviour
     {
         private CultivationField cultivationField;
         private MeshRenderer meshRenderer;
-
-        [SerializeField] private List<PlantSocket> PlantSocketList = new();
 
         private void Awake()
         {
