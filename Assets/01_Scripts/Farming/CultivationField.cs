@@ -1,13 +1,14 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 namespace Gun
 {
     /// <summary>
     /// 경작 가능한 땅
     /// </summary>
-    public class CultivationField : MonoBehaviour
+    public class CultivationField : MonoBehaviourPun, IPunObservable
     {
         [SerializeField] private bool _isWatered = false;
         /// <summary>
@@ -26,7 +27,6 @@ namespace Gun
         /// 경작이 되어 둑이 생성되었는지 여부. true라면 식물을 만든 둑에 재배할 수 있다.
         /// </summary>
         public bool IsPlowed => _isPlowed;
-
 
         [Space()]
         [SerializeField] private Material dryMaterial;
@@ -92,6 +92,11 @@ namespace Gun
         {
             _isPlowed = true;
             dirtRow.gameObject.SetActive(true);
+        }
+
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        {
+            
         }
     }
 }
