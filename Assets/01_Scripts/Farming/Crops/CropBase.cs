@@ -7,13 +7,24 @@ namespace Jun.Ground.Crops
     {
         public float MAX_CULTIVATION_TIME;
 
+        /// <summary>
+        /// 현재까지 성장한 타이머
+        /// </summary>
+        protected float growthTimer = 0f;
+        /// <summary>
+        /// 최대 성장 시간
+        /// </summary>
+        protected float maxGrowthTime;
+        protected float fruitingTimer;
+        protected float fruitingTime;
+
         public enum CropsState
         {
             Seed,
             Sprout,
-            ReadyForHarvest
+            Mature,
         }
-        public CropsState CurrentState;
+        public CropsState CurrentState = CropsState.Seed;
 
         [SerializeField] protected GameObject[] _cropVisualList;
         
@@ -37,23 +48,12 @@ namespace Jun.Ground.Crops
 
         public virtual void CropGrowing()
         {
-            if (CurrentState == CropsState.ReadyForHarvest)
+            if (CurrentState == CropsState.Mature)
             {
                 return;
             }
 
             growingTime += Time.deltaTime;
-
-            /*
-            if (cultivationTime >= MAX_CULTIVATION_TIME / 2 && CurrentState == CropsState.Sprout)
-            {
-                ChangeState(CropsState.Growing);
-            }
-            else if (cultivationTime >= MAX_CULTIVATION_TIME && CurrentState == CropsState.Growing)
-            {
-                ChangeState(CropsState.Harvest);
-            }
-            */
         }
 
         public virtual void HarvestCrops()
@@ -61,15 +61,7 @@ namespace Jun.Ground.Crops
 
             switch (CurrentState)
             {
-                /*
-                case CropsState.Sprout:
-                    Debug.Log("아직 열리지 않음");
-                    break;
-                case CropsState.Growing:
-                    Debug.Log("한개 떨어짐");
-                    break;
-                */
-                case CropsState.ReadyForHarvest:
+                case CropsState.Mature:
                     Debug.Log("모두 떨어짐");
                     break;
             }
@@ -77,7 +69,7 @@ namespace Jun.Ground.Crops
 
             CropPoint cropPoint = GetComponentInParent<CropPoint>();
             cropPoint.Harvest();
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
 

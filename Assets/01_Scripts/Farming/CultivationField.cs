@@ -36,6 +36,7 @@ namespace Gun
 
         [Space()]
         [SerializeField] private MoundsVisual moundsVisual;
+        [SerializeField] private ParticleSystem plowCompleteParticle;
 
         [Space()]
         [SerializeField] private List<CropMound> _moundList = new();
@@ -98,6 +99,7 @@ namespace Gun
         {
             _isPlowed = true;
             moundsVisual.gameObject.SetActive(true);
+            plowCompleteParticle.Play();
         }
 
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
