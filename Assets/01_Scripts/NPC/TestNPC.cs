@@ -9,7 +9,7 @@ namespace Jun
 {
     public class TestNPC : NPCbase
     {
-        public override void Interact()
+        public override void Talk()
         {
             StopCoroutine(CoroutineName());
             StartCoroutine(CoroutineName());
@@ -18,14 +18,15 @@ namespace Jun
 
         IEnumerator CoroutineName()
         {
-            gameObjectUI.SetActive(true);
+            talkUI.SetActive(true);
             Debug.Log("Interacting with TestNPC");
-            string talk1 = "Hello, I am a TestNPC";
+            string talk1 = GetDialog("Pedestrian");
+            Debug.Log(talk1);
             TalkText.text = talk1;
             yield return new WaitForSeconds(2f);
 
             // 2초 후에 UI 창을 비활성화합니다.
-            gameObjectUI.SetActive(false);
+            talkUI.SetActive(false);
         }
     }
 

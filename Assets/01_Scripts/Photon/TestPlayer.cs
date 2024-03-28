@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ namespace Jun
     public class TestPlayer : MonoBehaviour
     {
         public GameObject mainCamera;
+        private GameObject nerbyNPC;
+
 
         private void Start()
         {
@@ -20,11 +23,25 @@ namespace Jun
         private void Update()
         {
             Move();
-            CheckNPCbyRange();
+            DetectNPCbyRange();
+            InteractionNPCUI();
+            DeleteNPCbyRange();
+            TalkWithNPC();
+        }
 
+        private void InteractionNPCUI()
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                if (nerbyNPC != null)
+                {
+                    nerbyNPC.GetComponent<NPCbase>().Interact();
+                }
+            }
         }
 
         //마우스 위치에따라 카메라 회전
+
         private void LateUpdate()
         {
             float mouseX = Input.GetAxis("Mouse X");
@@ -45,23 +62,42 @@ namespace Jun
             transform.Translate(dir.normalized * moveSpeed * Time.deltaTime);
         }
 
-        private void CheckNPCbyRange()
+        private void TalkWithNPC()
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                float range = 2f;
-                Collider[] colls = Physics.OverlapSphere(transform.position, range);
-
-                foreach (var coll in colls)
+                if (nerbyNPC != null)
                 {
-                    if (coll.TryGetComponent<NPCbase>(out NPCbase npc))
-                    {
-                        npc.Interact();
-                    }
-
+                    nerbyNPC.GetComponent<NPCbase>().Talk();
                 }
             }
+        }
 
+        private void DetectNPCbyRange()
+        {
+            float range = 2f;
+            Collider[] colls = Physics.OverlapSphere(transform.position, range);
+
+            foreach (var coll in colls)
+            {
+                if (coll.TryGetComponent<NPCbase>(out NPCbase npc))
+                {
+                    nerbyNPC = coll.gameObject;
+                }
+            }
+        }
+
+
+        private void DeleteNPCbyRange()
+        {
+            if (nerbyNPC != null)
+            {
+                if (Vector3.Distance(transform.position, nerbyNPC.transform.position) > 4f)
+                {
+                    nerbyNPC.GetComponent<NPCbase>().CloseUI();
+                    nerbyNPC = null;
+                }
+            }
         }
     }
 
