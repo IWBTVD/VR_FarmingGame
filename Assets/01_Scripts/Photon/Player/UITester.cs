@@ -7,6 +7,7 @@ namespace Jun
     public class UITester : MonoBehaviour
     {
         public GameObject nerbyNPC;
+        public int money = 0;
 
         void Start()
         {

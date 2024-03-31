@@ -100,10 +100,10 @@ namespace Jun.Ground.Crops
         }
 
         // EnableChanged 이벤트를 감지하여 파티클 시스템을 제어
-        private void OnEnable()
-        {
-            // enable될 때 파티클을 멈추도록 설정
-            particle.Stop();
-        }
+        // private void OnEnable()
+        // {
+        //     // enable될 때 파티클을 멈추도록 설정
+        //     particle.Stop();
+        // }
     }
 }
