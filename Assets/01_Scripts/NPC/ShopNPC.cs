@@ -6,8 +6,10 @@ namespace Jun
 {
     public class ShopNPC : NPCbase
     {
+        /// <summary>
+        /// 상호작용 UI
+        /// </summary>
         public GameObject InteractionUI;
-
         public override void Interact()
         {
             if (InteractionUI != null)
@@ -21,12 +23,12 @@ namespace Jun
         }
         public override void Talk()
         {
-            StopCoroutine(CoroutineName());
-            StartCoroutine(CoroutineName());
+            StopCoroutine(TalkUICoroutine());
+            StartCoroutine(TalkUICoroutine());
 
         }
 
-        IEnumerator CoroutineName()
+        IEnumerator TalkUICoroutine()
         {
             talkUI.SetActive(true);
             Debug.Log("Interacting with ShopNPC");

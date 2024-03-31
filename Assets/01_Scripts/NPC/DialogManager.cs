@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class DialogManager : MonoBehaviourPun
 {
+    /// <summary>
+    /// Singleton pattern
+    /// </summary>
     private static DialogManager instance;
     public static DialogManager Instance
     {
@@ -38,9 +41,13 @@ public class DialogManager : MonoBehaviourPun
         }
     }
 
-    //store csv file using public
+    /// <summary>
+    /// 대사를 관리하는 CSV 파일
+    /// </summary>    
     public TextAsset dialogCSV;
-    // Start is called before the first frame update
+    /// <summary>
+    /// 대사를 저장하는 Dictionary
+    /// </summary>
     public Dictionary<string, string> DialogDictionary;
     void Start()
     {
@@ -59,6 +66,11 @@ public class DialogManager : MonoBehaviourPun
         }
 
     }
+    /// <summary>
+    /// 대사를 가져오는 함수
+    /// </summary>
+    /// <param name="eventName"></param>
+    /// <returns></returns>
     // 대사가 많아지면 미리 분리해놓고 사용하기도 고려.
     public string GetDialog(string eventName)
     {

@@ -11,12 +11,15 @@ namespace Jun
     {
         public override void Talk()
         {
-            StopCoroutine(CoroutineName());
-            StartCoroutine(CoroutineName());
+            StopCoroutine(TalkUICoroutine());
+            StartCoroutine(TalkUICoroutine());
 
         }
-
-        IEnumerator CoroutineName()
+        /// <summary>
+        /// 대화창을 띄우는 코루틴 함수, 2초 후에 대화창을 닫습니다.
+        /// </summary>
+        /// <returns></returns>
+        IEnumerator TalkUICoroutine()
         {
             talkUI.SetActive(true);
             Debug.Log("Interacting with TestNPC");
