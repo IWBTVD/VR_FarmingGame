@@ -1,20 +1,31 @@
 using UnityEngine;
 using Photon.Pun;
 using System.Collections;
+using Gun;
 
 namespace Jun.Ground.Crops
 {
-    public class CropPoint : MonoBehaviourPun, IPunObservable
+    public class CropPoint : MonoBehaviour
     {
-        public enum GroundState { Dry, Wet }
-        public GroundState currentState = GroundState.Dry;
+        private const float MAX_CULTIVATION_TIME = 2f;
+
+        private CultivationField _cultivationField;
+        public CultivationField CultivationField
+        {
+            get
+            {
+                if (_cultivationField == null) _cultivationField = GetComponentInParent<CultivationField>();
+                return _cultivationField;
+            }
+        }
+        public bool IsWatered => CultivationField.IsWatered;
+
         public GameObject seedlings;
-        private RowCropsGround rowCropsGround;
+        private CropMound rowCropsGround;
+        public bool IsSeedlings = false;
+        public bool IsCultivation = false;
         public GameObject cultivationObject;
-        public ParticleSystem ps;
-
-
-        private const float MAXCULTOVATIONTIME = 2f;
+        public ParticleSystem particle;
         private float cultivationTime = 0f;
 
         public bool IsSeedlings = false;
@@ -23,9 +34,10 @@ namespace Jun.Ground.Crops
 
         public void Start()
         {
-            ps = GetComponentInChildren<ParticleSystem>();
+            particle = GetComponentInChildren<ParticleSystem>();
+            // 파티클 시스템을 비활성화
             seedlings = null;
-            rowCropsGround = GetComponentInParent<RowCropsGround>();
+            rowCropsGround = GetComponentInParent<CropMound>();
             cultivationObject = transform.gameObject;
         }
 
@@ -60,7 +72,7 @@ namespace Jun.Ground.Crops
             IsSeedlings = true;
             rowCropsGround.NotifyAddCrop(this.gameObject, seedlings);
             // 파티클 시스템 활성화
-            IsPsPlaying = true;
+            particle.Play();
         }
 
         public void PlantCrops(GameObject IncomeCrops)
@@ -73,15 +85,15 @@ namespace Jun.Ground.Crops
             IsSeedlings = true;
             rowCropsGround.NotifyAddCrop(this.gameObject, seedlings);
             // 파티클 시스템 활성화
-            IsPsPlaying = true;
+            particle.Play();
         }
 
         private void SeedGrowing()
         {
-            if (currentState == GroundState.Wet && IsSeedlings)
+            if (IsWatered && IsSeedlings)
             {
                 cultivationTime += Time.deltaTime;
-                if (cultivationTime >= MAXCULTOVATIONTIME)
+                if (cultivationTime >= MAX_CULTIVATION_TIME)
                 {
                     Instantiate(seedlings, cultivationObject.transform);
                     IsCultivation = false;
@@ -89,10 +101,10 @@ namespace Jun.Ground.Crops
                     cultivationTime = 0f;
                 }
             }
-            else if (currentState == GroundState.Dry && IsSeedlings)
+            else if (!IsWatered && IsSeedlings)
             {
                 cultivationTime += Time.deltaTime / 10;
-                if (cultivationTime >= MAXCULTOVATIONTIME)
+                if (cultivationTime >= MAX_CULTIVATION_TIME)
                 {
                     Instantiate(seedlings, cultivationObject.transform);
                     IsCultivation = false;
@@ -102,14 +114,16 @@ namespace Jun.Ground.Crops
             }
         }
 
-        public void Harvet()
+        public void Harvest()
         {
             rowCropsGround.NotifyRemoveCrop(this.gameObject, seedlings);
         }
 
-        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        // EnableChanged 이벤트를 감지하여 파티클 시스템을 제어
+        private void OnEnable()
         {
-            throw new System.NotImplementedException();
+            // enable될 때 파티클을 멈추도록 설정
+            particle.Stop();
         }
     }
 }

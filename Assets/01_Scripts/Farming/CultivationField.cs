@@ -1,13 +1,15 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Jun.Ground.Crops;
 
 namespace Gun
 {
     /// <summary>
     /// 경작 가능한 땅
     /// </summary>
-    public class CultivationField : MonoBehaviour
+    public class CultivationField : MonoBehaviourPun, IPunObservable
     {
         [SerializeField] private bool _isWatered = false;
         /// <summary>
@@ -27,14 +29,19 @@ namespace Gun
         /// </summary>
         public bool IsPlowed => _isPlowed;
 
-
         [Space()]
         [SerializeField] private Material dryMaterial;
         [SerializeField] private Material wetMaterial;
         public Material WetMaterial => wetMaterial;
 
         [Space()]
-        [SerializeField] private DirtRow dirtRow;
+        [SerializeField] private MoundsVisual moundsVisual;
+        [SerializeField] private ParticleSystem plowCompleteParticle;
+
+        [Space()]
+        [SerializeField] private List<CropMound> _moundList = new();
+        public List<CropMound> MoundList => _moundList;
+
         [SerializeField] private List<IObstacle> obstacleList = new();
 
         private MeshRenderer meshRenderer;
@@ -45,7 +52,7 @@ namespace Gun
         private void Awake()
         {
             meshRenderer = GetComponent<MeshRenderer>();
-            dirtRow.gameObject.SetActive(false);
+            moundsVisual.gameObject.SetActive(false);
         }
 
         /// <summary>
@@ -68,7 +75,7 @@ namespace Gun
         {
             _isWatered = true;
             meshRenderer.material = wetMaterial;
-            dirtRow.FullyWatered(wetMaterial);
+            moundsVisual.FullyWatered(wetMaterial);
         }
 
         /// <summary>
@@ -91,7 +98,13 @@ namespace Gun
         public void FullyPlowed()
         {
             _isPlowed = true;
-            dirtRow.gameObject.SetActive(true);
+            moundsVisual.gameObject.SetActive(true);
+            plowCompleteParticle.Play();
+        }
+
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        {
+            
         }
     }
 }
