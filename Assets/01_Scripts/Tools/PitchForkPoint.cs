@@ -36,6 +36,12 @@ namespace Gun
         {
             if(other.gameObject.tag == "Soil")
             {
+                if(lastField == null)
+                {
+                    lastField = other.GetComponent<CultivationField>();
+
+                    if (lastField == null) return;
+                }
                 if(lastField.gameObject != other.gameObject)
                 {
                     lastField = other.GetComponent<CultivationField>();
@@ -62,4 +68,3 @@ namespace Gun
         }
     }
 }
-

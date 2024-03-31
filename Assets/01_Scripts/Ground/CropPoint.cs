@@ -25,12 +25,10 @@ namespace Jun.Ground.Crops
         public bool IsSeedlings = false;
         public bool IsCultivation = false;
         public GameObject cultivationObject;
-        public ParticleSystem particle;
         private float cultivationTime = 0f;
 
         public void Start()
         {
-            particle = GetComponentInChildren<ParticleSystem>();
             // 파티클 시스템을 비활성화
             seedlings = null;
             rowCropsGround = GetComponentInParent<CropMound>();
@@ -51,8 +49,6 @@ namespace Jun.Ground.Crops
             seedlings = IncomeSeed;
             IsSeedlings = true;
             rowCropsGround.NotifyAddCrop(this.gameObject, seedlings);
-            // 파티클 시스템 활성화
-            particle.Play();
         }
 
         public void PlantCrops(GameObject IncomeCrops)
@@ -64,8 +60,6 @@ namespace Jun.Ground.Crops
             seedlings = IncomeCrops;
             IsSeedlings = true;
             rowCropsGround.NotifyAddCrop(this.gameObject, seedlings);
-            // 파티클 시스템 활성화
-            particle.Play();
         }
 
         private void SeedGrowing()
@@ -97,13 +91,6 @@ namespace Jun.Ground.Crops
         public void Harvest()
         {
             rowCropsGround.NotifyRemoveCrop(this.gameObject, seedlings);
-        }
-
-        // EnableChanged 이벤트를 감지하여 파티클 시스템을 제어
-        private void OnEnable()
-        {
-            // enable될 때 파티클을 멈추도록 설정
-            particle.Stop();
         }
     }
 }
