@@ -28,9 +28,13 @@ namespace Jun.Ground.Crops
         public ParticleSystem particle;
         private float cultivationTime = 0f;
 
-        public void Start()
+        public void Awake()
         {
             particle = GetComponentInChildren<ParticleSystem>();
+        }
+        public void Start()
+        {
+            // particle = GetComponentInChildren<ParticleSystem>();
             // 파티클 시스템을 비활성화
             seedlings = null;
             rowCropsGround = GetComponentInParent<CropMound>();
@@ -100,10 +104,10 @@ namespace Jun.Ground.Crops
         }
 
         // EnableChanged 이벤트를 감지하여 파티클 시스템을 제어
-        // private void OnEnable()
-        // {
-        //     // enable될 때 파티클을 멈추도록 설정
-        //     particle.Stop();
-        // }
+        private void OnEnable()
+        {
+            // enable될 때 파티클을 멈추도록 설정
+            particle.Stop();
+        }
     }
 }
