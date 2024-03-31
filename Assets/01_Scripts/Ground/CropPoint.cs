@@ -28,10 +28,6 @@ namespace Jun.Ground.Crops
         public ParticleSystem particle;
         private float cultivationTime = 0f;
 
-        public bool IsSeedlings = false;
-        public bool IsCultivation = false;
-        public bool IsPsPlaying = false;
-
         public void Start()
         {
             particle = GetComponentInChildren<ParticleSystem>();
@@ -44,22 +40,6 @@ namespace Jun.Ground.Crops
         public void Update()
         {
             SeedGrowing();
-
-            if (IsPsPlaying)
-            {
-                if (!ps.isPlaying)
-                {
-                    ps.Play();
-                    IsPsPlaying = false;
-                }
-            }
-            else
-            {
-                if (ps.isPlaying)
-                {
-                    ps.Stop();
-                }
-            }
         }
 
         public void ReceiveSeed(GameObject IncomeSeed)
