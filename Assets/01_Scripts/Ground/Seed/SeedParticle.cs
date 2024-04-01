@@ -9,12 +9,14 @@ namespace Jun
         private ParticleSystem ps;
         private readonly bool StartSeed = false;
         public GameObject currentCropsPrefab;
+        private SeedBase seedBase;
 
         private void Awake()
         {
             ps = GetComponent<ParticleSystem>();
             ps.Play();
-            currentCropsPrefab = GetComponentInParent<SeedBase>().currentCropsPrefab;
+            seedBase = GetComponentInParent<SeedBase>();
+            currentCropsPrefab = seedBase.currentCropsPrefab;
 
         }
 
@@ -56,7 +58,7 @@ namespace Jun
 
                 if (!IsSeedlingsGround)
                 {
-                    other.GetComponent<CropPoint>().ReceiveSeed(currentCropsPrefab);
+                    other.GetComponent<CropPoint>().ReceiveSeed(seedBase);
                 }
             }
 

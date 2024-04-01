@@ -480,7 +480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 448a99bde6692524cadebe2948d8c858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  harvestType: 0
+  _plantSO: {fileID: 11400000, guid: 049677bcc95e13d479161fd99297127c, type: 2}
   sproutVisualList:
   - {fileID: 3557836649069073328}
   - {fileID: 6263386142996236491}

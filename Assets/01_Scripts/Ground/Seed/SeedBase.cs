@@ -52,11 +52,11 @@ namespace Jun.Ground.Crops
                 if (other.CompareTag("CropPoint"))
                 {
                     Debug.Log("Send Seed");
-                    bool IsSeedlingsGround = other.GetComponent<CropPoint>().IsSeedlings;
+                    bool IsSeedlingsGround = other.GetComponent<CropPoint>().IsPlanted;
 
                     if (!IsSeedlingsGround)
                     {
-                        other.GetComponent<CropPoint>().ReceiveSeed(currentCropsPrefab);
+                        other.GetComponent<CropPoint>().ReceiveSeed(this);
                     }
 
                 }
@@ -70,7 +70,7 @@ namespace Jun.Ground.Crops
                 if (other.CompareTag("CropPoint"))
                 {
                     Debug.Log("Plant Crops");
-                    other.GetComponent<CropPoint>().PlantCrops(currentCropsPrefab);
+                    other.GetComponent<CropPoint>().PlantCrop(this);
                     Destroy(gameObject);
                 }
             }

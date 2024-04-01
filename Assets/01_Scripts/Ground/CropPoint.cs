@@ -7,8 +7,6 @@ namespace Jun.Ground.Crops
 {
     public class CropPoint : MonoBehaviour
     {
-        private const float MAX_CULTIVATION_TIME = 2f;
-
         private CultivationField _cultivationField;
         public CultivationField CultivationField
         {
@@ -19,78 +17,49 @@ namespace Jun.Ground.Crops
             }
         }
         public bool IsWatered => CultivationField.IsWatered;
-        
-        public GameObject seedlings;
+
+        [SerializeField] private PlantBase _plant;
+        public PlantBase Plant => _plant;
+        public bool IsPlanted => _plant != null;
+
         private CropMound rowCropsGround;
-        public bool IsSeedlings = false;
-        public bool IsCultivation = false;
-        public GameObject cultivationObject;
-        private float cultivationTime = 0f;
 
-        public void Start()
+        private void Start()
         {
-            // 파티클 시스템을 비활성화
-            seedlings = null;
             rowCropsGround = GetComponentInParent<CropMound>();
-            cultivationObject = transform.gameObject;
         }
 
-        public void Update()
+        private void Update()
         {
-            SeedGrowing();
         }
 
-        public void ReceiveSeed(GameObject IncomeSeed)
+        public void ReceiveSeed(SeedBase IncomeSeed)
         {
-            if (IsSeedlings == true)
-            {
-                return;
-            }
-            seedlings = IncomeSeed;
-            IsSeedlings = true;
-            rowCropsGround.NotifyAddCrop(this.gameObject, seedlings);
+
         }
 
-        public void PlantCrops(GameObject IncomeCrops)
+        /// <summary>
+        /// 작물 심기
+        /// </summary>
+        /// <param name="seed"></param>
+        public void PlantCrop(SeedBase seed)
         {
-            if (IsSeedlings == true)
-            {
-                return;
-            }
-            seedlings = IncomeCrops;
-            IsSeedlings = true;
-            rowCropsGround.NotifyAddCrop(this.gameObject, seedlings);
+
         }
 
-        private void SeedGrowing()
+        public void PlantCrop(PlantBase plantBase)
         {
-            if (IsWatered && IsSeedlings)
-            {
-                cultivationTime += Time.deltaTime;
-                if (cultivationTime >= MAX_CULTIVATION_TIME)
-                {
-                    Instantiate(seedlings, cultivationObject.transform);
-                    IsCultivation = false;
-                    IsSeedlings = false;
-                    cultivationTime = 0f;
-                }
-            }
-            else if (!IsWatered && IsSeedlings)
-            {
-                cultivationTime += Time.deltaTime / 10;
-                if (cultivationTime >= MAX_CULTIVATION_TIME)
-                {
-                    Instantiate(seedlings, cultivationObject.transform);
-                    IsCultivation = false;
-                    IsSeedlings = false;
-                    cultivationTime = 0f;
-                }
-            }
+            _plant = Instantiate(plantBase, transform);
+        }
+
+        private void OnDayPassed()
+        {
+            //_plant
         }
 
         public void Harvest()
         {
-            rowCropsGround.NotifyRemoveCrop(this.gameObject, seedlings);
+            //rowCropsGround.NotifyRemoveCrop(this.gameObject, seedlings);
         }
     }
 }
