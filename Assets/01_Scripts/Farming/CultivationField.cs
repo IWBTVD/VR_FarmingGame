@@ -75,7 +75,7 @@ namespace Gun
         {
             _isWatered = true;
             meshRenderer.material = wetMaterial;
-            moundsVisual.FullyWatered(wetMaterial);
+            moundsVisual.FullyWatered();
         }
 
         /// <summary>

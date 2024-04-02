@@ -14,8 +14,5 @@ namespace Gun
             grabbable = GetComponent<Autohand.Grabbable>();
 
         }
-
-
     }
-
 }

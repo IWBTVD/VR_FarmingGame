@@ -19,14 +19,19 @@ MonoBehaviour:
     values:
     - goDatasByGlobalId:
         keys:
-        - GlobalObjectId_V1-2-e47d940f6c212e1428b35f7c9e2c13e7-539546638-0
+        - GlobalObjectId_V1-2-e47d940f6c212e1428b35f7c9e2c13e7-1504925319490881-0
+        - GlobalObjectId_V1-2-e47d940f6c212e1428b35f7c9e2c13e7-7953773355588704291-7504555846995930857
         values:
-        - iColor: 0
+        - iColor: 8
+          icon: 
+        - iColor: 9
           icon: 
       goDatasByInstanceId:
-        keys: 86b4feff
+        keys: 848c00009eeaffff
         values:
-        - iColor: 0
+        - iColor: 8
+          icon: 
+        - iColor: 9
           icon: 
     - goDatasByGlobalId:
         keys: []
