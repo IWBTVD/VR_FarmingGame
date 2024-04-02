@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4605251732894486337
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4880986554787086, guid: c004583408826104080451c4b7713ee5, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880986554787086, guid: c004583408826104080451c4b7713ee5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880986554787086, guid: c004583408826104080451c4b7713ee5, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880986554787086, guid: c004583408826104080451c4b7713ee5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 92.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880986554787086, guid: c004583408826104080451c4b7713ee5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -15.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880986554787086, guid: c004583408826104080451c4b7713ee5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 19.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880986554787086, guid: c004583408826104080451c4b7713ee5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.75525707
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880986554787086, guid: c004583408826104080451c4b7713ee5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880986554787086, guid: c004583408826104080451c4b7713ee5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6554287
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880986554787086, guid: c004583408826104080451c4b7713ee5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c004583408826104080451c4b7713ee5, type: 3}
