@@ -11,7 +11,7 @@ namespace Jun
     public class NPCbase : MonoBehaviourPun
     {
         /// <summary>
-        /// 대화창 UI
+        /// 대화창 UI NPC 오브젝트는 반드시 콜라이더를 가지고 있어야 합니다.
         /// </summary>
         public GameObject talkUI;
         public TextMeshProUGUI TalkText;

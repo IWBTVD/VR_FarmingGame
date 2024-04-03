@@ -10,7 +10,7 @@ namespace Jun
     public class TestPlayer : MonoBehaviour
     {
         public GameObject mainCamera;
-        private GameObject nerbyNPC;
+        private GameObject nearbyNPC;
 
 
         private void Start()
@@ -33,9 +33,9 @@ namespace Jun
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                if (nerbyNPC != null)
+                if (nearbyNPC != null)
                 {
-                    nerbyNPC.GetComponent<NPCbase>().Interact();
+                    nearbyNPC.GetComponent<NPCbase>().Interact();
                 }
             }
         }
@@ -66,9 +66,10 @@ namespace Jun
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                if (nerbyNPC != null)
+                Debug.Log(nearbyNPC);
+                if (nearbyNPC != null)
                 {
-                    nerbyNPC.GetComponent<NPCbase>().Talk();
+                    nearbyNPC.GetComponent<NPCbase>().Talk();
                 }
             }
         }
@@ -82,7 +83,7 @@ namespace Jun
             {
                 if (coll.TryGetComponent<NPCbase>(out NPCbase npc))
                 {
-                    nerbyNPC = coll.gameObject;
+                    nearbyNPC = coll.gameObject;
                 }
             }
         }
@@ -90,12 +91,12 @@ namespace Jun
 
         private void DeleteNPCbyRange()
         {
-            if (nerbyNPC != null)
+            if (nearbyNPC != null)
             {
-                if (Vector3.Distance(transform.position, nerbyNPC.transform.position) > 4f)
+                if (Vector3.Distance(transform.position, nearbyNPC.transform.position) > 4f)
                 {
-                    nerbyNPC.GetComponent<NPCbase>().CloseUI();
-                    nerbyNPC = null;
+                    nearbyNPC.GetComponent<NPCbase>().CloseUI();
+                    nearbyNPC = null;
                 }
             }
         }
