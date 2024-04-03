@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7775367323450105758}
   m_Layer: 0
   m_Name: Capsule
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7775367323450105701}
-  m_LocalRotation: {x: -0, y: -0.91275877, z: -0, w: 0.40849906}
+  m_LocalRotation: {x: 0, y: -0.9127594, z: 0, w: 0.40849772}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.65423834, y: 0.65423834, z: 0.65423834}
   m_ConstrainProportionsScale: 0
