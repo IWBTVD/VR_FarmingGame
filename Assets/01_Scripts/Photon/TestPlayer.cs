@@ -11,6 +11,7 @@ namespace Jun
     {
         public GameObject mainCamera;
         private GameObject nearbyNPC;
+        public EntranceMediator entrance;
 
 
         private void Start()
@@ -27,8 +28,14 @@ namespace Jun
             InteractionNPCUI();
             DeleteNPCbyRange();
             TalkWithNPC();
+            EnterRoon();
         }
 
+        private void EnterRoon()
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+                entrance.EnterRoon();
+        }
         private void InteractionNPCUI()
         {
             if (Input.GetKeyDown(KeyCode.F))
