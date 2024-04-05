@@ -1,5 +1,6 @@
 using UnityEngine;
 using Photon.Pun;
+using Autohand;
 
 namespace Jun.Ground.Crops
 {
@@ -18,10 +19,22 @@ namespace Jun.Ground.Crops
         protected float fruitingTimer;
         protected float fruitingTime;
 
+        protected Grabbable _grabbable;
+        protected Grabbable Grabbable => _grabbable;
+
         public enum CropsState
         {
+            /// <summary>
+            /// 씨앗
+            /// </summary>
             Seed,
+            /// <summary>
+            /// 싹
+            /// </summary>
             Sprout,
+            /// <summary>
+            /// 성숙함
+            /// </summary>
             Mature,
         }
         public CropsState CurrentState = CropsState.Seed;

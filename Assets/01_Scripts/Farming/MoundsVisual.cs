@@ -10,6 +10,8 @@ namespace Gun
         private CultivationField cultivationField;
         private MeshRenderer meshRenderer;
 
+        [SerializeField] private Material wetMaterial;
+
         private void Awake()
         {
             meshRenderer = GetComponent<MeshRenderer>();
@@ -21,7 +23,7 @@ namespace Gun
             meshRenderer.material = cultivationField.WetMaterial;
         }
 
-        public void FullyWatered(Material wetMaterial)
+        public void FullyWatered()
         {
             meshRenderer.material = wetMaterial;
         }
