@@ -10,45 +10,52 @@ namespace Gun
 
         #region 프로퍼티
         [SerializeField] private BreakableSO _breakableSO;
-
-        [SerializeField] private float health = 100;
+        [SerializeField] private int _health = 0;
         #endregion
 
-        public BreakableSO BreakableSO;
-        public float Health { get => health; set => health = value; }
+        public BreakableSO BreakableSO => _breakableSO;
+
+        public int Health { get => _health; set => _health = value; }
+
+        protected virtual void Awake()
+        {
+            _health = _breakableSO.MaxHealth;
+        }
 
         #region IBreakable
         public void OnBreakWithMeleeWeapon(int damage)
         {
-
+            _health -= (int)(damage * _breakableSO.MeleeWeaponMultiplier);
+            CheckBreak();
         }
 
         public void OnBreakWithRangeWeapon(int damage)
         {
-
+            _health -= (int)(damage * _breakableSO.RangeWeaponMultiplier);
+            CheckBreak();
         }
 
         public void OnBreakWithPickaxe(int damage)
         {
-            health -= damage * _breakableSO.PickaxeDamageMultiplier;
+            _health -= (int)(damage * _breakableSO.PickaxeDamageMultiplier);
             CheckBreak();
         }
 
         public void OnBreakWithAxe(int damage)
         {
-            health -= damage * _breakableSO.AxeDamageMultiplier;
+            _health -= (int)(damage * _breakableSO.AxeDamageMultiplier);
             CheckBreak();
         }
 
         public void OnBreakWithShovel(int damage)
         {
-            health -= damage * _breakableSO.ShovelDamageMultiplier;
+            _health -= (int)(damage * _breakableSO.ShovelDamageMultiplier);
             CheckBreak();
         }
 
         public void OnBreakWithOthers(int damage)
         {
-            health -= damage * _breakableSO.OtherDamageMultiplier;
+            _health -= (int)(damage * _breakableSO.OtherDamageMultiplier);
             CheckBreak();
         }
         public void CheckBreak()

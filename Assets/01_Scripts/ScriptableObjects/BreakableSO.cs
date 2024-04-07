@@ -8,11 +8,19 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Breakable SO", menuName = "농장게임 ScriptableObject/파괴가능한 오브젝트 SO 생성")]
 public class BreakableSO : ScriptableObject
 {
+    [SerializeField] private int maxHealth;
+
+
+    [SerializeField] private float meleeWeaponMultiplier;
+    [SerializeField] private float rangeWeaponMultiplier;
     [SerializeField] private float pickaxeMultiplier;
     [SerializeField] private float axeMultiplier;
     [SerializeField] private float shovelMultiplier;
     [SerializeField] private float otherMultiplier;
 
+    public int MaxHealth => maxHealth;
+    public float MeleeWeaponMultiplier => meleeWeaponMultiplier;
+    public float RangeWeaponMultiplier => rangeWeaponMultiplier;
     public float PickaxeDamageMultiplier => pickaxeMultiplier;
     public float AxeDamageMultiplier => axeMultiplier;
     public float ShovelDamageMultiplier => shovelMultiplier;
