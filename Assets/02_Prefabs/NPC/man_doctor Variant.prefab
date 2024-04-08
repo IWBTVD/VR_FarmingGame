@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5105401179941970018}
   - component: {fileID: 3362297910562580871}
   - component: {fileID: 7923330667639528819}
-  - component: {fileID: 2481935018347200987}
+  - component: {fileID: 3533424935645234978}
   m_Layer: 0
   m_Name: man_doctor Variant
   m_TagString: Untagged
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 137159372927358293}
-  m_LocalRotation: {x: -0, y: 0.5542304, z: -0, w: 0.8323633}
+  m_LocalRotation: {x: 0, y: 0.5542272, z: 0, w: 0.83236545}
   m_LocalPosition: {x: -26.93, y: 13.95, z: 49.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -79,7 +79,7 @@ NavMeshAgent:
   m_BaseOffset: -0.1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &2481935018347200987
+--- !u!114 &3533424935645234978
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,11 +88,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 137159372927358293}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e9b3b6af4c6be64786e47cb9de5bf6a, type: 3}
+  m_Script: {fileID: 11500000, guid: 450d53c28dc7649eca549435b728b9b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  talkUI: {fileID: 383892838015462277}
-  TalkText: {fileID: 0}
+  talkUI: {fileID: 1542876276741072582}
+  TalkText: {fileID: 1087403838080659266}
 --- !u!1 &208457213654390155
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,7 +740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1273879224725928641
 RectTransform:
   m_ObjectHideFlags: 0
@@ -749,7 +749,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542876276741072582}
   m_LocalRotation: {x: 0, y: 0.98454756, z: -0.17511751, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0.37699997}
+  m_LocalPosition: {x: 0, y: 0, z: 0.763}
   m_LocalScale: {x: 0.01, y: 0.0025, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -759,7 +759,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 20.171, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.012001947, y: 0.9750004}
+  m_AnchoredPosition: {x: 0.012, y: 1.117}
   m_SizeDelta: {x: 1000, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &761287115686106203
@@ -2087,6 +2087,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3904607861537117344}
+  - component: {fileID: 796542496}
+  - component: {fileID: 796542495}
   m_Layer: 0
   m_Name: Geometry
   m_TagString: Untagged
@@ -2110,6 +2112,34 @@ Transform:
   m_Father: {fileID: 5105401179941970018}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &796542496
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5327845336985330891}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &796542495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5327845336985330891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e9b3b6af4c6be64786e47cb9de5bf6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  talkUI: {fileID: 1542876276741072582}
+  TalkText: {fileID: 1087403838080659266}
 --- !u!1 &5354609496880004061
 GameObject:
   m_ObjectHideFlags: 0
