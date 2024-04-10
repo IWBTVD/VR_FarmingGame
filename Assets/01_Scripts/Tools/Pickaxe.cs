@@ -9,20 +9,19 @@ namespace Gun
     {
         private int _damage = 20;
         public int Damage => _damage;
-        [SerializeField] private CollisionDetector collisionDetector;
 
-        private void Awake()
-        {
-            collisionDetector.OnEnter.AddListener(EnterCollision);
-        }
-        private void EnterCollision(Collision collision)
-        {
+        private void OnCollisionEnter(Collision collision) {
             //일정 가속도 이상에서만 호출
-            if(collision.relativeVelocity.magnitude > 2f)
+            Debug.Log("PickaxeCollided " + collision.relativeVelocity.magnitude);
+            if(collision.relativeVelocity.magnitude >= 1f)
             {
-                if (collision.gameObject.TryGetComponent(out IBreakable breakable))
-                {
-                    breakable.OnBreakWithPickaxe(_damage);
+                if(collision.gameObject.tag == "Obstacle") {
+                    var breakable = collision.gameObject.GetComponentInParent<IBreakable>();
+
+                    if(breakable != null) {
+                        Debug.Log("Mining Performed");
+                        breakable.OnBreakWithPickaxe(_damage);
+                    }
                 }
             }
         }

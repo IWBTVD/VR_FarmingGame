@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Unity.VisualScripting;
+using Photon.Realtime;
 
 namespace Gun
 {
@@ -60,7 +62,10 @@ namespace Gun
         }
         public void CheckBreak()
         {
-
+            if(_health <= 0) {
+                Debug.Log("Broke!");
+                Destroy(gameObject);
+            }
         }
 
         

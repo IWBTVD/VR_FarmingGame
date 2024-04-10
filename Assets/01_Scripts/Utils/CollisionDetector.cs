@@ -11,6 +11,7 @@ public class CollisionDetector : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Pickaxe Collided!");
         OnEnter.Invoke(collision);
     }
 

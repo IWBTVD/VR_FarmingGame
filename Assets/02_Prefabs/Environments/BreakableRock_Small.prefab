@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 785373906545129786}
   m_Layer: 0
   m_Name: BreakableRock_Small
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 4571278074894450748}
   m_Layer: 0
   m_Name: SM_Generic_Small_Rocks_05
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
