@@ -1,15 +1,17 @@
 using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 namespace Jun
 {
     public class Box : MonoBehaviour
     {
+        List<Item> items = new List<Item>();
         Dictionary<string, int> itemAmountDict = new Dictionary<string, int>();
         Dictionary<string, GameObject> itemTextDict = new Dictionary<string, GameObject>();
-        public GameObject TextPrefab;
-        public Transform Canvas;
+        public GameObject textPrefab;
+        public Transform canvas;
 
 
         // 작물등 판매가능한 아이템들을 스크립트로 관리 해야함.
@@ -17,7 +19,8 @@ namespace Jun
         {
             if (other.CompareTag("Item"))
             {
-                string itemName = other.name;
+                Item item = other.GetComponent<Item>();
+                string itemName = item.itemType.ToString();
 
                 if (itemAmountDict.ContainsKey(itemName))
                 {
@@ -26,11 +29,13 @@ namespace Jun
                 }
                 else
                 {
-                    GameObject newText = Instantiate(TextPrefab, Canvas);
+                    GameObject newText = Instantiate(textPrefab, canvas);
                     newText.GetComponent<TextMeshProUGUI>().text = itemName;
                     itemTextDict[itemName] = newText;
                     itemAmountDict[itemName] = 1;
+                    items.Add(item);
                 }
+
             }
         }
 
@@ -43,6 +48,7 @@ namespace Jun
                 if (itemAmountDict.ContainsKey(itemName))
                 {
                     itemAmountDict[itemName]--;
+                    items.Remove(other.GetComponent<Item>());
 
                     if (itemAmountDict[itemName] == 0)
                     {
@@ -56,6 +62,18 @@ namespace Jun
                     }
                 }
             }
+        }
+
+        public void SellItem()
+        {
+            int totalMoney = 0;
+
+            foreach (var item in items)
+            {
+                totalMoney += item.price;
+            }
+
+            Debug.Log("Total Money: " + totalMoney);
         }
     }
 }
