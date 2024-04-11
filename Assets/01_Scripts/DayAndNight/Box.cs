@@ -70,10 +70,18 @@ namespace Jun
 
             foreach (var item in items)
             {
-                totalMoney += item.price;
+                totalMoney += item.price * itemAmountDict[item.itemType.ToString()];
             }
 
             Debug.Log("Total Money: " + totalMoney);
+        }
+
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                SellItem();
+            }
         }
     }
 }
