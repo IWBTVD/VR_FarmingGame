@@ -67,7 +67,11 @@ namespace Jun
 
         void Update()
         {
-
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                UpdateQuest(currentQuestID);
+                currentQuestID++;
+            }
         }
 
         public void Subscribe(UnityAction action)

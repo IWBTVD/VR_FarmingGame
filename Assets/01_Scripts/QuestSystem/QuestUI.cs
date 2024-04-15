@@ -12,12 +12,12 @@ namespace Jun
         public int QuestID;
         public TMPro.TextMeshProUGUI questTitle;
         public TMPro.TextMeshProUGUI questContent;
-        // void Start()
-        // {
-        //     // CloseUI();
-        //     QuestManager.Instance.Subscribe(Action);
+        void Start()
+        {
+            // CloseUI();
+            QuestManager.Instance.Subscribe(Action);
 
-        // }
+        }
         void OnEnable()
         {
             Debug.Log(QuestManager.Instance);
@@ -28,14 +28,16 @@ namespace Jun
         void Update()
         {
 
+
         }
 
         public void Action()
         {
+            QuestID = QuestManager.Instance.currentQuestID;
             QuestData questData = QuestManager.Instance.GetQuestData(QuestID);
             if (questData == null) return;
             SetQuestText(questData.name, questData.content);
-            QuestID = QuestManager.Instance.currentQuestID;
+
         }
 
         public void SetQuestText(string name, string content)

@@ -14,14 +14,7 @@ namespace Jun
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                if (QuestManager.Instance.currentQuestID != questID)
-                {
-                    return;
-                }
-                Complete();
-            }
+
         }
 
         public void Complete()

@@ -5219,19 +5219,7 @@ MonoBehaviour:
   questItemList: []
   OnQuestUpdated:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1406763975}
-        m_TargetAssemblyTypeName: Jun.QuestUI, Assembly-CSharp
-        m_MethodName: Action
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   currentQuestID: 0
 --- !u!4 &1398356869
 Transform:
@@ -5248,18 +5236,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1406763975 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 113437047473769608, guid: e56181f9b86152744b1d3ca8463381e4,
-    type: 3}
-  m_PrefabInstance: {fileID: 1682032214}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d08e1f9f6273fd48a397aafdaaab43d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1433772144 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4905560163266528, guid: 20f6bd523ebdaf04fa332e6ce565fc03,
