@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6355564459061841177}
   - component: {fileID: 785373906545129786}
   m_Layer: 0
-  m_Name: BreakableRock
-  m_TagString: Untagged
+  m_Name: BreakableRock_Small
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,10 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _breakableSO: {fileID: 11400000, guid: fa9881210de09334a96de0b67f015509, type: 2}
-  pickaxeBreakable: 0
-  axeBreakable: 0
-  shovelBreakable: 0
-  BreakableSO: {fileID: 0}
+  _health: 0
 --- !u!1 &4581086049187222540
 GameObject:
   m_ObjectHideFlags: 0
@@ -64,7 +61,7 @@ GameObject:
   - component: {fileID: 4571278074894450748}
   m_Layer: 0
   m_Name: SM_Generic_Small_Rocks_05
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,7 +74,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4581086049187222540}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.04, z: 0}
   m_LocalScale: {x: 4.4913, y: 4.4913, z: 4.4913}
   m_ConstrainProportionsScale: 0
   m_Children: []

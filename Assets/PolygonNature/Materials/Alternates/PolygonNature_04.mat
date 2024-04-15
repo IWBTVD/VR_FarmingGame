@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7398050839814809000
+--- !u!114 &-2476341897284782632
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -25,12 +25,11 @@ Material:
   m_ValidKeywords:
   - _ENVIRONMENTREFLECTIONS_OFF
   - _SPECULARHIGHLIGHTS_OFF
-  m_InvalidKeywords:
-  - _GLOSSYREFLECTIONS_OFF
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap:
     RenderType: Opaque
   disabledShaderPasses: []

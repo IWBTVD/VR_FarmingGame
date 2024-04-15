@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d34302ba4762b74484b266008fe076b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dryMaterial: {fileID: 2100000, guid: fdf18c58b725a2f469593ece1786d307, type: 2}
   wetMaterial: {fileID: 2100000, guid: bdba0dc7c4cc3bd459fc0c180938fef4, type: 2}
 --- !u!1 &4467126564924844107
 GameObject:
@@ -128,8 +129,9 @@ GameObject:
   - component: {fileID: 4464845615519026353}
   - component: {fileID: 4435918233831216969}
   - component: {fileID: 4444092245358419559}
-  - component: {fileID: 4404178052519475929}
   - component: {fileID: 4524213488909413947}
+  - component: {fileID: 2995317402398234800}
+  - component: {fileID: 7907819066762937575}
   m_Layer: 13
   m_Name: Uncultivated Field
   m_TagString: Soil
@@ -204,20 +206,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4404178052519475929
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4467126564924844107}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: b3bca7a433b7a9549af0b0b486f29472, type: 3}
 --- !u!114 &4524213488909413947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +231,32 @@ MonoBehaviour:
   - {fileID: 3652544242932601643}
   - {fileID: 2570679258251392146}
   - {fileID: 2253079034926606022}
+--- !u!65 &2995317402398234800
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4467126564924844107}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.5067353, y: 0.3553104, z: 4.631092}
+  m_Center: {x: -2.5101616, y: -0.045652643, z: 2.4816117}
+--- !u!65 &7907819066762937575
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4467126564924844107}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.917633, y: 0.23435223, z: 5.826114}
+  m_Center: {x: -2.537146, y: -0.10613173, z: 2.5471456}
 --- !u!1 &5122197382723023152
 GameObject:
   m_ObjectHideFlags: 0

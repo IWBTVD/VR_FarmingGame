@@ -10,9 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33a3ed284ed32384391e2e8103f8517a, type: 3}
-  m_Name: Rock SO
+  m_Name: Rock_Medium SO
   m_EditorClassIdentifier: 
-  pickaxeMultiplier: 1
+  maxHealth: 200
+  meleeWeaponMultiplier: 0
+  rangeWeaponMultiplier: 0
+  pickaxeMultiplier: 2
   axeMultiplier: 0.5
   shovelMultiplier: 0.2
   otherMultiplier: 0

@@ -10,6 +10,7 @@ namespace Gun
         private CultivationField cultivationField;
         private MeshRenderer meshRenderer;
 
+        [SerializeField] private Material dryMaterial;
         [SerializeField] private Material wetMaterial;
 
         private void Awake()
@@ -20,7 +21,7 @@ namespace Gun
 
         private void OnEnable()
         {
-            meshRenderer.material = cultivationField.WetMaterial;
+            meshRenderer.material = cultivationField.IsWatered? wetMaterial : dryMaterial;
         }
 
         public void FullyWatered()
