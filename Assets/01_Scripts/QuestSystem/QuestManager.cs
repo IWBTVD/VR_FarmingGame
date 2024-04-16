@@ -35,7 +35,9 @@ namespace Jun
         /// <summary>
         /// QuestItem을 저장할 리스트
         /// </summary>
-        public List<QuestItem> questItemList = new List<QuestItem>();
+        // public List<QuestItem> questItemList = new List<QuestItem>();
+        public List<Quest> questItemList = new List<Quest>();
+        public List<Quest> questLocationList = new List<Quest>();
 
         /// <summary>
         /// Quest가 업데이트 될 때 실행할 이벤트
@@ -106,9 +108,9 @@ namespace Jun
                 string content = row[2];
                 int questTarget = int.Parse(row[3]);
                 int reward = int.Parse(row[4]);
-                GameObject rewardObject = Resources.Load<GameObject>(row[5]);//수정해야함
+                GameObject rewardObject = Resources.Load<GameObject>(row[5]);//수정해야함 아이템에 코드를 부여여 해야함
                 int progressGoal = int.Parse(row[6]);
-                QuestType questType = (QuestType)System.Enum.Parse(typeof(QuestType), row[7]);
+                int questType = int.Parse(row[7]);
 
                 QuestData questData = new QuestData(questID, name, content, questTarget, reward, rewardObject, progressGoal, questType);
                 questDataList.Add(questData);
@@ -128,19 +130,7 @@ namespace Jun
         {
             questDataList.Remove(questData);
         }
-        /// <summary>
-        /// QuestItem을 추가하는 함수
-        /// </summary>
-        /// <param name="questItem"></param>
-        public void AddQuestItem(QuestItem questItem)
-        {
-            questItemList.Add(questItem);
-        }
 
-        public void RemoveQuestItem(QuestItem questItem)
-        {
-            questItemList.Remove(questItem);
-        }
         /// <summary>
         /// QuestItem을 체크하는 함수 현재 잡고 있는게 퀘스트에 맞는 아이템인지 확인
         /// </summary>
@@ -149,7 +139,7 @@ namespace Jun
         {
             for (int i = 0; i < questItemList.Count; i++)
             {
-                if (questItemList[i].questID == questID)
+                if (questItemList[i].GetItemID() == questDataList[currentQuestID].questTarget)
                 {
                     questItemList[i].Complete();
                 }

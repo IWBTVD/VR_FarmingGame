@@ -1028,7 +1028,7 @@ LoadBalancing API
     Fixed: OpRaiseEvent will no longer send "group" if it's 0 (which is the default).
     Added: OpRaiseEvent overload to send object instead of Hashtable. This overload uses another parameter order to not mix up with the older implementation. You can send any serializable datatype now but must be aware if the event is Hashtable or something else.
     Changed: Several variants of OpAuthenticate(), Connect() and ConnectToMaster() are now obsolete or removed. Use the alternative implementations (which should be cleaner).
-    Internal: Added several (operation) parameters to enum ParameterCode: ClientAuthenticationType, ClientAuthenticationParams, FindFriendsRequestList, FindFriendsResponseOnlineList, FindFriendsResponseRoomIdList.
+    Internal: Added several (operation) parameters to enum ParameterCode: ClientAuthenticationType, ClientAuthenticationParams, FindFriendsRequestItemList, FindFriendsResponseOnlineList, FindFriendsResponseRoomIdList.
     Added: PhotonPeer.ResentReliableCommands to get count of re-sent commands (might be higher than out command count (as that counts created commands only)
     Internal: Address (string) handling now uses string.Split instead of IndexOf to separate port from address and short.TryParse instead of short.Parse
     Added: TrafficStatsGameLevel.ResetMaximumCounters() to reset those values that could max-out easily. Allows to get "longest delta between SendOutgoingCommands()-calls since last query".

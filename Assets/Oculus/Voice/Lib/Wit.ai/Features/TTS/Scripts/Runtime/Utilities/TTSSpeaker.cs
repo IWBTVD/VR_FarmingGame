@@ -32,11 +32,13 @@ namespace Meta.WitAi.TTS.Utilities
 
         [Header("Text Settings")]
         [Tooltip("Text that is added to the front of any Speech() request")]
-        [TextArea] [FormerlySerializedAs("prependedText")]
+        [TextArea]
+        [FormerlySerializedAs("prependedText")]
         public string PrependedText;
 
         [Tooltip("Text that is added to the end of any Speech() text")]
-        [TextArea] [FormerlySerializedAs("appendedText")]
+        [TextArea]
+        [FormerlySerializedAs("appendedText")]
         public string AppendedText;
 
         [Header("Load Settings")]
@@ -59,10 +61,10 @@ namespace Meta.WitAi.TTS.Utilities
         }
 
         [Tooltip("Preset voice setting id of TTSService voice settings")]
-        [HideInInspector] [SerializeField] public string presetVoiceID;
+        [HideInInspector][SerializeField] public string presetVoiceID;
 
         [Tooltip("Custom wit specific voice settings used if the preset is null or empty")]
-        [HideInInspector] [SerializeField] public TTSWitVoiceSettings customWitVoiceSettings;
+        [HideInInspector][SerializeField] public TTSWitVoiceSettings customWitVoiceSettings;
 
         // Override voice settings
         private TTSVoiceSettings _overrideVoiceSettings;
@@ -607,17 +609,17 @@ namespace Meta.WitAi.TTS.Utilities
         public IEnumerator SpeakQueuedAsync(string[] textsToSpeak, TTSDiskCacheSettings diskCacheSettings, TTSSpeakerClipEvents playbackEvents)
         {
             // Speak each queued
-            List<TTSSpeakerRequestData> requestList = new List<TTSSpeakerRequestData>();
+            List<TTSSpeakerRequestData> requestItemList = new List<TTSSpeakerRequestData>();
             foreach (var textToSpeak in textsToSpeak)
             {
                 List<TTSSpeakerRequestData> newRequests = Speak(textToSpeak, diskCacheSettings, playbackEvents, true);
                 if (newRequests != null && newRequests.Count > 0)
                 {
-                    requestList.AddRange(newRequests);
+                    requestItemList.AddRange(newRequests);
                 }
             }
             // Wait while loading/speaking
-            yield return WaitForCompletion(requestList);
+            yield return WaitForCompletion(requestItemList);
         }
 
         /// <summary>
@@ -1084,7 +1086,7 @@ namespace Meta.WitAi.TTS.Utilities
                 yield break;
             }
             // Wait while loading/speaking
-            yield return SpeakQueuedAsync(new string[] {textToSpeak}, voiceSettings, diskCacheSettings, playbackEvents);
+            yield return SpeakQueuedAsync(new string[] { textToSpeak }, voiceSettings, diskCacheSettings, playbackEvents);
         }
 
         /// <summary>
@@ -1222,7 +1224,7 @@ namespace Meta.WitAi.TTS.Utilities
         private void RefreshPlayback()
         {
             // Ignore if currently playing or nothing in uque
-            if (SpeakingClip != null ||  _queuedRequests == null || _queuedRequests.Count == 0 || _audioPlayer == null)
+            if (SpeakingClip != null || _queuedRequests == null || _queuedRequests.Count == 0 || _audioPlayer == null)
             {
                 return;
             }
