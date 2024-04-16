@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Jun
@@ -12,14 +10,9 @@ namespace Jun
             QuestManager.Instance.questItemList.Add(this);
         }
 
-        void Update()
-        {
-
-        }
-
         public void Complete()
         {
-            QuestManager.Instance.UpdateQuest(questID + 1);
+            QuestManager.Instance.UpdateQuest();
         }
     }
 }

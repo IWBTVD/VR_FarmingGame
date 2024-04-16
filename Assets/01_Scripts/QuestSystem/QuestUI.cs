@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Jun
@@ -16,19 +12,6 @@ namespace Jun
         {
             // CloseUI();
             QuestManager.Instance.Subscribe(Action);
-
-        }
-        void OnEnable()
-        {
-            Debug.Log(QuestManager.Instance);
-            // QuestManager.Instance.OnQuestUpdated.AddListener(Action);
-        }
-
-
-        void Update()
-        {
-
-
         }
 
         public void Action()
@@ -37,7 +20,6 @@ namespace Jun
             QuestData questData = QuestManager.Instance.GetQuestData(QuestID);
             if (questData == null) return;
             SetQuestText(questData.name, questData.content);
-
         }
 
         public void SetQuestText(string name, string content)
