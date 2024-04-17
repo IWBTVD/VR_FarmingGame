@@ -87,15 +87,18 @@ namespace Gun
         /// <summary>
         /// 땅 갈기
         /// </summary>
-        public void PlowGround(int amount)
+        public bool PlowGround(int amount)
         {
-            if (_isPlowed) return;
+            // if (_isPlowed) return;
 
             plowedAmount += amount;
             if (plowedAmount >= 100)
             {
                 FullyPlowed();
+                return true;
             }
+
+            return false;
         }
 
         /// <summary>

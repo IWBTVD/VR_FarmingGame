@@ -59,12 +59,11 @@ namespace Gun
 
                 if (forkedDistance > 1)
                 {
-                    //퀘스트 체크
-                    if (QuestManager.instance.currentQuestID == 1)
-                        QuestManager.instance.CheckQuestBehavior(GetComponent<Quest>().GetBehaviorID());//퀘스트가 진행 후에도 계속 실행됨 -> 수정 필요
-
                     PlayPlowParticle();
-                    lastField.PlowGround((int)forkedDistance);//땅이 경작 되는 함수
+                    bool IsPlowed = lastField.PlowGround((int)forkedDistance);//땅이 경작 되는 함수
+                    //퀘스트 체크
+                    if (QuestManager.instance.currentQuestID == 1 && IsPlowed)
+                        QuestManager.instance.CheckQuestBehavior(GetComponent<Quest>().GetBehaviorID());//퀘스트가 진행 후에도 계속 실행됨 -> 수정 필요
                     forkedDistance = 0f;
                 }
             }

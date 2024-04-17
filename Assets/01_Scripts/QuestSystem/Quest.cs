@@ -68,10 +68,15 @@ namespace Jun
             }
         }
 
-        // public void Complete()
-        // {
-        //     QuestManager.Instance.UpdateQuest();
-        // }
+        public void UnableIsKinematic()
+        {
+            GetComponent<Rigidbody>().isKinematic = false;
+        }
+
+        public void AbleIsKinematic()
+        {
+            GetComponent<Rigidbody>().isKinematic = true;
+        }
 
         public int GetItemID()
         {

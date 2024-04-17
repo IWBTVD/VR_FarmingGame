@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9575,18 +9575,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e56181f9b86152744b1d3ca8463381e4, type: 3}
---- !u!114 &669035417 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 669035417, guid: e56181f9b86152744b1d3ca8463381e4,
-    type: 3}
-  m_PrefabInstance: {fileID: 669035415}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4868c5f9c0ec624e8c5014de1a72f5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &669505628
 GameObject:
   m_ObjectHideFlags: 0
@@ -38750,6 +38738,38 @@ MonoBehaviour:
   _headPoseRelativeOffsetRotation: {x: 0, y: 0, z: 0}
   _headPoseRelativeOffsetTranslation: {x: 0, y: 0, z: 0}
   profilerTcpPort: 32419
+  expandMixedRealityCapturePropertySheet: 0
+  enableMixedReality: 0
+  compositionMethod: 0
+  extraHiddenLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  extraVisibleLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  dynamicCullingMask: 1
+  externalCompositionBackdropColorRift: {r: 0, g: 1, b: 0, a: 1}
+  externalCompositionBackdropColorQuest: {r: 0, g: 0, b: 0, a: 0}
+  capturingCameraDevice: 0
+  flipCameraFrameHorizontally: 0
+  flipCameraFrameVertically: 0
+  handPoseStateLatency: 0
+  sandwichCompositionRenderLatency: 0
+  sandwichCompositionBufferedFrames: 8
+  chromaKeyColor: {r: 0, g: 1, b: 0, a: 1}
+  chromaKeySimilarity: 0.6
+  chromaKeySmoothRange: 0.03
+  chromaKeySpillRange: 0.06
+  useDynamicLighting: 0
+  depthQuality: 1
+  dynamicLightingSmoothFactor: 8
+  dynamicLightingDepthVariationClampingValue: 0.001
+  virtualGreenScreenType: 0
+  virtualGreenScreenTopY: 10
+  virtualGreenScreenBottomY: -10
+  virtualGreenScreenApplyDepthCulling: 0
+  virtualGreenScreenDepthTolerance: 0.2
+  mrcActivationMode: 0
   launchMultimodalHandsControllersOnStartup: 0
   isInsightPassthroughEnabled: 0
   requestBodyTrackingPermissionOnStartup: 0
@@ -57779,17 +57799,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SellBox
       objectReference: {fileID: 0}
-    - target: {fileID: 3642838367377363276, guid: 510b38b85fa415e4fa12a14cf359bbbc,
-        type: 3}
-      propertyPath: canvas
-      value: 
-      objectReference: {fileID: 7828794683331499762}
-    - target: {fileID: 3642838367377363276, guid: 510b38b85fa415e4fa12a14cf359bbbc,
-        type: 3}
-      propertyPath: textPrefab
-      value: 
-      objectReference: {fileID: 1630810404218267532, guid: 9e9470ece29c88d47ba594a42bf6f248,
-        type: 3}
     - target: {fileID: 3642838367377363277, guid: 510b38b85fa415e4fa12a14cf359bbbc,
         type: 3}
       propertyPath: sceneViewId
@@ -57850,49 +57859,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7828794683548831578, guid: 510b38b85fa415e4fa12a14cf359bbbc,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7828794683548831578, guid: 510b38b85fa415e4fa12a14cf359bbbc,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7828794683548831578, guid: 510b38b85fa415e4fa12a14cf359bbbc,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 669035417}
-    - target: {fileID: 7828794683548831578, guid: 510b38b85fa415e4fa12a14cf359bbbc,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7828794683548831578, guid: 510b38b85fa415e4fa12a14cf359bbbc,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: AddMoney
-      objectReference: {fileID: 0}
-    - target: {fileID: 7828794683548831578, guid: 510b38b85fa415e4fa12a14cf359bbbc,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Jun.InventoryItem, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7828794683548831578, guid: 510b38b85fa415e4fa12a14cf359bbbc,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 510b38b85fa415e4fa12a14cf359bbbc, type: 3}
---- !u!224 &7828794683331499762 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3642838368179183609, guid: 510b38b85fa415e4fa12a14cf359bbbc,
-    type: 3}
-  m_PrefabInstance: {fileID: 7828794683331499761}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8384218243814390460
 PrefabInstance:
   m_ObjectHideFlags: 0
