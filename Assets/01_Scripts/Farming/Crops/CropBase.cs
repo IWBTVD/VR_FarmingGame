@@ -40,7 +40,7 @@ namespace Jun.Ground.Crops
         public CropsState CurrentState = CropsState.Seed;
 
         [SerializeField] protected GameObject[] _cropVisualList;
-        
+
         public float growingTime;
 
         public virtual void ChangePotatoPrefab()
