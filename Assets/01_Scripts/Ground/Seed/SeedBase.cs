@@ -69,6 +69,7 @@ namespace Jun.Ground.Crops
             {
                 if (other.CompareTag("CropPoint"))
                 {
+                    //씨앗이 심기는 기능
                     Debug.Log("Plant Crops");
                     other.GetComponent<CropPoint>().PlantCrop(this);
                     Destroy(gameObject);

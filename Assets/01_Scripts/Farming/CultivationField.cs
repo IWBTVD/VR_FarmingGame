@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Jun.Ground.Crops;
+using Jun;
 
 namespace Gun
 {
@@ -76,6 +77,11 @@ namespace Gun
             _isWatered = true;
             meshRenderer.material = wetMaterial;
             moundsVisual.FullyWatered();
+
+            //퀘스트 체크
+            if (QuestManager.instance.currentQuestID == 3)
+                QuestManager.instance.CheckQuestBehavior(GetComponent<Quest>().GetBehaviorID());//퀘스트가 진행 후에도 계속 실행됨 -> 수정 필요
+
         }
 
         /// <summary>
@@ -86,7 +92,7 @@ namespace Gun
             if (_isPlowed) return;
 
             plowedAmount += amount;
-            if(plowedAmount >= 100)
+            if (plowedAmount >= 100)
             {
                 FullyPlowed();
             }
@@ -104,7 +110,7 @@ namespace Gun
 
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
-            
+
         }
     }
 }

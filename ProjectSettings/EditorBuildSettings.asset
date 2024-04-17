@@ -9,11 +9,11 @@ EditorBuildSettings:
     path: Assets/00_Scenes/Village.unity
     guid: ba3327f02751f4bf0a718a660afc4704
   - enabled: 1
-    path: Assets/00_Scenes/InsideShop.unity
-    guid: db035e23a54ff4077a3554db414c02a7
-  - enabled: 1
     path: Assets/00_Scenes/Farm.unity
     guid: e47d940f6c212e1428b35f7c9e2c13e7
+  - enabled: 1
+    path: Assets/00_Scenes/InsideShop.unity
+    guid: d83f241364eceaf4081bf2b3ee6ee87b
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: a1b158e1be02c73409bd21e7fdd55d0f,
       type: 2}

@@ -38,6 +38,7 @@ namespace Jun
         // public List<QuestItem> questItemList = new List<QuestItem>();
         public List<Quest> questItemList = new List<Quest>();
         public List<Quest> questLocationList = new List<Quest>();
+        public List<Quest> questBehaviorList = new List<Quest>();
 
         /// <summary>
         /// Quest가 업데이트 될 때 실행할 이벤트
@@ -141,11 +142,41 @@ namespace Jun
             {
                 if (questItemList[i].GetItemID() == questDataList[currentQuestID].questTarget)
                 {
-                    questItemList[i].Complete();
+                    UpdateQuest();
                 }
             }
         }
 
+        /// <summary>
+        /// QuestLocation을 체크하는 함수
+        /// </summary>
+        /// <param name="questID"></param>
+
+        public void CheckQuestLocation(int questID)
+        {
+            for (int i = 0; i < questLocationList.Count; i++)
+            {
+                if (questLocationList[i].GetLocationID() == questDataList[currentQuestID].questTarget)
+                {
+                    UpdateQuest();
+                }
+            }
+        }
+
+        /// <summary>
+        /// QuestBehavior를 체크하는 함수
+        /// </summary>
+        /// <param name="questID"></param>
+        public void CheckQuestBehavior(int questID)
+        {
+            for (int i = 0; i < questBehaviorList.Count; i++)
+            {
+                if (questBehaviorList[i].GetBehaviorID() == questDataList[currentQuestID].questTarget)
+                {
+                    UpdateQuest();
+                }
+            }
+        }
 
         /// <summary>
         /// QuestData를 가져오는 함수
@@ -163,7 +194,6 @@ namespace Jun
             }
             return null;
         }
-
 
     }
 }
