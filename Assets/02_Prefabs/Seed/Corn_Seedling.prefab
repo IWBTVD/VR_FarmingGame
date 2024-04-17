@@ -206,7 +206,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -359,4 +359,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d723e1f2739a0fb40936522d2449b8d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _plantPrefab: {fileID: 0}
+  _plantPrefab: {fileID: 1893988213740592896, guid: c9edcf5a2704d244ab53bf109dd5c380,
+    type: 3}

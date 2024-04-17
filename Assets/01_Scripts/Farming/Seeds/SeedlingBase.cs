@@ -21,6 +21,8 @@ namespace Gun
         public PlantBase PlantPrefab => _plantPrefab;
         public bool IsPlanted => cropPoint != null;
 
+        private bool isFirstGrabPerformed = false;
+
         protected virtual void Awake()
         {
             grabbable = GetComponent<Grabbable>();
