@@ -61,5 +61,10 @@ namespace Jun.Ground.Crops
         {
             //rowCropsGround.NotifyRemoveCrop(this.gameObject, seedlings);
         }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            Debug.Log("Trigger Detected");
+        }
     }
 }

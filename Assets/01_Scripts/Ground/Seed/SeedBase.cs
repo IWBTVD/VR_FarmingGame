@@ -2,16 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Autohand;
 
 namespace Jun.Ground.Crops
 {
     public class SeedBase : MonoBehaviourPun
     {
+
+        private Grabbable grabbable;
+
+
         public enum SeedType
         {
             Seed,
             Crops
         }
+        [Header("씨앗 나오는 방향 시작점과 끝점")]
+        public Transform neckStartTransform;
+        public Transform neckEndTransform;
 
         [SerializeField] public SeedType seedType;
         [SerializeField] public GameObject currentCropsPrefab;
@@ -20,6 +28,18 @@ namespace Jun.Ground.Crops
 
         [Header("Test")]
         public bool StartSeed = false;
+
+        private Vector3 neckDirection;
+
+        private void Awake()
+        {
+            grabbable ??= GetComponent<Grabbable>();
+        }
+
+        private void Update()
+        {
+            neckDirection = (neckStartTransform.position - neckEndTransform.position).normalized;
+        }
 
         public void TestCode()
         {
