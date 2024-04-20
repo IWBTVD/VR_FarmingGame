@@ -2,21 +2,8 @@ using UnityEngine;
 
 namespace Jun.Ground.Crops
 {
-    public class CornSeed : SeedBase
+    public class CornSeed : SeedSacBase
     {
-        public float currentXAngle;
-        private void Start()
-        {
-            // seedType = SeedType.Seed;
-            StartSeed = true;
-        }
-
-        public void Update()
-        {
-            currentXAngle = transform.rotation.eulerAngles.x;
-            // PlayParticleByAngle(currentXAngle);
-            // TestCode();
-        }
 
     }
 }

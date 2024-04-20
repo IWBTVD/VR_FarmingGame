@@ -9,14 +9,14 @@ namespace Jun
         private ParticleSystem ps;
         private readonly bool StartSeed = false;
         public GameObject currentCropsPrefab;
-        private SeedBase seedBase;
+        private SeedSacBase seedBase;
 
         private void Awake()
         {
             ps = GetComponent<ParticleSystem>();
             ps.Play();
-            seedBase = GetComponentInParent<SeedBase>();
-            currentCropsPrefab = seedBase.currentCropsPrefab;
+            seedBase = GetComponentInParent<SeedSacBase>();
+            //currentCropsPrefab = seedBase.currentCropsPrefab;
 
         }
 

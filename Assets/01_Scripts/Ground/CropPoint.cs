@@ -33,7 +33,7 @@ namespace Jun.Ground.Crops
         {
         }
 
-        public void ReceiveSeed(SeedBase IncomeSeed)
+        public void ReceiveSeed(SeedSacBase IncomeSeed)
         {
 
         }
@@ -42,7 +42,7 @@ namespace Jun.Ground.Crops
         /// 작물 심기
         /// </summary>
         /// <param name="seed"></param>
-        public void PlantCrop(SeedBase seed)
+        public void PlantCrop(SeedSacBase seed)
         {
 
         }
@@ -60,11 +60,6 @@ namespace Jun.Ground.Crops
         public void Harvest()
         {
             //rowCropsGround.NotifyRemoveCrop(this.gameObject, seedlings);
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            Debug.Log("Trigger Detected");
         }
     }
 }

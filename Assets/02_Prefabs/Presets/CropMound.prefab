@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5612364549110182036}
   - component: {fileID: 3297549926066981333}
   - component: {fileID: 8140145930617718354}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: place_1
   m_TagString: CropPoint
   m_Icon: {fileID: 0}
@@ -58,12 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b959c56f26157cb4b8caf7ec400b7545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
-  seedlings: {fileID: 0}
-  IsSeedlings: 0
-  IsCultivation: 0
-  cultivationObject: {fileID: 0}
-  ps: {fileID: 0}
+  _plant: {fileID: 0}
 --- !u!1 &2129215169228549032
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,7 +70,7 @@ GameObject:
   - component: {fileID: 5719438534074051683}
   - component: {fileID: 2692868333292011587}
   - component: {fileID: 178431036795401693}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: place_3
   m_TagString: CropPoint
   m_Icon: {fileID: 0}
@@ -122,12 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b959c56f26157cb4b8caf7ec400b7545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
-  seedlings: {fileID: 0}
-  IsSeedlings: 0
-  IsCultivation: 0
-  cultivationObject: {fileID: 0}
-  ps: {fileID: 0}
+  _plant: {fileID: 0}
 --- !u!1 &2997038256129461509
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,7 +129,7 @@ GameObject:
   - component: {fileID: 6789103614806306151}
   - component: {fileID: 270657578258199658}
   - component: {fileID: 2669275936242843089}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: place_2
   m_TagString: CropPoint
   m_Icon: {fileID: 0}
@@ -186,12 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b959c56f26157cb4b8caf7ec400b7545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
-  seedlings: {fileID: 0}
-  IsSeedlings: 0
-  IsCultivation: 0
-  cultivationObject: {fileID: 0}
-  ps: {fileID: 0}
+  _plant: {fileID: 0}
 --- !u!1 &5259420645736717520
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,7 +188,7 @@ GameObject:
   - component: {fileID: 9127202020127120874}
   - component: {fileID: 6551547362516498524}
   - component: {fileID: 1887486000735508021}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: place
   m_TagString: CropPoint
   m_Icon: {fileID: 0}
@@ -250,12 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b959c56f26157cb4b8caf7ec400b7545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
-  seedlings: {fileID: 0}
-  IsSeedlings: 0
-  IsCultivation: 0
-  cultivationObject: {fileID: 0}
-  ps: {fileID: 0}
+  _plant: {fileID: 0}
 --- !u!1 &7992912393022958552
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,7 +247,7 @@ GameObject:
   - component: {fileID: 16595064979471287}
   - component: {fileID: 4761481555082449630}
   - component: {fileID: 103463764555812727}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: place_4
   m_TagString: CropPoint
   m_Icon: {fileID: 0}
@@ -314,12 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b959c56f26157cb4b8caf7ec400b7545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
-  seedlings: {fileID: 0}
-  IsSeedlings: 0
-  IsCultivation: 0
-  cultivationObject: {fileID: 0}
-  ps: {fileID: 0}
+  _plant: {fileID: 0}
 --- !u!1 &8919217895127090636
 GameObject:
   m_ObjectHideFlags: 0
