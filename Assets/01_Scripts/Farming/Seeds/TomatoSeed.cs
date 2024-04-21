@@ -8,16 +8,4 @@ using UnityEngine;
 
 public class TomatoSeed : SeedBase
 {
-    [SerializeField] private PlantBase plant;
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("EnterTrigger");
-        if(other.TryGetComponent(out CropPoint cropPoint))
-        {
-            cropPoint.PlantCrop(plant);
-            gameObject.SetActive(false);
-            Destroy(gameObject, 1f);
-        }
-    }
 }

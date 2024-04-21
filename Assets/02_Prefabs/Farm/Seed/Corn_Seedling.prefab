@@ -94,8 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4015746092714205519}
   - component: {fileID: 8535760262583227532}
-  - component: {fileID: 5518245253888008648}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,18 +129,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07199669, y: 0.05583492, z: 0.06475258}
   m_Center: {x: 0.010210037, y: -0.027418628, z: 0.0021381378}
---- !u!114 &5518245253888008648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4635970596616906051}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7dfd9925f9f5a264e9c4930ae0a53060, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7846450926468967753
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,6 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d723e1f2739a0fb40936522d2449b8d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tray: {fileID: 0}
   _plantPrefab: {fileID: 0}
 --- !u!54 &6812115253550916099
 Rigidbody:
@@ -359,5 +347,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d723e1f2739a0fb40936522d2449b8d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tray: {fileID: 0}
   _plantPrefab: {fileID: 1893988213740592896, guid: c9edcf5a2704d244ab53bf109dd5c380,
     type: 3}

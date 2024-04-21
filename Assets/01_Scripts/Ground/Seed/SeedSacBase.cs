@@ -15,7 +15,7 @@ namespace Jun.Ground.Crops
         [SerializeField] protected Transform seedSpawnPoint;
         [Space]
         [SerializeField] protected SeedBase seedPrefab;
-        protected int seedCapacity = 10;
+        [SerializeField] protected int seedCapacity = 10;
 
         protected Grabbable grabbable;
         protected SeedBase currentSeed;
