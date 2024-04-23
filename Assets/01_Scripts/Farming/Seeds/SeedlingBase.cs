@@ -71,7 +71,7 @@ namespace Gun
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("EnterTrigger");
+            //Debug.Log("EnterTrigger");
             if (other.TryGetComponent(out CropPoint cropPoint))
             {
                 currentCropPoint = cropPoint;

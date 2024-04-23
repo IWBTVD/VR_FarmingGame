@@ -21,9 +21,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Slime 1
-  m_Shader: {fileID: -6465566751694194690, guid: 006cfe803c76067439c54b210a1d50fe, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
+  m_Shader: {fileID: -6465566751694194690, guid: 006cfe803c76067439c54b210a1d50fe,
+    type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -32,7 +31,6 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -76,12 +74,24 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_0355cbc84e18449bbbc704c42968b0a7_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 23b64141ba5633d448a5d55a017ae9fb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_0355cbc84e18449bbbc704c42968b0a7_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: 23b64141ba5633d448a5d55a017ae9fb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_25d3d6f53a724b5fb839ec3e2de6c81d_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 4351fc2059a640d4384d7d59b2679a88, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_25d3d6f53a724b5fb839ec3e2de6c81d_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: 4351fc2059a640d4384d7d59b2679a88, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_bb0b1e46948443b984d97b83fc1ae66f_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 3cb922779ae05d144a5a61a8d74b5544, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_bb0b1e46948443b984d97b83fc1ae66f_Texture_1_Texture2D:
