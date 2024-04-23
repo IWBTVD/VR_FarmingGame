@@ -7,7 +7,6 @@ namespace Gun
     public class PitchFork : MonoBehaviour
     {
         [SerializeField] private List<ToolParticleEffect> plowParticleList;
-        [SerializeField] private List<AudioClip> soundList;
 
         private Autohand.Grabbable grabbable;
 
@@ -89,7 +88,7 @@ namespace Gun
         public void TryPlayAudioClip()
         {
             if (_audioSource.isPlaying) return;
-            _audioSource.PlayOneShot(soundList[Random.Range(0, soundList.Count)]);
+            //_audioSource.PlayOneShot(SFX_Manager.GetPlowingSound());
         }
     }
 }

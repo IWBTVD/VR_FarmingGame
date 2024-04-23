@@ -12,9 +12,9 @@ namespace Gun
     public class SeedlingBase : MonoBehaviour
     {
         #region PROPERTIES
-        [SerializeField] protected SeedlingTrayBase tray;
         [SerializeField] protected PlantBase _plantPrefab;
 
+        protected SeedlingTrayBase tray;
         protected CropPoint currentCropPoint;
         protected SeedlingRoot seedlingRoot;
         protected Grabbable grabbable;
@@ -37,6 +37,7 @@ namespace Gun
         public void RootUnplanted(CropPoint cropPoint)
         {
             if(this.currentCropPoint == cropPoint)
+        
                 this.currentCropPoint = null;
         }
 

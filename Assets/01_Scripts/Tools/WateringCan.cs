@@ -62,7 +62,7 @@ namespace Gun
             else
             {
                 wateringParticle.Stop();
-                audioSource.Stop();
+                audioSource.Pause();
             }
         }
     }
