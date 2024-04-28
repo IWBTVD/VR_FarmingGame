@@ -36,11 +36,6 @@ public class PlayerAnimator : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        //SynchronizeFingerRotation();
-    }
-
     private void OnAnimatorIK(int layerIndex)
     {
         float rightHandReach = animator.GetFloat("RightHand");
@@ -54,32 +49,46 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1);
         animator.SetIKPosition(AvatarIKGoal.LeftHand, leftHandOffset.position);
         animator.SetIKRotation(AvatarIKGoal.LeftHand, leftHandOffset.rotation);
+        //animator.SetIKRotation();
     }
 
-    private void SynchronizeFingerRotation()
+    public void OnPressLeftPinch()
     {
-        rightThumbBones[0].localRotation = rightHandFingers[0].localRotation;
-        rightThumbBones[1].localRotation = rightHandFingers[0].GetChild(0).localRotation;
-        rightThumbBones[2].localRotation = rightHandFingers[0].GetChild(0).GetChild(0).localRotation;
+        animator.SetFloat("Left Pinch", 1f);
+    }
 
-        rightIndexBones[0].localRotation = rightHandFingers[1].localRotation;
-        rightIndexBones[1].localRotation = rightHandFingers[1].GetChild(0).localRotation;
-        rightIndexBones[2].localRotation = rightHandFingers[1].GetChild(0).GetChild(0).localRotation;
+    public void OnReleaseLeftPinch()
+    {
+        animator.SetFloat("Left Pinch", 0f);
+    }
 
-        rightFingersBones[0].localRotation = rightHandFingers[2].localRotation;
-        rightFingersBones[1].localRotation = rightHandFingers[2].GetChild(0).localRotation;
-        rightFingersBones[2].localRotation = rightHandFingers[2].GetChild(0).GetChild(0).localRotation;
+    public void OnPressLeftGrab()
+    {
+        animator.SetFloat("Left Grab", 1f);
+    }
 
-        leftThumbBones[0].localRotation = leftHandFingers[0].localRotation;
-        leftThumbBones[1].localRotation = leftHandFingers[0].GetChild(0).localRotation;
-        leftThumbBones[2].localRotation = leftHandFingers[0].GetChild(0).GetChild(0).localRotation;
+    public void OnReleaseLeftGrab()
+    {
+        animator.SetFloat("Left Grab", 0f);
+    }
 
-        leftIndexBones[0].localRotation = leftHandFingers[1].localRotation;
-        leftIndexBones[1].localRotation = leftHandFingers[1].GetChild(0).localRotation;
-        leftIndexBones[2].localRotation = leftHandFingers[1].GetChild(0).GetChild(0).localRotation;
+    public void OnPressRightPinch()
+    {
+        animator.SetFloat("Right Pinch", 1f);
+    }
 
-        leftFingersBones[0].localRotation = leftHandFingers[2].localRotation;
-        leftFingersBones[1].localRotation = leftHandFingers[2].GetChild(0).localRotation;
-        leftFingersBones[2].localRotation = leftHandFingers[2].GetChild(0).GetChild(0).localRotation;
+    public void OnReleaseRightPinch()
+    {
+        animator.SetFloat("Right Pinch", 0f);
+    }
+
+    public void OnPressRightGrab()
+    {
+        animator.SetFloat("Right Grab", 1f);
+    }
+
+    public void OnReleaseRightGrab()
+    {
+        animator.SetFloat("Right Grab", 0f);
     }
 }
