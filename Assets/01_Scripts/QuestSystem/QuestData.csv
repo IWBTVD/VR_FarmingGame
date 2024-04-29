@@ -1,6 +1,6 @@
-questId,name,content,questTarget,reward,rewardObject,progressGoal,ItemType
+questId,name,content,questTarget,reward,rewardObject,progressGoal,questType
 0,새로운 시작!!,테이블 위에 있는 편지를 읽어보자,0,1000,none,1,0
-1,밭을 갈아보자!,밖으로나가 괭이를 잡고 밭을 갈아보자,201,1000,SeedPotato,1,0
+1,밭을 갈아보자!,밖으로나가 괭이를 잡고 밭을 갈아보자,201,1000,SeedPotato,1,2
 2,씨앗을 심어보자!,밭에 씨앗을 심어보자,202,1000,none,1,2
 3,물을 주자!,밭에 물을 뿌려보자,203,1000,none,1,2
 4,마을사람들과 인사를 나눠보자!,마을로 가서 상점으로 들어가보세요,-1,1000,none,1,1

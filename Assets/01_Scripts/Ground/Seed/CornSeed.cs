@@ -27,7 +27,7 @@ namespace Jun.Ground.Crops
                 {
                     //퀘스트 체크
                     if (QuestManager.instance.currentQuestID == 2)
-                        QuestManager.instance.CheckQuestBehavior(GetComponent<Quest>().GetBehaviorID());//퀘스트가 진행 후에도 계속 실행됨 -> 수정 필요
+                        QuestManager.instance.CheckQuestbehaviour(GetComponent<Quest>().GetbehaviourID());//퀘스트가 진행 후에도 계속 실행됨 -> 수정 필요
 
                     //씨앗이 심기는 기능
                     Debug.Log("Plant Crops");

@@ -36,9 +36,10 @@ namespace Jun
         /// QuestItem을 저장할 리스트
         /// </summary>
         // public List<QuestItem> questItemList = new List<QuestItem>();
+        // todo: 변수명 수정
         public List<Quest> questItemList = new List<Quest>();
         public List<Quest> questLocationList = new List<Quest>();
-        public List<Quest> questBehaviorList = new List<Quest>();
+        public List<Quest> questBehaviourList = new List<Quest>();
 
         /// <summary>
         /// Quest가 업데이트 될 때 실행할 이벤트
@@ -68,6 +69,12 @@ namespace Jun
 
         void Update()
         {
+            TestCode();
+        }
+
+        private void TestCode()
+        {
+            // 테스트용 코드
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 UpdateQuest();
@@ -164,14 +171,14 @@ namespace Jun
         }
 
         /// <summary>
-        /// QuestBehavior를 체크하는 함수
+        /// Questbehaviour를 체크하는 함수
         /// </summary>
         /// <param name="questID"></param>
-        public void CheckQuestBehavior(int questID)
+        public void CheckQuestbehaviour(int questID)
         {
-            for (int i = 0; i < questBehaviorList.Count; i++)
+            for (int i = 0; i < questBehaviourList.Count; i++)
             {
-                if (questBehaviorList[i].GetBehaviorID() == questDataList[currentQuestID].questTarget)
+                if (questBehaviourList[i].GetbehaviourID() == questDataList[currentQuestID].questTarget)
                 {
                     UpdateQuest();
                 }

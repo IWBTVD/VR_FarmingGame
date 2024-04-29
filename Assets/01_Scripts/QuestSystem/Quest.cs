@@ -11,7 +11,7 @@ namespace Jun
         {
             Item,
             Visit,
-            Behavior
+            behaviour
         }
         public ItemType itemType;
 
@@ -22,7 +22,7 @@ namespace Jun
         private int locationID;
 
         [SerializeField]
-        private int behaviorID;
+        private int behaviourID;
 
 #if UNITY_EDITOR
         [CustomEditor(typeof(Quest))]
@@ -44,7 +44,7 @@ namespace Jun
                 }
                 else
                 {
-                    EditorGUILayout.PropertyField(serializedObject.FindProperty("behaviorID"));
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("behaviourID"));
                 }
 
                 serializedObject.ApplyModifiedProperties();
@@ -64,7 +64,7 @@ namespace Jun
             }
             else
             {
-                QuestManager.Instance.questBehaviorList.Add(this);
+                QuestManager.Instance.questBehaviourList.Add(this);
             }
         }
 
@@ -88,9 +88,9 @@ namespace Jun
             return locationID;
         }
 
-        public int GetBehaviorID()
+        public int GetbehaviourID()
         {
-            return behaviorID;
+            return behaviourID;
         }
     }
 }

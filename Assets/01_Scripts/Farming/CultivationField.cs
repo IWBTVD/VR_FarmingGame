@@ -80,25 +80,23 @@ namespace Gun
 
             //퀘스트 체크
             if (QuestManager.instance.currentQuestID == 3)
-                QuestManager.instance.CheckQuestBehavior(GetComponent<Quest>().GetBehaviorID());//퀘스트가 진행 후에도 계속 실행됨 -> 수정 필요
+                QuestManager.instance.CheckQuestbehaviour(GetComponent<Quest>().GetbehaviourID());//퀘스트가 진행 후에도 계속 실행됨 -> 수정 필요
 
         }
 
         /// <summary>
         /// 땅 갈기
         /// </summary>
-        public bool PlowGround(int amount)
+        public void PlowGround(int amount)
         {
             // if (_isPlowed) return;
-
             plowedAmount += amount;
             if (plowedAmount >= 100)
             {
                 FullyPlowed();
-                return true;
+                //퀘스트 체크
+                BehaviourManager.Instance.AddPlowedCount();
             }
-
-            return false;
         }
 
         /// <summary>
