@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 962864244}
-  m_IndirectSpecularColor: {r: 0.1881162, g: 0.32843286, b: 0.4748648, a: 1}
+  m_IndirectSpecularColor: {r: 0.18800758, g: 0.32824957, b: 0.4745664, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2440,7 +2440,7 @@ MonoBehaviour:
   itemType: 2
   itemID: 0
   locationID: 0
-  behaviorID: 202
+  behaviourID: 0
 --- !u!1 &698986325 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2056881913510528297, guid: 1f034e7520b8d40788bb766f9944e47d,
@@ -4483,7 +4483,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4020043900593038, guid: 0558abc42eda771439f8593c7821a2d7, type: 3}
       propertyPath: m_RootOrder
-      value: 23
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 4020043900593038, guid: 0558abc42eda771439f8593c7821a2d7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5606,7 +5606,7 @@ MonoBehaviour:
   questDataCSV: {fileID: 4900000, guid: 6e5f6a9901a434257a5866ff04287f2b, type: 3}
   questItemList: []
   questLocationList: []
-  questBehaviorList: []
+  questBehaviourList: []
   OnQuestUpdated:
     m_PersistentCalls:
       m_Calls: []
@@ -5761,7 +5761,7 @@ MonoBehaviour:
   itemType: 2
   itemID: 0
   locationID: 0
-  behaviorID: 202
+  behaviourID: 0
 --- !u!4 &1433772144 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4905560163266528, guid: 20f6bd523ebdaf04fa332e6ce565fc03,
@@ -5885,7 +5885,7 @@ MonoBehaviour:
   itemType: 2
   itemID: 0
   locationID: 0
-  behaviorID: 201
+  behaviourID: 0
 --- !u!1 &1478321955
 GameObject:
   m_ObjectHideFlags: 0
@@ -6099,7 +6099,7 @@ MonoBehaviour:
   itemType: 2
   itemID: 203
   locationID: 0
-  behaviorID: 203
+  behaviourID: 0
 --- !u!1001 &1617011946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6328,6 +6328,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1336938960, guid: e56181f9b86152744b1d3ca8463381e4, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2561996802041097014, guid: e56181f9b86152744b1d3ca8463381e4,
         type: 3}
       propertyPath: sceneViewId
@@ -6392,6 +6396,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerTest_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2859575814382685629, guid: e56181f9b86152744b1d3ca8463381e4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2859575814382685631, guid: e56181f9b86152744b1d3ca8463381e4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e56181f9b86152744b1d3ca8463381e4, type: 3}
@@ -6760,6 +6774,11 @@ PrefabInstance:
         type: 3}
       propertyPath: sceneName
       value: Village
+      objectReference: {fileID: 0}
+    - target: {fileID: 2539914799642363462, guid: 1f034e7520b8d40788bb766f9944e47d,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2539914799642363464, guid: 1f034e7520b8d40788bb766f9944e47d,
         type: 3}
@@ -22157,7 +22176,7 @@ Transform:
   - {fileID: 1916072905389879670}
   - {fileID: 1667158199}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: -69.963, z: 0}
 --- !u!114 &5200290163521400514
 MonoBehaviour:
@@ -26467,38 +26486,6 @@ MonoBehaviour:
   _headPoseRelativeOffsetRotation: {x: 0, y: 0, z: 0}
   _headPoseRelativeOffsetTranslation: {x: 0, y: 0, z: 0}
   profilerTcpPort: 32419
-  expandMixedRealityCapturePropertySheet: 0
-  enableMixedReality: 0
-  compositionMethod: 0
-  extraHiddenLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  extraVisibleLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  dynamicCullingMask: 1
-  externalCompositionBackdropColorRift: {r: 0, g: 1, b: 0, a: 1}
-  externalCompositionBackdropColorQuest: {r: 0, g: 0, b: 0, a: 0}
-  capturingCameraDevice: 0
-  flipCameraFrameHorizontally: 0
-  flipCameraFrameVertically: 0
-  handPoseStateLatency: 0
-  sandwichCompositionRenderLatency: 0
-  sandwichCompositionBufferedFrames: 8
-  chromaKeyColor: {r: 0, g: 1, b: 0, a: 1}
-  chromaKeySimilarity: 0.6
-  chromaKeySmoothRange: 0.03
-  chromaKeySpillRange: 0.06
-  useDynamicLighting: 0
-  depthQuality: 1
-  dynamicLightingSmoothFactor: 8
-  dynamicLightingDepthVariationClampingValue: 0.001
-  virtualGreenScreenType: 0
-  virtualGreenScreenTopY: 10
-  virtualGreenScreenBottomY: -10
-  virtualGreenScreenApplyDepthCulling: 0
-  virtualGreenScreenDepthTolerance: 0.2
-  mrcActivationMode: 0
   launchMultimodalHandsControllersOnStartup: 0
   isInsightPassthroughEnabled: 0
   requestBodyTrackingPermissionOnStartup: 0

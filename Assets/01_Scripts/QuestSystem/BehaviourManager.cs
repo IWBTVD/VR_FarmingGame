@@ -29,6 +29,16 @@ namespace Jun
         /// </summary>
         int plowedCount = 0;
 
+        /// <summary>
+        /// 물 주기 횟수를 담을 변수
+        /// </summary>
+        int wateredCount = 0;
+
+        /// <summary>
+        /// 씨뿌리기 횟수를 담을 변수
+        /// </summary>
+        int sowedCount = 0;
+
         public void AddPlowedCount()
         {
             plowedCount++;
@@ -36,6 +46,19 @@ namespace Jun
                 QuestManager.instance.CheckQuestbehaviour(GetComponent<Quest>().GetbehaviourID());
         }
 
+        public void AddWateredCount()
+        {
+            wateredCount++;
+            if (QuestManager.instance.currentQuestID == 2)
+                QuestManager.instance.CheckQuestbehaviour(GetComponent<Quest>().GetbehaviourID());
+        }
+
+        public void AddSowedCount()
+        {
+            sowedCount++;
+            if (QuestManager.instance.currentQuestID == 3)
+                QuestManager.instance.CheckQuestbehaviour(GetComponent<Quest>().GetbehaviourID());
+        }
 
     }
 }

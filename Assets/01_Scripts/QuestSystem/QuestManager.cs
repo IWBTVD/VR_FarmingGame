@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -27,7 +28,7 @@ namespace Jun
         /// <summary>
         /// QuestData.csv 파일을 저장할 변수
         /// </summary>
-        public TextAsset questDataCSV;
+        [SerializeField, Required] TextAsset questDataCSV;
         /// <summary>
         /// QuestData를 저장할 리스트
         /// </summary>
