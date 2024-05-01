@@ -40,6 +40,26 @@ namespace Gun
         /// </summary>
         public int GrowthDays => _growthDays;
 
+        protected virtual void Start()
+        {
+            OnPlanted();
+        }
+
+        /// <summary>
+        /// 막 심어졌을 때 메소드
+        /// </summary>
+        public virtual void OnPlanted()
+        {
+            foreach(var sprout in sproutVisualList)
+            {
+                sprout.gameObject.SetActive(false);
+            }
+            matureVisual.SetActive(false);
+            sproutVisualList[0].SetActive(true);
+
+
+        }
+
         /// <summary>
         /// 하루가 경과했을 때 호출되는 메소드
         /// </summary>

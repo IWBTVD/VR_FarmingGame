@@ -12,6 +12,8 @@ namespace Gun
 
         #region 프로퍼티
         [SerializeField] private BreakableSO _breakableSO;
+        [SerializeField] private GameObject _visual;
+        [SerializeField] private ParticleSystem _particleSystem;
         [SerializeField] private int _health = 0;
         #endregion
 
@@ -64,7 +66,10 @@ namespace Gun
         {
             if(_health <= 0) {
                 Debug.Log("Broke!");
-                Destroy(gameObject);
+                _visual.SetActive(false);
+                _particleSystem.Play();
+
+                Destroy(gameObject, 2f);
             }
         }
 

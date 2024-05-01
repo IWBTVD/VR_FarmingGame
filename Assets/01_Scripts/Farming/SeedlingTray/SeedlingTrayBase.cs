@@ -6,7 +6,7 @@ namespace Gun
 {
     public class SeedlingTrayBase : MonoBehaviour
     {
-        
+        [SerializeField] protected List<GameObject> socketList = new();
     }
 }
 

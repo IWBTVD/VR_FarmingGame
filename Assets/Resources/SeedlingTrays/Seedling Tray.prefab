@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 2961981475216397803}
   - component: {fileID: 4328637240081003256}
   - component: {fileID: 612874569026980041}
+  - component: {fileID: 8477232268488598784}
   m_Layer: 0
   m_Name: Seedling Tray
   m_TagString: Untagged
@@ -286,6 +287,25 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   lockHandOnGrab: 0
+--- !u!114 &8477232268488598784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3024507471525783447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4452b8dd7fa64e74c88828033409adf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  socketList:
+  - {fileID: 1193843839732285432}
+  - {fileID: 3195519758594184710}
+  - {fileID: 3107469214703635978}
+  - {fileID: 7616219865384457151}
+  - {fileID: 790146183053073742}
+  - {fileID: 1350389381514845384}
 --- !u!1 &3107469214703635978
 GameObject:
   m_ObjectHideFlags: 0

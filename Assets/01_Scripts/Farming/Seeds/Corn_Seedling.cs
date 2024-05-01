@@ -6,7 +6,7 @@ namespace Gun
 {
     public class Corn_Seedling : SeedlingBase
     {
- 
+        
     }
 }
 

@@ -8,17 +8,18 @@ namespace Gun
     public class PitchFork : MonoBehaviour
     {
         [SerializeField] private List<ToolParticleEffect> plowParticleList;
-        [SerializeField] private List<AudioClip> soundList;
 
         private Autohand.Grabbable grabbable;
 
         private Vector3 lastClosestPoint;
         private float forkedDistance;
         private CultivationField lastField;
+        private AudioSource _audioSource;
 
         private void Awake()
         {
             grabbable = GetComponent<Autohand.Grabbable>();
+            _audioSource = GetComponent<AudioSource>();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -29,6 +30,7 @@ namespace Gun
                 {
                     lastClosestPoint = other.ClosestPoint(transform.position);
                     PlayPlowParticle();
+                    TryPlayAudioClip();
                     cultivationField.PlowGround(10);
 
                     lastField = cultivationField;
@@ -85,6 +87,12 @@ namespace Gun
                     return;
                 }
             }
+        }
+
+        public void TryPlayAudioClip()
+        {
+            if (_audioSource.isPlaying) return;
+            //_audioSource.PlayOneShot(SFX_Manager.GetPlowingSound());
         }
     }
 }
