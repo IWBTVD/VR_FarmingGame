@@ -79,8 +79,9 @@ namespace Gun
             moundsVisual.FullyWatered();
 
             //퀘스트 체크
-            if (QuestManager.instance.currentQuestID == 3)
-                QuestManager.instance.CheckQuestbehaviour(GetComponent<Quest>().GetbehaviourID());//퀘스트가 진행 후에도 계속 실행됨 -> 수정 필요
+            // if (QuestManager.instance.currentQuestID == 3)
+            //     QuestManager.instance.CheckQuestbehaviour(GetComponent<Quest>().GetbehaviourID());//퀘스트가 진행 후에도 계속 실행됨 -> 수정 필요
+            BehaviourManager.Instance.AddWateredCount();
 
         }
 
@@ -94,8 +95,6 @@ namespace Gun
             if (plowedAmount >= 100)
             {
                 FullyPlowed();
-                //퀘스트 체크
-                BehaviourManager.Instance.AddPlowedCount();
             }
         }
 
@@ -107,6 +106,8 @@ namespace Gun
             _isPlowed = true;
             moundsVisual.gameObject.SetActive(true);
             plowCompleteParticle.Play();
+            //퀘스트 체크
+            BehaviourManager.Instance.AddPlowedCount();
         }
 
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
