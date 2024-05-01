@@ -44,6 +44,7 @@ namespace Jun
             plowedCount++;
             if (QuestManager.instance.currentQuestID == 1)
                 QuestManager.instance.CheckQuestbehaviour(GetComponent<Quest>().GetbehaviourID());
+            Debug.Log("경작횟수 : " + plowedCount);
         }
 
         public void AddWateredCount()
@@ -51,6 +52,7 @@ namespace Jun
             wateredCount++;
             if (QuestManager.instance.currentQuestID == 2)
                 QuestManager.instance.CheckQuestbehaviour(GetComponent<Quest>().GetbehaviourID());
+            Debug.Log("물주기횟수 : " + wateredCount);
         }
 
         public void AddSowedCount()
@@ -58,6 +60,7 @@ namespace Jun
             sowedCount++;
             if (QuestManager.instance.currentQuestID == 3)
                 QuestManager.instance.CheckQuestbehaviour(GetComponent<Quest>().GetbehaviourID());
+            Debug.Log("씨뿌리기횟수 : " + sowedCount);
         }
 
     }
