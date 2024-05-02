@@ -4,7 +4,6 @@ using UnityEngine;
 using Photon.Pun;
 using Unity.VisualScripting;
 using Photon.Realtime;
-using Jun;
 
 namespace Gun
 {
@@ -65,19 +64,16 @@ namespace Gun
         }
         public void CheckBreak()
         {
-            if (_health <= 0)
-            {
+            if(_health <= 0) {
                 Debug.Log("Broke!");
                 _visual.SetActive(false);
                 _particleSystem.Play();
 
                 Destroy(gameObject, 2f);
-
-                BehaviourManager.Instance.AddDestroyedRockCount();
             }
         }
 
-
+        
         #endregion
     }
 }

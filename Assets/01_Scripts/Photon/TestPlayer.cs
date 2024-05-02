@@ -35,7 +35,6 @@ namespace Jun
         {
             if (Input.GetKeyDown(KeyCode.F))
                 entrance.EnterRoon();
-            QuestManager.Instance.CheckQuestLocation(GetComponent<Quest>().GetLocationID());
         }
         private void InteractionNPCUI()
         {
