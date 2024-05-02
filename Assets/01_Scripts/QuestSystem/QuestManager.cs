@@ -37,10 +37,10 @@ namespace Jun
         /// QuestItem을 저장할 리스트
         /// </summary>
         // public List<QuestItem> questItemList = new List<QuestItem>();
-        // todo: 변수명 수정
-        public List<Quest> questItemList = new List<Quest>();
-        public List<Quest> questLocationList = new List<Quest>();
-        public List<Quest> questBehaviourList = new List<Quest>();
+
+        public List<Quest> questItemIDList = new List<Quest>();
+        public List<Quest> questLocationIDList = new List<Quest>();
+        public List<Quest> questBehaviourIDList = new List<Quest>();
 
         /// <summary>
         /// Quest가 업데이트 될 때 실행할 이벤트
@@ -146,9 +146,9 @@ namespace Jun
         /// <param name="questID"></param>
         public void CheckQuestItem(int questID)
         {
-            for (int i = 0; i < questItemList.Count; i++)
+            for (int i = 0; i < questItemIDList.Count; i++)
             {
-                if (questItemList[i].GetItemID() == questDataList[currentQuestID].questTarget)
+                if (questItemIDList[i].GetItemID() == questDataList[currentQuestID].questTarget)
                 {
                     UpdateQuest();
                 }
@@ -162,9 +162,9 @@ namespace Jun
 
         public void CheckQuestLocation(int questID)
         {
-            for (int i = 0; i < questLocationList.Count; i++)
+            for (int i = 0; i < questLocationIDList.Count; i++)
             {
-                if (questLocationList[i].GetLocationID() == questDataList[currentQuestID].questTarget)
+                if (questLocationIDList[i].GetLocationID() == questDataList[currentQuestID].questTarget)
                 {
                     UpdateQuest();
                 }
@@ -177,9 +177,9 @@ namespace Jun
         /// <param name="questID"></param>
         public void CheckQuestbehaviour(int questID)
         {
-            for (int i = 0; i < questBehaviourList.Count; i++)
+            for (int i = 0; i < questBehaviourIDList.Count; i++)
             {
-                if (questBehaviourList[i].GetbehaviourID() == questDataList[currentQuestID].questTarget)
+                if (questBehaviourIDList[i].GetbehaviourID() == questDataList[currentQuestID].questTarget)
                 {
                     UpdateQuest();
                 }
