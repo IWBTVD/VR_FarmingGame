@@ -1,7 +1,5 @@
 using UnityEngine;
 
-//todo: 모든 퀘스트관련 이벤트를 다 담아두고 퀘스트가 업데이트 될때마다 실행하도록 수정
-
 namespace Jun
 {
     public class BehaviourManager : MonoBehaviour
