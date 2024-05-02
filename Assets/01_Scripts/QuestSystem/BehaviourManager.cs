@@ -37,6 +37,11 @@ namespace Jun
         /// </summary>
         int sowedCount = 0;
 
+        /// <summary>
+        /// 파괴한 돌의 갯수를 담을 변수
+        /// </summary>
+        int destroyedRockCount = 0;
+
         public void AddPlowedCount()
         {
             plowedCount++;
@@ -59,6 +64,14 @@ namespace Jun
             if (QuestManager.instance.currentQuestID == 3)
                 QuestManager.instance.CheckQuestbehaviour(GetComponent<Quest>().GetbehaviourID());
             Debug.Log("씨뿌리기횟수 : " + sowedCount);
+        }
+
+        public void AddDestroyedRockCount()
+        {
+            destroyedRockCount++;
+            if (QuestManager.instance.currentQuestID == 4)// Doto: 돌파괴 퀘스트 ID를 만들어야함
+                QuestManager.instance.CheckQuestbehaviour(GetComponent<Quest>().GetbehaviourID());
+            Debug.Log("돌파괴횟수 : " + destroyedRockCount);
         }
 
     }
