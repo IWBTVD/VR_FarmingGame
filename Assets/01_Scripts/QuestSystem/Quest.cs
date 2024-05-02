@@ -56,15 +56,15 @@ namespace Jun
         {
             if (itemType == ItemType.Item)
             {
-                QuestManager.Instance.questItemList.Add(this);
+                QuestManager.Instance.questItemIDList.Add(this);
             }
             else if (itemType == ItemType.Visit)
             {
-                QuestManager.Instance.questLocationList.Add(this);
+                QuestManager.Instance.questLocationIDList.Add(this);
             }
             else
             {
-                QuestManager.Instance.questBehaviourList.Add(this);
+                QuestManager.Instance.questBehaviourIDList.Add(this);
             }
         }
 
