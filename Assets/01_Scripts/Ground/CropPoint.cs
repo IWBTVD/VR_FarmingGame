@@ -50,6 +50,7 @@ namespace Jun.Ground.Crops
         public void PlantCrop(PlantBase plantBase)
         {
             _plant = Instantiate(plantBase, transform);
+            BehaviourManager.Instance.AddSowedCount();
         }
 
         private void OnDayPassed()

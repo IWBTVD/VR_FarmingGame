@@ -24,7 +24,7 @@ namespace Jun.Ground.Crops
         {
             grabbable ??= GetComponent<Grabbable>();
             grabbable.onSqueeze.AddListener(OnSqueeze);
-            grabbable.onUnsqueeze.AddListener(OnUnsqueeze);  
+            grabbable.onUnsqueeze.AddListener(OnUnsqueeze);
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Jun.Ground.Crops
         /// <param name="_grabbable"></param>
         public void OnSqueeze(Hand hand, Grabbable grabbable)
         {
-            if(seedCapacity > 0)
+            if (seedCapacity > 0)
             {
                 currentSeed = Instantiate(seedPrefab, seedSpawnPoint);
                 currentSeed.CreatedBySeedSac(this);
@@ -44,7 +44,7 @@ namespace Jun.Ground.Crops
 
         public void OnUnsqueeze(Hand hand, Grabbable grabbable)
         {
-            if(currentSeed != null)
+            if (currentSeed != null)
             {
                 currentSeed.DecoupleWithSeedSac();
             }

@@ -1,5 +1,4 @@
-using System;
-using System.Collections;
+using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -29,7 +28,7 @@ namespace Jun
         /// <summary>
         /// QuestData.csv 파일을 저장할 변수
         /// </summary>
-        public TextAsset questDataCSV;
+        [SerializeField, Required] TextAsset questDataCSV;
         /// <summary>
         /// QuestData를 저장할 리스트
         /// </summary>
@@ -37,7 +36,11 @@ namespace Jun
         /// <summary>
         /// QuestItem을 저장할 리스트
         /// </summary>
-        public List<QuestItem> questItemList = new List<QuestItem>();
+        // public List<QuestItem> questItemList = new List<QuestItem>();
+
+        public List<Quest> questItemIDList = new List<Quest>();
+        public List<Quest> questLocationIDList = new List<Quest>();
+        public List<Quest> questBehaviourIDList = new List<Quest>();
 
         /// <summary>
         /// Quest가 업데이트 될 때 실행할 이벤트
@@ -62,15 +65,28 @@ namespace Jun
         private void Start()
         {
             LoadQuestData();
-            UpdateQuest(currentQuestID);
+            OnQuestUpdated.Invoke();
         }
 
         void Update()
         {
+            TestCode();
+        }
+
+        private void TestCode()
+        {
+            // 테스트용 코드
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                UpdateQuest(currentQuestID);
-                currentQuestID++;
+                UpdateQuest();
+            }
+
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                for (int i = 0; i < questDataList.Count; i++)
+                {
+                    Debug.Log(questDataList[i].questID + " " + questDataList[i].name + " " + questDataList[i].content + " " + questDataList[i].questTarget + " " + questDataList[i].reward + " " + questDataList[i].rewardObject + " " + questDataList[i].progressGoal + " " + questDataList[i].questType);
+                }
             }
         }
 
@@ -79,22 +95,9 @@ namespace Jun
             OnQuestUpdated.AddListener(action);
         }
 
-        public void UpdateQuest(int questID)
+        public void UpdateQuest()
         {
-            Debug.Log(questID + "번 퀘스트를 업데이트합니다.");
-            currentQuestID = questID;
-            QuestData questData = GetQuestData(questID);
-
-            if (questData == null)
-            {
-                Debug.Log("questData is null");
-                return;
-            }
-            else
-            {
-                Debug.Log(questData.name);
-            }
-
+            currentQuestID++;
             OnQuestUpdated.Invoke();
         }
 
@@ -114,9 +117,9 @@ namespace Jun
                 string content = row[2];
                 int questTarget = int.Parse(row[3]);
                 int reward = int.Parse(row[4]);
-                GameObject rewardObject = Resources.Load<GameObject>(row[5]);//수정해야함
+                GameObject rewardObject = Resources.Load<GameObject>(row[5]);//수정해야함 아이템에 코드를 부여여 해야함
                 int progressGoal = int.Parse(row[6]);
-                QuestType questType = (QuestType)System.Enum.Parse(typeof(QuestType), row[7]);
+                int questType = int.Parse(row[7]);
 
                 QuestData questData = new QuestData(questID, name, content, questTarget, reward, rewardObject, progressGoal, questType);
                 questDataList.Add(questData);
@@ -136,18 +139,51 @@ namespace Jun
         {
             questDataList.Remove(questData);
         }
+
         /// <summary>
-        /// QuestItem을 추가하는 함수
+        /// QuestItem을 체크하는 함수 현재 잡고 있는게 퀘스트에 맞는 아이템인지 확인
         /// </summary>
-        /// <param name="questItem"></param>
-        public void AddQuestItem(QuestItem questItem)
+        /// <param name="questID"></param>
+        public void CheckQuestItem(int questID)
         {
-            questItemList.Add(questItem);
+            for (int i = 0; i < questItemIDList.Count; i++)
+            {
+                if (questItemIDList[i].GetItemID() == questDataList[currentQuestID].questTarget)
+                {
+                    UpdateQuest();
+                }
+            }
         }
 
-        public void RemoveQuestItem(QuestItem questItem)
+        /// <summary>
+        /// QuestLocation을 체크하는 함수
+        /// </summary>
+        /// <param name="questID"></param>
+
+        public void CheckQuestLocation(int questID)
         {
-            questItemList.Remove(questItem);
+            for (int i = 0; i < questLocationIDList.Count; i++)
+            {
+                if (questLocationIDList[i].GetLocationID() == questDataList[currentQuestID].questTarget)
+                {
+                    UpdateQuest();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Questbehaviour를 체크하는 함수
+        /// </summary>
+        /// <param name="questID"></param>
+        public void CheckQuestbehaviour(int questID)
+        {
+            for (int i = 0; i < questBehaviourIDList.Count; i++)
+            {
+                if (questBehaviourIDList[i].GetbehaviourID() == questDataList[currentQuestID].questTarget)
+                {
+                    UpdateQuest();
+                }
+            }
         }
 
         /// <summary>
@@ -166,5 +202,6 @@ namespace Jun
             }
             return null;
         }
+
     }
 }

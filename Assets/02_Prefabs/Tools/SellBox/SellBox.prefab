@@ -583,9 +583,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7d9e2a9dfe6a4f4d8cfe7ce70edc597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextPrefab: {fileID: 1630810404218267532, guid: 9e9470ece29c88d47ba594a42bf6f248,
+  textPrefab: {fileID: 1630810404218267532, guid: 9e9470ece29c88d47ba594a42bf6f248,
     type: 3}
-  Canvas: {fileID: 3642838368179183609}
+  canvas: {fileID: 3642838368179183609}
 --- !u!114 &3642838367377363277
 MonoBehaviour:
   m_ObjectHideFlags: 0

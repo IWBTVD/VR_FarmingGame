@@ -1,64 +1,96 @@
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
-using System;
-using System.Collections.Generic;
 
 namespace Jun
 {
-    public enum QuestType
-    {
-        None,
-        Daily,
-        Weekly,
-        Achievement
-    }
     public class Quest : MonoBehaviour
     {
-        public QuestData questData;
-
-        public int progress;
-        public bool isCompleted;
-        public DateTime nextResetTimeUTC; // 다음 초기화 시간 추가
-
-
-        public Quest(QuestData questData)
+        public enum ItemType
         {
-            this.questData = questData;
-            progress = 0;
-            isCompleted = false;
+            Item,
+            Visit,
+            behaviour
         }
+        public ItemType itemType;
 
-        public void UpdateProgress(int amount)
+        [SerializeField]
+        private int itemID;
+
+        [SerializeField]
+        private int locationID;
+
+        [SerializeField]
+        private int behaviourID;
+
+#if UNITY_EDITOR
+        [CustomEditor(typeof(Quest))]
+        public class QuestEditor : Editor
         {
-            if (!isCompleted)
+            public override void OnInspectorGUI()
             {
-                progress += amount;
-                if (progress >= questData.progressGoal)
+                Quest questItem = (Quest)target;
+
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("itemType"));
+
+                if (questItem.itemType == ItemType.Item)
                 {
-                    isCompleted = true;
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("itemID"));
                 }
+                else if (questItem.itemType == ItemType.Visit)
+                {
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("locationID"));
+                }
+                else
+                {
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("behaviourID"));
+                }
+
+                serializedObject.ApplyModifiedProperties();
             }
         }
+#endif
 
-        public bool IsTimeLimitExceeded()
+        void Start()
         {
-            return DateTime.UtcNow > nextResetTimeUTC;
+            if (itemType == ItemType.Item)
+            {
+                QuestManager.Instance.questItemIDList.Add(this);
+            }
+            else if (itemType == ItemType.Visit)
+            {
+                QuestManager.Instance.questLocationIDList.Add(this);
+            }
+            else
+            {
+                QuestManager.Instance.questBehaviourIDList.Add(this);
+            }
         }
 
-        public void Reset()
+        public void UnableIsKinematic()
         {
-            progress = 0;
-            isCompleted = false;
-
-            // 다음 초기화 시간 설정
-            if (questData.questType == QuestType.Daily)
-            {
-                nextResetTimeUTC = nextResetTimeUTC.AddDays(1);
-            }
-            else if (questData.questType == QuestType.Weekly)
-            {
-                nextResetTimeUTC = nextResetTimeUTC.AddDays(7);
-            }
+            GetComponent<Rigidbody>().isKinematic = false;
         }
 
+        public void AbleIsKinematic()
+        {
+            GetComponent<Rigidbody>().isKinematic = true;
+        }
+
+        public int GetItemID()
+        {
+            return itemID;
+        }
+
+        public int GetLocationID()
+        {
+            return locationID;
+        }
+
+        public int GetbehaviourID()
+        {
+            return behaviourID;
+        }
     }
 }

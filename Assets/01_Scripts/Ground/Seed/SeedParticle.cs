@@ -58,7 +58,7 @@ namespace Jun
 
                 if (!IsSeedlingsGround)
                 {
-                    other.GetComponent<CropPoint>().ReceiveSeed(seedBase);
+                    // other.GetComponent<CropPoint>().ReceiveSeed(seedBase);
                 }
             }
 

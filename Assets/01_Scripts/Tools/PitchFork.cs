@@ -1,3 +1,4 @@
+using Jun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -61,8 +62,11 @@ namespace Gun
                 if (forkedDistance > 1)
                 {
                     PlayPlowParticle();
-                    TryPlayAudioClip();
-                    lastField.PlowGround((int)forkedDistance);
+                    lastField.PlowGround((int)forkedDistance);//땅이 경작 되는 함수
+                    // 퀘스트 체크
+                    // BehaviourManager.Instance.AddPlowedCount(); 로 
+                    // if (QuestManager.instance.currentQuestID == 1 && IsPlowed)
+                    //     QuestManager.instance.CheckQuestbehaviour(GetComponent<Quest>().GetbehaviourID());
                     forkedDistance = 0f;
                 }
             }
@@ -76,15 +80,15 @@ namespace Gun
 
         public void PlayPlowParticle()
         {
-            foreach(var particle in plowParticleList)
+            foreach (var particle in plowParticleList)
             {
-                if(particle.PlayParticle())
+                if (particle.PlayParticle())
                 {
                     return;
                 }
             }
         }
-        
+
         public void TryPlayAudioClip()
         {
             if (_audioSource.isPlaying) return;

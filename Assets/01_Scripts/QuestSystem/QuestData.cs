@@ -22,11 +22,11 @@ namespace Jun
         // public int questGoalCount;
         internal int progressGoal;
 
-        public QuestType questType;
+        public int questType;
         // internal DayOfWeek resetDayOfWeek;
         // internal double resetHourUTC;
 
-        public QuestData(int questID, string name, string content, int questTarget, int reward, GameObject rewardObject, int progressGoal, QuestType questType)
+        public QuestData(int questID, string name, string content, int questTarget, int reward, GameObject rewardObject, int progressGoal, int questType)
         {
             this.questID = questID;
             this.name = name;
