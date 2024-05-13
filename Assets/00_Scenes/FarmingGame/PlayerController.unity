@@ -2348,7 +2348,7 @@ Transform:
   - {fileID: 1206676581}
   - {fileID: 1325515474}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &183884030
 GameObject:
@@ -9070,25 +9070,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 645253692}
   m_Mesh: {fileID: 4300000, guid: 37ba10a26a648144fa2390c8adfb2c8a, type: 3}
---- !u!1 &646752522 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4141310124838001089, guid: d28e76e220c56db4b90a34e38ab4865c,
-    type: 3}
-  m_PrefabInstance: {fileID: 8565705023971000759}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &646752526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 646752522}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6228d7284c25364e8ec12d3208278d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentCropsPrefab: {fileID: 0}
 --- !u!1 &649120101
 GameObject:
   m_ObjectHideFlags: 0
@@ -40889,7 +40870,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -0.09, y: 0.537, z: 0.156}
 --- !u!4 &4240414873913786
 Transform:
@@ -52148,7 +52129,7 @@ Transform:
   m_Children:
   - {fileID: 6460968727931994328}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6189887812441737997
 MonoBehaviour:
@@ -52320,12 +52301,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e726c9537a0864f4db293dd8542dea3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seedType: 0
-  currentCropsPrefab: {fileID: 3896003403258483146, guid: 98d18fb3da1454a9f801f96901745837,
-    type: 3}
-  ps: {fileID: 3522604019794742411}
-  StartSeed: 0
-  currentXAngle: 0
+  seedSpawnPoint: {fileID: 0}
+  seedPrefab: {fileID: 0}
+  seedCapacity: 10
 --- !u!4 &6189887814400872673
 Transform:
   m_ObjectHideFlags: 0
@@ -52339,7 +52317,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6189887814400872674
 MeshFilter:
@@ -52452,12 +52430,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e726c9537a0864f4db293dd8542dea3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seedType: 0
-  currentCropsPrefab: {fileID: 3896003403258483146, guid: 98d18fb3da1454a9f801f96901745837,
-    type: 3}
-  ps: {fileID: 6189887814400872704}
-  StartSeed: 0
-  currentXAngle: 0
+  seedSpawnPoint: {fileID: 0}
+  seedPrefab: {fileID: 0}
+  seedCapacity: 10
 --- !u!114 &6189887814400872696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58057,6 +58032,11 @@ PrefabInstance:
       propertyPath: TrailModule.colorOverLifetime.maxGradient.key1.r
       value: 0.55520076
       objectReference: {fileID: 0}
+    - target: {fileID: 5974739931377452522, guid: d28e76e220c56db4b90a34e38ab4865c,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 7654548357778365472, guid: d28e76e220c56db4b90a34e38ab4865c,
         type: 3}
       propertyPath: m_MaxParticleSize
@@ -58327,12 +58307,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f63bd045c647f4349b4a5ed4c9dbc3b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seedType: 0
-  currentCropsPrefab: {fileID: 6248711845758961297, guid: 5cdea71f7ba664c2590beacf3076855e,
-    type: 3}
-  ps: {fileID: 8565705025339644992}
-  StartSeed: 0
-  currentXAngle: 0
+  seedSpawnPoint: {fileID: 0}
+  seedPrefab: {fileID: 0}
+  seedCapacity: 10
 --- !u!4 &8565705025339644988
 Transform:
   m_ObjectHideFlags: 0
@@ -58346,7 +58323,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &8565705025339644990
 MeshRenderer:

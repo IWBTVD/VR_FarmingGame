@@ -6,13 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/00_Scenes/Village.unity
+    path: Assets/00_Scenes/FarmingGame/Village.unity
     guid: ba3327f02751f4bf0a718a660afc4704
   - enabled: 1
-    path: Assets/00_Scenes/Farm.unity
+    path: Assets/00_Scenes/FarmingGame/Farm.unity
     guid: e47d940f6c212e1428b35f7c9e2c13e7
   - enabled: 1
-    path: Assets/00_Scenes/InsideShop.unity
+    path: Assets/00_Scenes/FarmingGame/InsideShop.unity
     guid: d83f241364eceaf4081bf2b3ee6ee87b
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: a1b158e1be02c73409bd21e7fdd55d0f,
