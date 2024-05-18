@@ -1,11 +1,13 @@
-﻿using ECM.Components;
+using ECM.Components;
 using ECM.Controllers;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityStandardAssets.Characters.FirstPerson;
 
 namespace ECM.EditorTools
 {
+    /*
     public static class ECMMenu
     {
         [MenuItem("GameObject/ECM/Character", false, 0)]
@@ -193,4 +195,5 @@ namespace ECM.EditorTools
             SceneView.FrameLastActiveSceneView();
         }
     }
+    */
 }
