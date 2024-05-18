@@ -4,18 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Bullet
-  - RoomLight
   - SamplesInfoPanel
-  - Item
-  - Well
-  - Ground
-  - Tool
-  - Water
-  - Soil
-  - CropPoint
-  - Obstacle
-  - NPC
   layers:
   - Default
   - TransparentFX
@@ -27,14 +16,8 @@ TagManager:
   - Grabbable
   - Hand
   - HandPlayer
-  - ChildGrabbable
-  - MyBody
-  - OtherBody
-  - Soil
-  - CropPoint
-  - Seed
-  - DoorZone
   - Player
+  - DoorZone
   - 
   - 
   - 
@@ -47,8 +30,14 @@ TagManager:
   - 
   - 
   - 
-  - POLARIS RAYCAST
-  - POLARIS SPLINE
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   m_SortingLayers:
   - name: Default
     uniqueID: 0

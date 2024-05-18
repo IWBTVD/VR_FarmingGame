@@ -111,7 +111,6 @@ GameObject:
   - component: {fileID: 23744072322325984}
   - component: {fileID: 64186109182577288}
   - component: {fileID: 7803802957222181066}
-  - component: {fileID: 1795393543}
   m_Layer: 0
   m_Name: SM_Bld_Door_Single_03
   m_TagString: Untagged
@@ -221,18 +220,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &1795393543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1280633574475702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8c8762a93203584c8804f4290e76b8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1682046774320116
 GameObject:
   m_ObjectHideFlags: 0
