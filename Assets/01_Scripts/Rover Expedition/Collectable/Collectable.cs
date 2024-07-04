@@ -1,36 +1,34 @@
-using Unity.VisualScripting;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-public class Collectable : MonoBehaviour
+
+namespace RoverExpedition
 {
-    public CollectableSO collectableSO;
-    public bool isCollectable; // true: collectable, false: not collectable only investigatable
-    public Canvas infoCanvas; // Show name and description
 
-    public void TryCollect()
+    public class Collectable : MonoBehaviour
     {
-        Debug.Log($"Trying to collect {collectableSO.Name}");
+        public CollectableSO collectableSO;
 
-        if (isCollectable)
+
+        public void GetInfo()
         {
-            OnCollected();
+
         }
-        else
+
+        /// <summary>
+        /// 채집 시도하기
+        /// </summary>
+        public void TryCollect()
         {
-            OnInvestigate();
+
+        }
+
+        /// <summary>
+        /// 채집 성공
+        /// </summary>
+        public void OnCollected()
+        {
+
         }
     }
-
-    public void OnCollected()
-    {
-        Debug.Log($"{collectableSO.Name} has been collected!");
-    }
-
-    public void OnInvestigate()
-    {
-        Debug.Log($"{collectableSO.Name} has been investigated!");
-        infoCanvas.gameObject.SetActive(true);
-    }
-
-
 }
