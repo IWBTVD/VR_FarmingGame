@@ -11,6 +11,8 @@ public class Steering
     public float H { get; private set; }
     public float V { get; private set; }
     public bool Cruising { get; private set; } // cruise control
+    public bool mouse_hold;
+    public float mouse_start;
 
     // Use this for initialization
     public void Start()
@@ -18,6 +20,7 @@ public class Steering
         H = 0f;
         V = 0f;
         Cruising = false;
+        mouse_hold = false;
     }
 
     // Update is called once per frame
@@ -57,8 +60,31 @@ public class Steering
             // get the mouse position
             float mousePosition = Input.mousePosition.x;
 
+            // check if its the first time pressing down on mouse button
+            if (!mouse_hold)
+            {
+                // we are now holding down the mouse
+                mouse_hold = true;
+                // set the start reference position for position tracking
+                mouse_start = mousePosition;
+            }
+
+            // This way h is [-1, -1]
+            // it's quite hard to get a max or close to max
+            // steering angle unless it's actually wanted.
+            H = Mathf.Clamp((mousePosition - mouse_start) / (Screen.width / 6), -1, 1);
+
+        }
+        else
+        {
+
+            // reset
+            mouse_hold = false;
+
+            H = CrossPlatformInputManager.GetAxis("Horizontal");
 
         }
 
     }
 }
+
