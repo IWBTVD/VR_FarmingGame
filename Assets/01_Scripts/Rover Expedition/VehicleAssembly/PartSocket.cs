@@ -38,6 +38,7 @@ public enum AssemblyDirection
 
 public class PartSocket : MonoBehaviour
 {
+    [SerializeField] VehiclePart m_parentPart;
     [SerializeField] private SocketType m_socketType;
     public SocketType SocketType { get => m_socketType; set => m_socketType = value;}
 

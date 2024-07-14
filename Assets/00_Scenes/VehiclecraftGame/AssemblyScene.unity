@@ -343,10 +343,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1904340403}
     m_Modifications:
+    - target: {fileID: 4551535871552729729, guid: 4483c5526526cb449be2be92801389bc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 4551535871552729737, guid: 4483c5526526cb449be2be92801389bc,
         type: 3}
       propertyPath: m_Name
       value: ContainerSample
+      objectReference: {fileID: 0}
+    - target: {fileID: 4551535871552729737, guid: 4483c5526526cb449be2be92801389bc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4551535871552729739, guid: 4483c5526526cb449be2be92801389bc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4551535871552729741, guid: 4483c5526526cb449be2be92801389bc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4551535871552729743, guid: 4483c5526526cb449be2be92801389bc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4551535871553089193, guid: 4483c5526526cb449be2be92801389bc,
         type: 3}
@@ -1163,10 +1188,70 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1904340403}
     m_Modifications:
+    - target: {fileID: 5184024090944883056, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184024090944883058, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184024090944883060, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184024090944883062, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184024090944883070, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619793718218733539, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619793718218733541, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619793718218733543, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619793718218733545, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619793718218733547, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619793718218733549, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 6619793718218733551, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
         type: 3}
       propertyPath: m_Name
       value: CockpitSample
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619793718218733551, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6619793718218959823, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
         type: 3}
@@ -1805,7 +1890,7 @@ GameObject:
   - component: {fileID: 4830194864390321697}
   - component: {fileID: 4830194864391451873}
   - component: {fileID: 5001680547599525895}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Chassis_Bug_Lvl1_Geom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
