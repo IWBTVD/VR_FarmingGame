@@ -14,6 +14,8 @@ public class VehicleChassis : MonoBehaviour
     public float WheelPower { get => wheelPower; set => wheelPower = value; }
     public float ContainerSize { get => containerSize; set => containerSize = value; }
 
+    public List<VehiclePart> assembledPartList = new();
+
     public void AddPower(float power)
     {
         this.power += power;
@@ -32,5 +34,15 @@ public class VehicleChassis : MonoBehaviour
     public void AddContainerSize(float size)
     {
         this.containerSize += size;
+    }
+
+    public void AssemblePart(VehiclePart part)
+    {
+        assembledPartList.Add(part);
+    }
+    
+    public void DisassemblePart(VehiclePart part)
+    {
+        assembledPartList.Remove(part);
     }
 }

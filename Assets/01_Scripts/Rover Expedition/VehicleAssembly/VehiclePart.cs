@@ -4,15 +4,60 @@ using UnityEngine;
 
 public class VehiclePart : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public PartSocket assembledSocket;
+    public bool isAssembled => assembledSocket != null;
+
+    public PartSocket hoveredSocket;
+
+    private Rigidbody rigid;
+
+    private void Start()
     {
-        
+        rigid = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnGrab()
     {
-        
+        if(isAssembled)
+        {
+            assembledSocket.DettachPart(this);
+        }
+    }
+
+    public void OnRelease()
+    {
+        if(!isAssembled && hoveredSocket != null)
+        {
+            hoveredSocket.AttachPart(this);
+        }
+    }
+
+    public void OnAttach()
+    {
+        rigid.isKinematic = true;
+    }
+
+    public void OnDettach()
+    {
+        rigid.isKinematic = false;
+    }
+    
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.TryGetComponent(out PartSocket socket))
+        {
+            hoveredSocket = socket;
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if(hoveredSocket != null)
+        {
+            if(hoveredSocket.gameObject == other.gameObject)
+            {
+                hoveredSocket = null;
+            }
+        }
     }
 }

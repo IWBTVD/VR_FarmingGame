@@ -38,6 +38,7 @@ public enum AssemblyDirection
 
 public class PartSocket : MonoBehaviour
 {
+    [SerializeField] private VehicleChassis chassis;
     [SerializeField] VehiclePart m_parentPart;
     [SerializeField] private SocketType m_socketType;
     public SocketType SocketType { get => m_socketType; set => m_socketType = value;}
@@ -46,14 +47,27 @@ public class PartSocket : MonoBehaviour
 
     [SerializeField] private VehiclePart m_attachedPart;
 
-    public void AssemblyPart()
+    private void Start()
     {
-
+        if (chassis == null) chassis = GetComponentInParent<VehicleChassis>();
     }
 
-    public void DisassemblyPart()
+    public void AttachPart(VehiclePart part)
     {
+        chassis.AssemblePart(part);
+        part.transform.SetParent(transform);
+        part.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
 
+        part.OnAttach();
+        m_attachedPart = part;
+    }
+
+    public void DettachPart(VehiclePart part)
+    {
+        chassis.DisassemblePart(part);
+
+        part.OnDettach();
+        m_attachedPart = null;
     }
 
     public void OnTriggerEnter(Collider other)
