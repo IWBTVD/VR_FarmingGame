@@ -15,11 +15,11 @@ public class Steering
     public bool mouse_hold;
     public float mouse_start;
 
-    private TestJoystick testJoystick;
+    // private TestJoystick testJoystick;
 
-    public Steering(TestJoystick testJoystick)
+    public Steering()
     {
-        this.testJoystick = testJoystick;
+        // this.testJoystick = testJoystick;
     }
 
     // Use this for initialization
@@ -46,40 +46,40 @@ public class Steering
         }
         else
         {
-            // V = CrossPlatformInputManager.GetAxis("Vertical");
+            V = CrossPlatformInputManager.GetAxis("Vertical");
             // 수직을 입력 받음
-            V = testJoystick.GetKeyboardInputY();
+            // V = testJoystick.GetKeyboardInputY();
         }
 
-        // if (Input.GetKey(KeyCode.A))
-        // {
-        //     if (H > -1.0)
-        //     {
-        //         H -= 0.05f;
-        //     }
-        // }
-        // else if (Input.GetKey(KeyCode.D))
-        // {
-        //     if (H < 1.0)
-        //     {
-        //         H += 0.05f;
-        //     }
-        // }
-
-        if (testJoystick.GetKeyboardInputX() < 0)
+        if (Input.GetKey(KeyCode.A))
         {
             if (H > -1.0)
             {
                 H -= 0.05f;
             }
         }
-        else if (testJoystick.GetKeyboardInputX() > 0)
+        else if (Input.GetKey(KeyCode.D))
         {
             if (H < 1.0)
             {
                 H += 0.05f;
             }
         }
+
+        // if (testJoystick.GetKeyboardInputX() < 0)
+        // {
+        //     if (H > -1.0)
+        //     {
+        //         H -= 0.05f;
+        //     }
+        // }
+        // else if (testJoystick.GetKeyboardInputX() > 0)
+        // {
+        //     if (H < 1.0)
+        //     {
+        //         H += 0.05f;
+        //     }
+        // }
 
     }
 }
