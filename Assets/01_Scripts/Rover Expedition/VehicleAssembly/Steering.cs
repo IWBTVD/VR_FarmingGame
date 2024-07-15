@@ -15,11 +15,11 @@ public class Steering
     public bool mouse_hold;
     public float mouse_start;
 
-    // private TestJoystick testJoystick;
+    private PhysicsGadgetJoystick testJoystick;
 
-    public Steering()
+    public Steering(PhysicsGadgetJoystick physicsGadgetJoystick)
     {
-        // this.testJoystick = testJoystick;
+        this.testJoystick = physicsGadgetJoystick;
     }
 
     // Use this for initialization

@@ -9,12 +9,12 @@ public class CarUserControl : MonoBehaviour
     private CarController m_Car;
     private Steering s;
 
-    // public TestJoystick joystick;
+    public PhysicsGadgetJoystick joystick;
 
     private void Awake()
     {
         m_Car = GetComponent<CarController>();
-        s = new Steering();
+        s = new Steering(joystick);
         s.Start();
     }
 
