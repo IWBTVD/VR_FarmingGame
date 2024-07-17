@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using Autohand;
-
+using RoverExpedition;
 
 [RequireComponent(typeof(CarController))]
 public class CarUserControl : MonoBehaviour
@@ -12,6 +12,8 @@ public class CarUserControl : MonoBehaviour
     private PhysicsGadgetJoystick joystick;
     private Animator animator;
     public Animator clawAnimator;
+
+    public GameObject collectableObj;
 
     private void Awake()
     {
@@ -33,8 +35,13 @@ public class CarUserControl : MonoBehaviour
         if (Input.GetKey(KeyCode.T))
         {
             animator.SetTrigger("ArmGrab");
-            //채집 함수 들어가야함
 
+            DetectCollectableObjectbyRange();
+
+            if (collectableObj != null)
+            {
+                collectableObj.GetComponent<Collectable>().TryCollect();
+            }
         }
     }
 
@@ -43,8 +50,24 @@ public class CarUserControl : MonoBehaviour
         clawAnimator.Play("Side_Claw_Grab");
     }
 
+    private void DetectCollectableObjectbyRange()
+    {
+        float range = 2f;
+        LayerMask layerMask = LayerMask.GetMask("CollectableLayer"); // 레이어 이름을 실제 사용하는 레이어로 변경
+        Collider[] colls = Physics.OverlapSphere(transform.position, range, layerMask);
 
+        foreach (var coll in colls)
+        {
+            Debug.Log("Detected: " + coll.name); // 디버그 로그 추가
+            if (coll.TryGetComponent<Collectable>(out Collectable npc))
+            {
+                collectableObj = coll.gameObject;
+                Debug.Log("Collectable Object Found: " + coll.name);
+                return; // 첫 번째 발견된 객체로 설정하고 함수 종료
+            }
+        }
 
-
+        // 범위 내에 Collectable 객체가 없는 경우
+        collectableObj = null;
+    }
 }
-

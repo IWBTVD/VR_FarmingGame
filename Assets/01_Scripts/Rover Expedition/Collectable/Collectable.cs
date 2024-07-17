@@ -20,7 +20,7 @@ namespace RoverExpedition
         /// </summary>
         public void TryCollect()
         {
-
+            Debug.Log(collectableSO.Description);
         }
 
         /// <summary>

@@ -31,7 +31,7 @@ namespace Autohand
             jointRotation = joint.Angles();
             value = new Vector2(jointRotation.z / (zRange.x - zRange.y), jointRotation.x / (xRange.x - xRange.y)) * 2;
 
-            Debug.Log("X: " + value.x + " Y: " + value.y);
+            // Debug.Log("X: " + value.x + " Y: " + value.y);
         }
 
         public Vector2 GetValue()
