@@ -15,9 +15,9 @@ public class Steering
     public bool mouse_hold;
     public float mouse_start;
 
-    private PhysicsGadgetJoystick testJoystick;
+    private TestJoystick testJoystick;
 
-    public Steering(PhysicsGadgetJoystick physicsGadgetJoystick)
+    public Steering(TestJoystick physicsGadgetJoystick)
     {
         this.testJoystick = physicsGadgetJoystick;
     }
@@ -66,20 +66,20 @@ public class Steering
             }
         }
 
-        // if (testJoystick.GetKeyboardInputX() < 0)
-        // {
-        //     if (H > -1.0)
-        //     {
-        //         H -= 0.05f;
-        //     }
-        // }
-        // else if (testJoystick.GetKeyboardInputX() > 0)
-        // {
-        //     if (H < 1.0)
-        //     {
-        //         H += 0.05f;
-        //     }
-        // }
+        if (testJoystick.GetKeyboardInputX() < 0)
+        {
+            if (H > -1.0)
+            {
+                H -= 0.05f;
+            }
+        }
+        else if (testJoystick.GetKeyboardInputX() > 0)
+        {
+            if (H < 1.0)
+            {
+                H += 0.05f;
+            }
+        }
 
     }
 }

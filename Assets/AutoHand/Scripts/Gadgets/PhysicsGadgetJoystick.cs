@@ -14,7 +14,7 @@ namespace Autohand
             "- if playRange is 0.1, you have to move the gadget 10% to get a result")]
         public float playRange = 0.05f;
         Vector2 xRange, zRange;
-        Vector2 value;
+        public Vector2 value;
         Vector3 jointRotation;
         Rigidbody body;
 
