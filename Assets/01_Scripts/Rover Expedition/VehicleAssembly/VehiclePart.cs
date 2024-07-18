@@ -39,7 +39,7 @@ public class VehiclePart : MonoBehaviour
 
     public void OnDettach()
     {
-        rigid.isKinematic = false;
+        //rigid.isKinematic = false;
     }
     
     public void OnTriggerEnter(Collider other)

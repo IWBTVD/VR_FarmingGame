@@ -343,35 +343,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1904340403}
     m_Modifications:
-    - target: {fileID: 4551535871552729729, guid: 4483c5526526cb449be2be92801389bc,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
+    - target: {fileID: 992643745, guid: 4483c5526526cb449be2be92801389bc, type: 3}
+      propertyPath: ignoreWeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 992643746, guid: 4483c5526526cb449be2be92801389bc, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4551535871552729737, guid: 4483c5526526cb449be2be92801389bc,
         type: 3}
       propertyPath: m_Name
       value: ContainerSample
-      objectReference: {fileID: 0}
-    - target: {fileID: 4551535871552729737, guid: 4483c5526526cb449be2be92801389bc,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 4551535871552729739, guid: 4483c5526526cb449be2be92801389bc,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 4551535871552729741, guid: 4483c5526526cb449be2be92801389bc,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 4551535871552729743, guid: 4483c5526526cb449be2be92801389bc,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4551535871553089193, guid: 4483c5526526cb449be2be92801389bc,
         type: 3}
@@ -430,12 +413,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4483c5526526cb449be2be92801389bc, type: 3}
---- !u!1 &87284618 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4551535871552729737, guid: 4483c5526526cb449be2be92801389bc,
-    type: 3}
-  m_PrefabInstance: {fileID: 87284617}
-  m_PrefabAsset: {fileID: 0}
 --- !u!108 &246616096
 Light:
   m_ObjectHideFlags: 0
@@ -752,138 +729,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 87284617}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &992643743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 87284618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d15eabc61f683d84f8d29d742274487b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  assembledSocket: {fileID: 0}
-  hoveredSocket: {fileID: 0}
---- !u!65 &992643744
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 87284618}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3, y: 2.2, z: 3}
-  m_Center: {x: 0, y: 1.1, z: -1.45}
---- !u!114 &992643745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 87284618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 822bc9090447b9c40833509c4a32e597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ignoreMe: 0
-  body: {fileID: 0}
-  hightlightMaterial: {fileID: 0}
-  isGrabbable: 1
-  CopySettings: {fileID: 0}
-  grabType: 0
-  handType: 0
-  singleHandOnly: 0
-  instantGrab: 0
-  useGentleGrab: 0
-  maintainGrabOffset: 0
-  parentOnGrab: 1
-  heldNoFriction: 1
-  ignoreWeight: 0
-  allowHeldSwapping: 1
-  throwPower: 1
-  jointBreakForce: 3500
-  showAdvancedSettings: 1
-  makeChildrenGrabbable: 1
-  grabPriorityWeight: 1
-  ignoreReleaseTime: 0.5
-  minHeldDrag: 1.5
-  minHeldAngleDrag: 3
-  maxHeldVelocity: 10
-  heldPositionOffset: {x: 0, y: 0, z: 0}
-  heldRotationOffset: {x: 0, y: 0, z: 0}
-  customGrabJoint: {fileID: 0}
-  jointedBodies: []
-  heldIgnoreColliders: []
-  pullApartBreakOnly: 1
-  showEvents: 1
-  onGrab:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 992643743}
-        m_TargetAssemblyTypeName: VehiclePart, Assembly-CSharp
-        m_MethodName: OnGrab
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onRelease:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 992643743}
-        m_TargetAssemblyTypeName: VehiclePart, Assembly-CSharp
-        m_MethodName: OnRelease
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onSqueeze:
-    m_PersistentCalls:
-      m_Calls: []
-  onUnsqueeze:
-    m_PersistentCalls:
-      m_Calls: []
-  onHighlight:
-    m_PersistentCalls:
-      m_Calls: []
-  onUnhighlight:
-    m_PersistentCalls:
-      m_Calls: []
-  OnJointBreak:
-    m_PersistentCalls:
-      m_Calls: []
-  lockHandOnGrab: 0
---- !u!54 &992643746
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 87284618}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!4 &1207243028
 Transform:
   m_ObjectHideFlags: 0
@@ -1170,70 +1015,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1904340403}
     m_Modifications:
-    - target: {fileID: 5184024090944883056, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
+    - target: {fileID: 1940492566, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5184024090944883058, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 5184024090944883060, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 5184024090944883062, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 5184024090944883070, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 6619793718218733539, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 6619793718218733541, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 6619793718218733543, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 6619793718218733545, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 6619793718218733547, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 6619793718218733549, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
+    - target: {fileID: 1940492567, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22, type: 3}
+      propertyPath: ignoreWeight
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6619793718218733551, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
         type: 3}
       propertyPath: m_Name
       value: CockpitSample
-      objectReference: {fileID: 0}
-    - target: {fileID: 6619793718218733551, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6619793718218959823, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
         type: 3}
@@ -1292,157 +1085,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22, type: 3}
---- !u!1 &1940492562 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6619793718218733551, guid: 4d30e1c713c3de04a8a1bb4ab45fdf22,
-    type: 3}
-  m_PrefabInstance: {fileID: 1940492561}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1940492563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1940492562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 184e8b00f8c7be940a22b64e68af1b83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  assembledSocket: {fileID: 0}
-  hoveredSocket: {fileID: 0}
---- !u!65 &1940492564
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1940492562}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.4208721, y: 1.5739179, z: 1.2805821}
-  m_Center: {x: -0.0021247193, y: 0.7843554, z: 0.365607}
---- !u!65 &1940492565
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1940492562}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.411411, y: 1.6674471, z: 1.3443495}
-  m_Center: {x: -0.000000037252892, y: 0.83188534, z: -0.94691485}
---- !u!54 &1940492566
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1940492562}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &1940492567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1940492562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 822bc9090447b9c40833509c4a32e597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ignoreMe: 0
-  body: {fileID: 0}
-  hightlightMaterial: {fileID: 0}
-  isGrabbable: 1
-  CopySettings: {fileID: 0}
-  grabType: 0
-  handType: 0
-  singleHandOnly: 0
-  instantGrab: 0
-  useGentleGrab: 0
-  maintainGrabOffset: 0
-  parentOnGrab: 1
-  heldNoFriction: 1
-  ignoreWeight: 0
-  allowHeldSwapping: 1
-  throwPower: 1
-  jointBreakForce: 3500
-  showAdvancedSettings: 1
-  makeChildrenGrabbable: 1
-  grabPriorityWeight: 1
-  ignoreReleaseTime: 0.5
-  minHeldDrag: 1.5
-  minHeldAngleDrag: 3
-  maxHeldVelocity: 10
-  heldPositionOffset: {x: 0, y: 0, z: 0}
-  heldRotationOffset: {x: 0, y: 0, z: 0}
-  customGrabJoint: {fileID: 0}
-  jointedBodies: []
-  heldIgnoreColliders: []
-  pullApartBreakOnly: 1
-  showEvents: 1
-  onGrab:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1940492563}
-        m_TargetAssemblyTypeName: VehiclePart, Assembly-CSharp
-        m_MethodName: OnGrab
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onRelease:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1940492563}
-        m_TargetAssemblyTypeName: VehiclePart, Assembly-CSharp
-        m_MethodName: OnRelease
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onSqueeze:
-    m_PersistentCalls:
-      m_Calls: []
-  onUnsqueeze:
-    m_PersistentCalls:
-      m_Calls: []
-  onHighlight:
-    m_PersistentCalls:
-      m_Calls: []
-  onUnhighlight:
-    m_PersistentCalls:
-      m_Calls: []
-  OnJointBreak:
-    m_PersistentCalls:
-      m_Calls: []
-  lockHandOnGrab: 0
 --- !u!1001 &482130289048368965
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1721,6 +1363,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1904340403}
     m_Modifications:
+    - target: {fileID: 843856258037898410, guid: 75a90156011ca5e4dbe604049a88f84d,
+        type: 3}
+      propertyPath: ignoreWeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1242037637270181309, guid: 75a90156011ca5e4dbe604049a88f84d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1242037637577681776, guid: 75a90156011ca5e4dbe604049a88f84d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1242037639186107407, guid: 75a90156011ca5e4dbe604049a88f84d,
         type: 3}
       propertyPath: m_RootOrder
@@ -1780,6 +1437,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FreightBuggySample
+      objectReference: {fileID: 0}
+    - target: {fileID: 1242037639188532964, guid: 75a90156011ca5e4dbe604049a88f84d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1242037639188532966, guid: 75a90156011ca5e4dbe604049a88f84d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4294490699707479454, guid: 75a90156011ca5e4dbe604049a88f84d,
         type: 3}

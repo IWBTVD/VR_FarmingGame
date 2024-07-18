@@ -65,6 +65,10 @@ public class PartSocket : MonoBehaviour
     public void DettachPart(VehiclePart part)
     {
         chassis.DisassemblePart(part);
+        if(part.transform.parent == transform)
+        {
+            part.transform.SetParent(null);
+        }
 
         part.OnDettach();
         m_attachedPart = null;
