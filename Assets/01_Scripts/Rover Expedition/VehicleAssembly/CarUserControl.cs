@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using Autohand;
 using RoverExpedition;
+using Unity.VisualScripting;
 
 [RequireComponent(typeof(CarController))]
 public class CarUserControl : MonoBehaviour
@@ -43,6 +44,7 @@ public class CarUserControl : MonoBehaviour
             if (collectableObj != null)
             {
                 collectableObj.GetComponent<Collectable>().TryCollect();
+
             }
         }
     }
