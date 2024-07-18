@@ -399,8 +399,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8045201977166306687, guid: 0e7ee4df08df88c4880f43398f9ad2c2,
+        type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 1048962150}
+    - target: {fileID: 8045201977166306687, guid: 0e7ee4df08df88c4880f43398f9ad2c2,
+        type: 3}
+      propertyPath: customGrabJoint
+      value: 
+      objectReference: {fileID: 1048962149}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 3}
+--- !u!153 &1048962149 stripped
+ConfigurableJoint:
+  m_CorrespondingSourceObject: {fileID: 8045201977166306657, guid: 0e7ee4df08df88c4880f43398f9ad2c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1048962148}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &1048962150 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 8045201977166306656, guid: 0e7ee4df08df88c4880f43398f9ad2c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1048962148}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1442337867
 GameObject:
   m_ObjectHideFlags: 0
