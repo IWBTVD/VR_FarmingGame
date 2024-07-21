@@ -18,17 +18,17 @@ namespace RoverExpedition
         /// <summary>
         /// 채집 시도하기
         /// </summary>
-        public void TryCollect()
+        public virtual void TryCollect()
         {
-
+            // Debug.Log(collectableSO.Description);
         }
 
         /// <summary>
         /// 채집 성공
         /// </summary>
-        public void OnCollected()
+        public virtual void OnCollected()
         {
-
+            // Debug.Log(collectableSO.PriceValue);
         }
 
 

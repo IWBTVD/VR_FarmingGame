@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using Autohand;
 
 
 public class Steering
@@ -13,6 +14,13 @@ public class Steering
     public bool Cruising { get; private set; } // cruise control
     public bool mouse_hold;
     public float mouse_start;
+
+    private TestJoystick testJoystick;
+
+    public Steering(TestJoystick physicsGadgetJoystick)
+    {
+        this.testJoystick = physicsGadgetJoystick;
+    }
 
     // Use this for initialization
     public void Start()
@@ -39,50 +47,38 @@ public class Steering
         else
         {
             V = CrossPlatformInputManager.GetAxis("Vertical");
+            // 수직을 입력 받음
+            // V = testJoystick.GetKeyboardInputY();
         }
 
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A))
         {
             if (H > -1.0)
             {
                 H -= 0.05f;
             }
         }
-        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.D))
         {
             if (H < 1.0)
             {
                 H += 0.05f;
             }
         }
-        else if (Input.GetMouseButton(0))
-        {
-            // get the mouse position
-            float mousePosition = Input.mousePosition.x;
 
-            // check if its the first time pressing down on mouse button
-            if (!mouse_hold)
+        if (testJoystick.GetKeyboardInputX() < 0)
+        {
+            if (H > -1.0)
             {
-                // we are now holding down the mouse
-                mouse_hold = true;
-                // set the start reference position for position tracking
-                mouse_start = mousePosition;
+                H -= 0.05f;
             }
-
-            // This way h is [-1, -1]
-            // it's quite hard to get a max or close to max
-            // steering angle unless it's actually wanted.
-            H = Mathf.Clamp((mousePosition - mouse_start) / (Screen.width / 6), -1, 1);
-
         }
-        else
+        else if (testJoystick.GetKeyboardInputX() > 0)
         {
-
-            // reset
-            mouse_hold = false;
-
-            H = CrossPlatformInputManager.GetAxis("Horizontal");
-
+            if (H < 1.0)
+            {
+                H += 0.05f;
+            }
         }
 
     }
