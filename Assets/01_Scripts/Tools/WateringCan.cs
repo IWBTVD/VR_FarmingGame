@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class WateringCan : ToolBase
+public class WateringCan : MonoBehaviour, IToolBase
 {
     [Header("물뿌리개 출수구 방향 시작점과 끝점")]
     public Transform neckStartTransform;
@@ -18,6 +18,20 @@ public class WateringCan : ToolBase
 
     private AudioSource audioSource;
     private Autohand.Grabbable grabbable;
+
+    private int _toolID;  // toolID 값을 저장할 필드
+
+    public int toolID
+    {
+        get => _toolID;
+        set => _toolID = value;
+    }
+
+
+    public void DoAction(CultivationField targetField)
+    {
+        targetField.WaterGround(10);
+    }
 
     private void Awake()
     {

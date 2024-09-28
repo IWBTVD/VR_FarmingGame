@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class PitchFork : ToolBase
+public class PitchFork : MonoBehaviour, IToolBase
 {
     [SerializeField] private List<ToolParticleEffect> plowParticleList;
 
@@ -15,11 +15,26 @@ public class PitchFork : ToolBase
     private CultivationField lastField;
     private AudioSource _audioSource;
 
+    private int _toolID;  // toolID 값을 저장할 필드
+
+    public int toolID
+    {
+        get => _toolID;
+        set => _toolID = value;
+    }
+
+
     private void Awake()
     {
         grabbable = GetComponent<Autohand.Grabbable>();
         _audioSource = GetComponent<AudioSource>();
         toolID = 0;
+    }
+
+    public void DoAction(CultivationField targetField)
+    {
+        Debug.Log("PitchFork");
+        targetField.FullyPlowed();
     }
 
     private void OnTriggerEnter(Collider other)

@@ -9,6 +9,8 @@ public class PlayerAction : MonoBehaviour
     // 0 : Pichfork
     // 1 : Pickaxe
     // 2 : WateringCan
+    // 3 : Seed
+    // 4 : 미정
     public GameObject[] Tools;
     public bool[] hasTools;
 
@@ -32,7 +34,8 @@ public class PlayerAction : MonoBehaviour
 
     void Awake()
     {
-        hasTools = new bool[3];
+        Tools = new GameObject[5];
+        hasTools = new bool[5];
 
     }
 
@@ -61,23 +64,15 @@ public class PlayerAction : MonoBehaviour
         if (tool1 && hasTools[1]) currentIndex = 1;
         if (tool2 && hasTools[2]) currentIndex = 2;
 
-        if ((tool0 || tool1 || tool2))
-        {
-
-        }
     }
 
     void DoAction()
     {
-        if (currentIndex == 0 && isAction && nearSoil != null)
-        {
-            nearSoil.PlowGround(50);
-        }
+        if (currentIndex == -1) return;
 
-        if (currentIndex == 2 && isAction && nearObject != null)
+        if (isAction && nearSoil != null)
         {
-            Debug.Log("Watering " + nearObject.name);
-            nearSoil.WaterGround(10);
+            Tools[currentIndex].GetComponent<IToolBase>().DoAction(nearSoil);
         }
     }
 
@@ -130,10 +125,18 @@ public class PlayerAction : MonoBehaviour
         {
             if (nearObject.tag == "Tool")
             {
-                ToolBase toolBase = nearObject.GetComponent<ToolBase>();
+                // nearObject에서 IToolBase 컴포넌트를 가져옴
+                IToolBase toolBase = nearObject.GetComponent<IToolBase>();
                 int toolIndex = toolBase.toolID;
 
+                // hasTools 배열에 도구가 있음을 표시
                 hasTools[toolIndex] = true;
+
+                // Tools 배열에 해당 도구를 추가
+                Tools[toolIndex] = nearObject;
+
+                // 이제 nearObject에 있는 도구가 Tools 배열에 할당됨
+                Debug.Log("Tool added to slot " + toolIndex + ": " + nearObject.name);
             }
         }
     }
