@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Autohand;
 using Jun.Ground.Crops;
-using Gun;
 
 public class SeedBase : MonoBehaviour
 {
@@ -11,7 +10,7 @@ public class SeedBase : MonoBehaviour
 
     protected Rigidbody rb;
     protected Grabbable grabbable;
-    
+
     protected SeedSacBase seedSac;
 
     protected virtual void Awake()
@@ -24,7 +23,7 @@ public class SeedBase : MonoBehaviour
 
     public void OnFirstGrab(Hand hand, Grabbable grabbable)
     {
-        if(seedSac != null)
+        if (seedSac != null)
         {
             DecoupleWithSeedSac();
 

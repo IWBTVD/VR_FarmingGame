@@ -2,56 +2,55 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Gun
+
+public class WateringParticle : MonoBehaviour
 {
-    public class WateringParticle : MonoBehaviour
+    CultivationField lastWateredField;
+
+    private ParticleSystem particle;
+
+    private void Awake()
     {
-        CultivationField lastWateredField;
+        particle = GetComponent<ParticleSystem>();
 
-        private ParticleSystem particle;
+    }
 
-        private void Awake()
+    private void OnDisable()
+    {
+        lastWateredField = null;
+    }
+
+
+    private void OnParticleCollision(GameObject other)
+    {
+        //GetComponent를 너무 많이 호출하는 것을 방지하기 위한 처리
+        if (other.tag == "Soil")
         {
-            particle = GetComponent<ParticleSystem>();
-            
-        }
+            CultivationField field;
 
-        private void OnDisable()
-        {
-            lastWateredField = null;
-        }
-
-
-        private void OnParticleCollision(GameObject other)
-        {
-            //GetComponent를 너무 많이 호출하는 것을 방지하기 위한 처리
-            if (other.tag == "Soil")
+            if (lastWateredField != null)
             {
-                CultivationField field;
-
-                if (lastWateredField != null)
+                if (lastWateredField.gameObject == other)
                 {
-                    if (lastWateredField.gameObject == other)
-                    {
-                        field = lastWateredField;
-                    }
-                    else if (other.TryGetComponent(out field))
-                    {
-                        lastWateredField = field;
-                    }
-
-                    field.WaterGround(2);
-                    return;
+                    field = lastWateredField;
                 }
-
                 else if (other.TryGetComponent(out field))
                 {
                     lastWateredField = field;
-
-                    field.WaterGround(2);
-                    return;
                 }
+
+                field.WaterGround(2);
+                return;
+            }
+
+            else if (other.TryGetComponent(out field))
+            {
+                lastWateredField = field;
+
+                field.WaterGround(2);
+                return;
             }
         }
     }
 }
+

@@ -1,5 +1,4 @@
 using Autohand;
-using Gun;
 using Jun.Ground.Crops;
 using Pinwheel.Griffin;
 using System.Collections;

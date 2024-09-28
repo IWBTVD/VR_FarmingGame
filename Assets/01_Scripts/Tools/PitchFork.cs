@@ -3,96 +3,96 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Gun
+
+public class PitchFork : ToolBase
 {
-    public class PitchFork : MonoBehaviour
+    [SerializeField] private List<ToolParticleEffect> plowParticleList;
+
+    private Autohand.Grabbable grabbable;
+
+    private Vector3 lastClosestPoint;
+    private float forkedDistance;
+    private CultivationField lastField;
+    private AudioSource _audioSource;
+
+    private void Awake()
     {
-        [SerializeField] private List<ToolParticleEffect> plowParticleList;
+        grabbable = GetComponent<Autohand.Grabbable>();
+        _audioSource = GetComponent<AudioSource>();
+        toolID = 0;
+    }
 
-        private Autohand.Grabbable grabbable;
-
-        private Vector3 lastClosestPoint;
-        private float forkedDistance;
-        private CultivationField lastField;
-        private AudioSource _audioSource;
-
-        private void Awake()
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Soil")
         {
-            grabbable = GetComponent<Autohand.Grabbable>();
-            _audioSource = GetComponent<AudioSource>();
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.gameObject.tag == "Soil")
+            if (other.TryGetComponent(out CultivationField cultivationField))
             {
-                if (other.TryGetComponent(out CultivationField cultivationField))
-                {
-                    lastClosestPoint = other.ClosestPoint(transform.position);
-                    PlayPlowParticle();
-                    TryPlayAudioClip();
-                    cultivationField.PlowGround(10);
-
-                    lastField = cultivationField;
-                }
-            }
-        }
-
-        private void OnTriggerStay(Collider other)
-        {
-            if (other.gameObject.tag == "Soil")
-            {
-                if (lastField == null)
-                {
-                    lastField = other.GetComponent<CultivationField>();
-
-                    if (lastField == null) return;
-                }
-                if (lastField.gameObject != other.gameObject)
-                {
-                    lastField = other.GetComponent<CultivationField>();
-                    return;
-                }
-
-                Vector3 closestPoint = other.ClosestPoint(transform.position);
-
-                forkedDistance += Vector3.Distance(closestPoint, lastClosestPoint) * 10f;
                 lastClosestPoint = other.ClosestPoint(transform.position);
+                PlayPlowParticle();
+                TryPlayAudioClip();
+                cultivationField.PlowGround(10);
 
-                if (forkedDistance > 1)
-                {
-                    PlayPlowParticle();
-                    lastField.PlowGround((int)forkedDistance);//땅이 경작 되는 함수
-                    // 퀘스트 체크
-                    // BehaviourManager.Instance.AddPlowedCount(); 로 
-                    // if (QuestManager.instance.currentQuestID == 1 && IsPlowed)
-                    //     QuestManager.instance.CheckQuestbehaviour(GetComponent<Quest>().GetbehaviourID());
-                    forkedDistance = 0f;
-                }
+                lastField = cultivationField;
             }
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            lastField = null;
-            forkedDistance = 0f;
-        }
-
-        public void PlayPlowParticle()
-        {
-            foreach (var particle in plowParticleList)
-            {
-                if (particle.PlayParticle())
-                {
-                    return;
-                }
-            }
-        }
-
-        public void TryPlayAudioClip()
-        {
-            if (_audioSource.isPlaying) return;
-            //_audioSource.PlayOneShot(SFX_Manager.GetPlowingSound());
         }
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Soil")
+        {
+            if (lastField == null)
+            {
+                lastField = other.GetComponent<CultivationField>();
+
+                if (lastField == null) return;
+            }
+            if (lastField.gameObject != other.gameObject)
+            {
+                lastField = other.GetComponent<CultivationField>();
+                return;
+            }
+
+            Vector3 closestPoint = other.ClosestPoint(transform.position);
+
+            forkedDistance += Vector3.Distance(closestPoint, lastClosestPoint) * 10f;
+            lastClosestPoint = other.ClosestPoint(transform.position);
+
+            if (forkedDistance > 1)
+            {
+                PlayPlowParticle();
+                lastField.PlowGround((int)forkedDistance);//땅이 경작 되는 함수
+                                                          // 퀘스트 체크
+                                                          // BehaviourManager.Instance.AddPlowedCount(); 로 
+                                                          // if (QuestManager.instance.currentQuestID == 1 && IsPlowed)
+                                                          //     QuestManager.instance.CheckQuestbehaviour(GetComponent<Quest>().GetbehaviourID());
+                forkedDistance = 0f;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        lastField = null;
+        forkedDistance = 0f;
+    }
+
+    public void PlayPlowParticle()
+    {
+        foreach (var particle in plowParticleList)
+        {
+            if (particle.PlayParticle())
+            {
+                return;
+            }
+        }
+    }
+
+    public void TryPlayAudioClip()
+    {
+        if (_audioSource.isPlaying) return;
+        //_audioSource.PlayOneShot(SFX_Manager.GetPlowingSound());
+    }
 }
+

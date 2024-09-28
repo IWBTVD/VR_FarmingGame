@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Gun
+
+/// <summary>
+/// О©╫д╧О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫ж╢О©╫ О©╫О©╫О©╫О©╫
+/// </summary>
+public class PlantSocket : MonoBehaviour
 {
-    /// <summary>
-    /// ╫д╧╟ю╩ ╫ию╩ ╪Ж юж╢б ╪рдо
-    /// </summary>
-    public class PlantSocket : MonoBehaviour
-    {
-        
-    }
+
 }
+

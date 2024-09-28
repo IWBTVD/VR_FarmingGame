@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class ToolBase : MonoBehaviour
 {
-    
+    public int toolID;
+
+    public void DoAction() { }
 }
