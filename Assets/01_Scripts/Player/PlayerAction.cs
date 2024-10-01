@@ -21,6 +21,11 @@ public class PlayerAction : MonoBehaviour
     public float GroundedRadius = 0.2f;
     bool isSoil;
 
+    public LayerMask ObstacleLayers;
+    public float ObstacleOffset = -0.14f;
+    public float ObstacleRadius = 0.5f;
+    bool isObstacle;
+
     bool tool0;
     bool tool1;
     bool tool2;
@@ -31,6 +36,8 @@ public class PlayerAction : MonoBehaviour
 
     GameObject nearObject;
     CultivationField nearSoil;
+    [SerializeField]
+    BreakableObject nearBreakable;
 
     void Awake()
     {
@@ -39,11 +46,15 @@ public class PlayerAction : MonoBehaviour
 
     }
 
-    void Update()
+    void FixedUpdate()
     {
         GetInput();
+
         Interaction();
+
         SoilCheck();
+        ObstacleCheck();
+
         DoAction();
         ChangeTool();
     }
@@ -70,35 +81,54 @@ public class PlayerAction : MonoBehaviour
     {
         if (currentIndex == -1) return;
 
-        if (isAction && nearSoil != null)
+        // if (isAction && nearSoil != null)
+        // {
+        //     Tools[currentIndex].GetComponent<IToolBase>().DoAction(nearSoil);
+        // }
+
+        switch (currentIndex)
         {
-            Tools[currentIndex].GetComponent<IToolBase>().DoAction(nearSoil);
+            case 0:
+            case 2:
+                if (isAction && nearSoil != null)
+                {
+                    Tools[currentIndex].GetComponent<IToolBase>().DoAction(nearSoil);
+                }
+                break;
+            case 1:
+                if (isAction && nearObject != null)
+                {
+                    Tools[currentIndex].GetComponent<ICanBreak>().DoAction(nearBreakable);
+                }
+                break;
+            default:
+                break;
         }
     }
 
+    /// <summary>
+    /// 지면에 닿아있는지 확인
+    /// GroundLayers에 속하는 콜라이더를 찾고, 태그가 "Soil"인 오브젝트를 찾음.
+    /// 만약 찾은 오브젝트가 있으면 isSoil을 true로, nearSoil을 그 오브젝트로 정의.
+    /// 만약 찾은 오브젝트가 없으면 isSoil을 false로, nearSoil을 null로 정의.
+    /// </summary>
     void SoilCheck()
     {
         Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
 
-        // Check if the player is on soil and get the colliders in the radius
         Collider[] hitColliders = Physics.OverlapSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
 
-        // Reset the nearSoil variable
         nearSoil = null;
 
-        // Check if we hit any soil objects
         if (hitColliders.Length > 0)
         {
             isSoil = true;
             foreach (Collider hitCollider in hitColliders)
             {
-                // Assuming the ground has a "Soil" tag, or you can use layers to differentiate
                 if (hitCollider.CompareTag("Soil"))
                 {
-                    // Store the soil GameObject
                     nearSoil = hitCollider.gameObject.GetComponent<CultivationField>();
-                    Debug.Log("Standing on soil: " + nearSoil.name);
-                    break; // Stop after finding the first soil
+                    break;
                 }
             }
         }
@@ -108,6 +138,39 @@ public class PlayerAction : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// 주위에 있는 부술 수 있는 오브젝트 확인하는 함수.
+    /// ObstacleLayers에 속하는 콜라이더를 찾고, 태그가 "Obstacle"인 오브젝트를 찾음.
+    /// 찾은 오브젝트가 있으면 isObstacle을 true로, nearBreakable을 그 오브젝트로 정의.
+    /// 찾은 오브젝트가 없으면 isObstacle을 false로, nearBreakable을 null로 정의.
+    /// </summary>
+    void ObstacleCheck()
+    {
+        Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        Collider[] hitColliders = Physics.OverlapSphere(spherePosition, ObstacleRadius, ObstacleLayers, QueryTriggerInteraction.Ignore);
+
+        nearBreakable = null;
+
+        if (hitColliders.Length > 0)
+        {
+            isObstacle = true;
+            foreach (Collider hitCollider in hitColliders)
+            {
+                if (hitCollider.CompareTag("Obstacle"))
+                {
+                    nearBreakable = hitCollider.gameObject.GetComponent<BreakableObject>();
+                    break;
+                }
+            }
+        }
+        else
+        {
+            isObstacle = false;
+        }
+    }
+
+    // VR기기용 코드
     void OnTriggerEnter(Collider col)
     {
         if (col.tag == "Tool")
@@ -115,28 +178,42 @@ public class PlayerAction : MonoBehaviour
             nearObject = col.gameObject;
             Debug.Log("Near Object : " + nearObject.name);
         }
+
+        if (col.tag == "Breaker")
+        {
+            nearObject = col.gameObject;
+            Debug.Log("Near Object : " + nearObject.name);
+        }
     }
 
 
-
+    // 키보드기기용 코드
     void Interaction()
     {
         if (iDown && nearObject != null)
         {
             if (nearObject.tag == "Tool")
             {
-                // nearObject에서 IToolBase 컴포넌트를 가져옴
                 IToolBase toolBase = nearObject.GetComponent<IToolBase>();
                 int toolIndex = toolBase.toolID;
 
-                // hasTools 배열에 도구가 있음을 표시
                 hasTools[toolIndex] = true;
 
-                // Tools 배열에 해당 도구를 추가
                 Tools[toolIndex] = nearObject;
 
-                // 이제 nearObject에 있는 도구가 Tools 배열에 할당됨
                 Debug.Log("Tool added to slot " + toolIndex + ": " + nearObject.name);
+            }
+
+            if (nearObject.tag == "Breaker")
+            {
+                ICanBreak breaker = nearObject.GetComponent<ICanBreak>();
+                int breakerIndex = breaker.toolID;
+
+                hasTools[breakerIndex] = true;
+
+                Tools[breakerIndex] = nearObject;
+
+                Debug.Log("Tool added to slot " + breakerIndex + ": " + nearObject.name);
             }
         }
     }

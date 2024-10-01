@@ -18,7 +18,7 @@ public class CultivationField : MonoBehaviourPun
 
     [SerializeField] private bool _canPlowed = false;
     /// <summary>
-    /// 경작을 할 수 있는지 여부. true라면 쇠스랑으로 경작하여 둑을 만들 수 있다.
+    /// 경작을 할 수 있는지 여부. true라면 쇠스랑으로 경작하여ㅅ 둑을 만들 수 있다.
     /// </summary>
     public bool CanPlowed => _canPlowed;
 
@@ -89,6 +89,7 @@ public class CultivationField : MonoBehaviourPun
     public void PlowGround(int amount)
     {
         // if (_isPlowed) return;
+
         plowedAmount += amount;
         if (plowedAmount >= 100 && CanPlowed)
         {
@@ -101,15 +102,16 @@ public class CultivationField : MonoBehaviourPun
     /// </summary>
     public void FullyPlowed()
     {
-        if (!_isPlowed)
-        {
-            BehaviourManager.Instance.AddPlowedCount();
-        }
+        if (_isPlowed) return;
+
+
+        BehaviourManager.Instance.AddPlowedCount();
+
         _isPlowed = true;
+        _canPlowed = false;
         moundsVisual.gameObject.SetActive(true);
         plowCompleteParticle.Play();
+
         //퀘스트 체크
-
     }
-
 }

@@ -4,10 +4,29 @@ using UnityEngine;
 using Autohand;
 
 
-public class Pickaxe : MonoBehaviour
+public class Pickaxe : MonoBehaviour, ICanBreak
 {
     private int _damage = 20;
     public int Damage => _damage;
+
+    private int _toolID;  // toolID 값을 저장할 필드
+
+    public int toolID
+    {
+        get => _toolID;
+        set => _toolID = value;
+    }
+
+    void Awake()
+    {
+        toolID = 1;
+    }
+
+
+    public void DoAction(BreakableObject targetObstacle)
+    {
+        targetObstacle.OnBreakWithAxe(_damage);
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
