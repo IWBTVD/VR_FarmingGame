@@ -22,6 +22,12 @@ public class Pickaxe : MonoBehaviour, ICanBreak
         toolID = 1;
     }
 
+    public int GetID()
+    {
+        Debug.Log(toolID);
+        return toolID;
+    }
+
 
     public void DoAction(BreakableObject targetObstacle)
     {

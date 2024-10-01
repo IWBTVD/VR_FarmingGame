@@ -52,6 +52,7 @@ namespace Jun
         /// </summary>
         public int currentQuestID = 0;
 
+
         private void Awake()
         {
             if (instance == null)
@@ -78,7 +79,7 @@ namespace Jun
             // 테스트용 코드
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                UpdateQuest();
+                // UpdateQuest();;
             }
 
             if (Input.GetKeyDown(KeyCode.W))

@@ -1,3 +1,4 @@
+using StarterAssets;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,19 +32,32 @@ public class PlayerAction : MonoBehaviour
     bool tool2;
 
     bool isAction;
+    bool isMine;
+
+    bool isTestCode;
 
     public int currentIndex = -1;
 
+    [SerializeField]
     GameObject nearObject;
     CultivationField nearSoil;
     [SerializeField]
     BreakableObject nearBreakable;
 
+    PersonControllerFarmer controllerFarmer;
+    Animator animator;
+
     void Awake()
     {
+        controllerFarmer = GetComponent<PersonControllerFarmer>();
+        // animator = controllerFarmer.GetAnimator();
         Tools = new GameObject[5];
         hasTools = new bool[5];
+    }
 
+    void Start()
+    {
+        animator = controllerFarmer.GetAnimator();
     }
 
     void FixedUpdate()
@@ -57,6 +71,22 @@ public class PlayerAction : MonoBehaviour
 
         DoAction();
         ChangeTool();
+
+        // 테스트용 함수
+        TestCode();
+    }
+
+    void TestCode()
+    {
+        if (isTestCode)
+        {
+            Animator animator = controllerFarmer.GetAnimator();
+
+            if (animator != null)
+            {
+                animator.SetBool("Mine", true);
+            }
+        }
     }
 
     void GetInput()
@@ -66,6 +96,7 @@ public class PlayerAction : MonoBehaviour
         tool1 = Input.GetButton("Tool1");
         tool2 = Input.GetButton("Tool2");
         isAction = Input.GetButton("Fire1");
+        isTestCode = Input.GetButton("TestCode");
     }
 
     void ChangeTool()
@@ -96,9 +127,12 @@ public class PlayerAction : MonoBehaviour
                 }
                 break;
             case 1:
-                if (isAction && nearObject != null)
+                if (isAction && nearBreakable != null)
                 {
+                    isMine = true;
+                    animator.SetBool("Mine", isMine);
                     Tools[currentIndex].GetComponent<ICanBreak>().DoAction(nearBreakable);
+                    isMine = false;
                 }
                 break;
             default:
@@ -207,7 +241,7 @@ public class PlayerAction : MonoBehaviour
             if (nearObject.tag == "Breaker")
             {
                 ICanBreak breaker = nearObject.GetComponent<ICanBreak>();
-                int breakerIndex = breaker.toolID;
+                int breakerIndex = breaker.GetID();
 
                 hasTools[breakerIndex] = true;
 
