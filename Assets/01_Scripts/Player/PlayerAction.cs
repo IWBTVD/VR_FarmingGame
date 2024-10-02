@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 public class PlayerAction : MonoBehaviour
 {
@@ -32,7 +33,7 @@ public class PlayerAction : MonoBehaviour
     bool tool2;
 
     bool isAction;
-    bool isMine;
+    public bool isMining;
 
     bool isTestCode;
 
@@ -45,19 +46,13 @@ public class PlayerAction : MonoBehaviour
     BreakableObject nearBreakable;
 
     PersonControllerFarmer controllerFarmer;
-    Animator animator;
+
 
     void Awake()
     {
         controllerFarmer = GetComponent<PersonControllerFarmer>();
-        // animator = controllerFarmer.GetAnimator();
         Tools = new GameObject[5];
         hasTools = new bool[5];
-    }
-
-    void Start()
-    {
-        animator = controllerFarmer.GetAnimator();
     }
 
     void FixedUpdate()
@@ -73,20 +68,12 @@ public class PlayerAction : MonoBehaviour
         ChangeTool();
 
         // 테스트용 함수
-        TestCode();
+        // TestCode();
     }
 
     void TestCode()
     {
-        if (isTestCode)
-        {
-            Animator animator = controllerFarmer.GetAnimator();
 
-            if (animator != null)
-            {
-                animator.SetBool("Mine", true);
-            }
-        }
     }
 
     void GetInput()
@@ -112,11 +99,6 @@ public class PlayerAction : MonoBehaviour
     {
         if (currentIndex == -1) return;
 
-        // if (isAction && nearSoil != null)
-        // {
-        //     Tools[currentIndex].GetComponent<IToolBase>().DoAction(nearSoil);
-        // }
-
         switch (currentIndex)
         {
             case 0:
@@ -129,10 +111,17 @@ public class PlayerAction : MonoBehaviour
             case 1:
                 if (isAction && nearBreakable != null)
                 {
-                    isMine = true;
-                    animator.SetBool("Mine", isMine);
-                    Tools[currentIndex].GetComponent<ICanBreak>().DoAction(nearBreakable);
-                    isMine = false;
+                    if (!controllerFarmer._animator.GetBool("IsMining"))
+                    {
+                        isMining = true;
+                        controllerFarmer._animator.SetBool("IsMining", isMining);
+                        Tools[currentIndex].GetComponent<ICanBreak>().DoAction(nearBreakable);
+                    }
+                }
+                else
+                {
+                    isMining = false;
+                    controllerFarmer._animator.SetBool("IsMining", isMining);
                 }
                 break;
             default:
@@ -181,7 +170,7 @@ public class PlayerAction : MonoBehaviour
     /// </summary>
     void ObstacleCheck()
     {
-        Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - ObstacleOffset, transform.position.z);
         Collider[] hitColliders = Physics.OverlapSphere(spherePosition, ObstacleRadius, ObstacleLayers, QueryTriggerInteraction.Ignore);
 
         nearBreakable = null;
@@ -204,6 +193,13 @@ public class PlayerAction : MonoBehaviour
         }
     }
 
+    void OnDrawGizmos()
+    {
+        Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - ObstacleOffset, transform.position.z);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(spherePosition, ObstacleRadius);
+
+    }
     // VR기기용 코드
     void OnTriggerEnter(Collider col)
     {

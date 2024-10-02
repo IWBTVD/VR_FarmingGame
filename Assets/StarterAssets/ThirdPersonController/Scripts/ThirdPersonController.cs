@@ -122,6 +122,8 @@ namespace StarterAssets
             }
         }
 
+        bool isMining;
+
 
         private void Awake()
         {
@@ -213,6 +215,13 @@ namespace StarterAssets
 
         private void Move()
         {
+
+            if (isMining)
+            {
+                Debug.Log("isMining");
+                return;
+            }
+
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
@@ -269,7 +278,7 @@ namespace StarterAssets
 
             // move the player
             _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
-                             new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+             new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 
             // update animator if using character
             if (_hasAnimator)
