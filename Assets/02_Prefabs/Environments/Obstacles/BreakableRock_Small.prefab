@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6355564459061841177}
   - component: {fileID: 785373906545129786}
-  m_Layer: 0
+  - component: {fileID: 653897571}
+  - component: {fileID: 653897574}
+  m_Layer: 17
   m_Name: BreakableRock_Small
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -26,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1549941790877758342}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.46, y: 0.154, z: -7.588}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.4685, y: 1.4685, z: 1.4685}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4577302041635873280}
@@ -50,6 +52,33 @@ MonoBehaviour:
   _visual: {fileID: 4581086049187222540}
   _particleSystem: {fileID: 6231846818190673689}
   _health: 0
+--- !u!64 &653897571
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549941790877758342}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 43907804696053286, guid: ba888c77f68bd3a418c3db9287bf45b4, type: 2}
+--- !u!65 &653897574
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549941790877758342}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.7, y: 1, z: 1.7}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4581086049187222540
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,6 +188,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DestroyParticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167808480372982120, guid: 5be35f556ff2876449592fb7ebda6722,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8167808480372982125, guid: 5be35f556ff2876449592fb7ebda6722,
         type: 3}

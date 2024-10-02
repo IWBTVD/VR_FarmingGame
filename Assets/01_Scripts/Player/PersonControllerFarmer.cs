@@ -6,10 +6,9 @@ namespace StarterAssets
 {
     public class PersonControllerFarmer : ThirdPersonController
     {
-        public Animator GetAnimator()
-        {
-            return _animator;
-        }
+
+
+
     }
 }
 

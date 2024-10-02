@@ -5,6 +5,7 @@ using Photon.Pun;
 using Unity.VisualScripting;
 using Photon.Realtime;
 using Jun;
+using UnityEngine.InputSystem;
 
 
 public class BreakableObject : MonoBehaviour, IObstacle, IBreakable
@@ -15,6 +16,7 @@ public class BreakableObject : MonoBehaviour, IObstacle, IBreakable
     [SerializeField] private GameObject _visual;
     [SerializeField] private ParticleSystem _particleSystem;
     [SerializeField] private int _health = 0;
+    private ToolParticleEffect toolParticleEffect;
     #endregion
 
     public BreakableSO BreakableSO => _breakableSO;
@@ -24,7 +26,9 @@ public class BreakableObject : MonoBehaviour, IObstacle, IBreakable
     protected virtual void Awake()
     {
         _health = _breakableSO.MaxHealth;
+        toolParticleEffect = transform.GetChild(1).GetComponent<ToolParticleEffect>();
     }
+
 
     #region IBreakable
     public void OnBreakWithMeleeWeapon(int damage)
@@ -68,7 +72,13 @@ public class BreakableObject : MonoBehaviour, IObstacle, IBreakable
         {
             Debug.Log("Broke!");
             _visual.SetActive(false);
-            _particleSystem.Play();
+            foreach (Collider col in GetComponents<Collider>())
+            {
+                col.enabled = false;
+            }
+
+            // _particleSystem.Play();
+            toolParticleEffect.PlayParticle();
 
             Destroy(gameObject, 2f);
 
