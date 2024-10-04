@@ -44,9 +44,8 @@ GameObject:
   - component: {fileID: 5974739931377452526}
   - component: {fileID: 5974739931377452528}
   - component: {fileID: 5974739931377452530}
-  - component: {fileID: 5974739931377452522}
-  - component: {fileID: 5974739931377452533}
   - component: {fileID: 5974739931377452523}
+  - component: {fileID: 1019050734}
   m_Layer: 0
   m_Name: TomatoSeedPouch
   m_TagString: Untagged
@@ -201,45 +200,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   lockHandOnGrab: 0
---- !u!114 &5974739931377452522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5974739931377452537}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: 0
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents:
-  - {fileID: 5974739931377452533}
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
---- !u!114 &5974739931377452533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5974739931377452537}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
 --- !u!114 &5974739931377452523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,3 +216,16 @@ MonoBehaviour:
   seedPrefab: {fileID: -4649063024396317656, guid: e80bce964f00c694a80d057458acbbcf,
     type: 3}
   seedCapacity: 10
+--- !u!65 &1019050734
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5974739931377452537}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.161447, y: 0.090405665, z: 0.16537374}
+  m_Center: {x: 0.0015818775, y: 0.046001453, z: -0.0028404295}

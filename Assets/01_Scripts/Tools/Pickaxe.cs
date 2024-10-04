@@ -6,7 +6,7 @@ using Autohand;
 
 public class Pickaxe : MonoBehaviour, ICanBreak
 {
-    private int _damage = 20;
+    private int _damage = 200;
     public int Damage => _damage;
 
     private int _toolID;  // toolID 값을 저장할 필드

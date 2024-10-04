@@ -122,7 +122,7 @@ namespace StarterAssets
             }
         }
 
-        bool isMining;
+        public bool isMining;
 
 
         private void Awake()
@@ -160,7 +160,9 @@ namespace StarterAssets
 
             JumpAndGravity();
             GroundedCheck();
-            Move();
+
+            if (!isMining)
+                Move();
         }
 
         private void LateUpdate()
@@ -215,12 +217,6 @@ namespace StarterAssets
 
         private void Move()
         {
-
-            if (isMining)
-            {
-                Debug.Log("isMining");
-                return;
-            }
 
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;

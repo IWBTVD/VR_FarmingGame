@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
+using UnityEditor;
 
 public class PlayerAction : MonoBehaviour
 {
@@ -50,11 +51,12 @@ public class PlayerAction : MonoBehaviour
 
     ThirdPersonController controllerFarmer;
 
+    GameObject equippedTool;
+
 
     void Awake()
     {
         controllerFarmer = GetComponent<ThirdPersonController>();
-        Tools = new GameObject[5];
         hasTools = new bool[5];
     }
 
@@ -91,10 +93,18 @@ public class PlayerAction : MonoBehaviour
 
     void ChangeTool()
     {
-
         if (tool0 && hasTools[0]) currentIndex = 0;
         if (tool1 && hasTools[1]) currentIndex = 1;
         if (tool2 && hasTools[2]) currentIndex = 2;
+
+        if (currentIndex == -1) return;
+
+        if (equippedTool != null)
+            equippedTool.SetActive(false);
+
+        equippedTool = Tools[currentIndex];
+        equippedTool.SetActive(true);
+
 
     }
 
@@ -117,15 +127,10 @@ public class PlayerAction : MonoBehaviour
                     if (!controllerFarmer._animator.GetBool("IsMining"))
                     {
                         isMining = true;
+                        controllerFarmer.isMining = true;
                         controllerFarmer._animator.SetBool("IsMining", isMining);
                         Tools[currentIndex].GetComponent<ICanBreak>().DoAction(nearBreakable);
                     }
-                }
-                else
-                {
-                    isMining = false;
-                    if (controllerFarmer._animator != null)
-                        controllerFarmer._animator.SetBool("IsMining", isMining);
                 }
                 break;
             default:
@@ -228,12 +233,11 @@ public class PlayerAction : MonoBehaviour
         {
             if (nearObject.tag == "Tool")
             {
+
                 IToolBase toolBase = nearObject.GetComponent<IToolBase>();
                 int toolIndex = toolBase.toolID;
 
                 hasTools[toolIndex] = true;
-
-                Tools[toolIndex] = nearObject;
 
                 Debug.Log("Tool added to slot " + toolIndex + ": " + nearObject.name);
             }
@@ -244,11 +248,16 @@ public class PlayerAction : MonoBehaviour
                 int breakerIndex = breaker.GetID();
 
                 hasTools[breakerIndex] = true;
-
-                Tools[breakerIndex] = nearObject;
-
                 Debug.Log("Tool added to slot " + breakerIndex + ": " + nearObject.name);
             }
         }
+    }
+
+    // 광질 애니메이션이 끝났을 때
+    public void EndMining()
+    {
+        isMining = false;
+        controllerFarmer.isMining = isMining;
+        controllerFarmer._animator.SetBool("IsMining", isMining);
     }
 }
