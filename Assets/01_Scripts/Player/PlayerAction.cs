@@ -18,14 +18,17 @@ public class PlayerAction : MonoBehaviour
 
     bool iDown;
 
+    [Header("Soils")]
     public LayerMask GroundLayers;
     public float GroundedOffset = -0.14f;
     public float GroundedRadius = 0.2f;
     bool isSoil;
 
+    [Space(10)]
+    [Header("Obstacles")]
     public LayerMask ObstacleLayers;
     public float ObstacleOffset = -0.14f;
-    public float ObstacleRadius = 0.5f;
+    public float ObstacleRadius;
     bool isObstacle;
 
     bool tool0;
@@ -45,12 +48,12 @@ public class PlayerAction : MonoBehaviour
     [SerializeField]
     BreakableObject nearBreakable;
 
-    PersonControllerFarmer controllerFarmer;
+    ThirdPersonController controllerFarmer;
 
 
     void Awake()
     {
-        controllerFarmer = GetComponent<PersonControllerFarmer>();
+        controllerFarmer = GetComponent<ThirdPersonController>();
         Tools = new GameObject[5];
         hasTools = new bool[5];
     }
@@ -121,7 +124,8 @@ public class PlayerAction : MonoBehaviour
                 else
                 {
                     isMining = false;
-                    controllerFarmer._animator.SetBool("IsMining", isMining);
+                    if (controllerFarmer._animator != null)
+                        controllerFarmer._animator.SetBool("IsMining", isMining);
                 }
                 break;
             default:
