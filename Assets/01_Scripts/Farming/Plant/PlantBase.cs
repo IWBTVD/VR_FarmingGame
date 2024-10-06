@@ -44,6 +44,13 @@ public class PlantBase : MonoBehaviour
         OnPlanted();
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            OnDayPassed();
+        }
+    }
     /// <summary>
     /// 막 심어졌을 때 메소드
     /// </summary>

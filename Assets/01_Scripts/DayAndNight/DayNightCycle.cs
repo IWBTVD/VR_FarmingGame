@@ -8,6 +8,8 @@ namespace Jun
     {
         [SerializeField] private Light sun;
         [SerializeField, Range(0, 24)] private float timeOfDay;
+
+        [Tooltip("Can control the speed time of day")]
         [SerializeField] private float sunRotationSpeed;
 
         [Header("LightingPreset")]

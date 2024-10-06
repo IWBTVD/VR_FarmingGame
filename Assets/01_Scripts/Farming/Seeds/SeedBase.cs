@@ -57,4 +57,9 @@ public class SeedBase : MonoBehaviour
             Destroy(gameObject, 1f);
         }
     }
+
+    public PlantBase GetPlantPrefab()
+    {
+        return _plantPrefab;
+    }
 }

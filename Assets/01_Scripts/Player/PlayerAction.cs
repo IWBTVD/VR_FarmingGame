@@ -245,7 +245,7 @@ public class PlayerAction : MonoBehaviour
             if (nearObject.tag == "Breaker")
             {
                 ICanBreak breaker = nearObject.GetComponent<ICanBreak>();
-                int breakerIndex = breaker.GetID();
+                int breakerIndex = breaker.toolID;
 
                 hasTools[breakerIndex] = true;
                 Debug.Log("Tool added to slot " + breakerIndex + ": " + nearObject.name);

@@ -43,7 +43,11 @@ namespace Jun.Ground.Crops
         /// <param name="seed"></param>
         public void PlantCrop(SeedSacBase seed)
         {
+            SeedBase seedPrefab = seed.GetSeedBase();
+            PlantBase plantPrefab = seedPrefab.GetPlantPrefab();
+            _plant = Instantiate(plantPrefab, transform);
 
+            BehaviourManager.Instance.AddSowedCount();
         }
 
         public void PlantCrop(PlantBase plantBase)

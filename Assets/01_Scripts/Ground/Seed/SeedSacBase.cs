@@ -49,5 +49,10 @@ namespace Jun.Ground.Crops
                 currentSeed.DecoupleWithSeedSac();
             }
         }
+
+        public SeedBase GetSeedBase()
+        {
+            return seedPrefab;
+        }
     }
 }

@@ -2,9 +2,11 @@ using UnityEngine;
 
 namespace Jun.Ground.Crops
 {
-    public class TomatoSeedSac : SeedSacBase, IToolBase
+    public class TomatoSeedSac : SeedSacBase, IPlantBase
     {
         private int _toolID;  // toolID 값을 저장할 필드
+
+        [SerializeField] private CropPoint testPoint;
 
         public int toolID
         {
@@ -17,11 +19,22 @@ namespace Jun.Ground.Crops
             toolID = 4;
         }
 
-
-        public void DoAction(CultivationField targetField)
+        void Update()
         {
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                DoAction(testPoint);
+            }
+
 
         }
+
+        public void DoAction(CropPoint cropPoint)
+        {
+
+            cropPoint.PlantCrop(this);
+        }
+
 
     }
 }
