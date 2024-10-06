@@ -216,14 +216,31 @@ public class PlayerAction : MonoBehaviour
         if (col.tag == "Tool")
         {
             nearObject = col.gameObject;
+            if (nearObject.TryGetComponent(out Outlinable _outlinable))
+            {
+                _outlinable.enabled = true;
+            }
             Debug.Log("Near Object : " + nearObject.name);
         }
 
         if (col.tag == "Breaker")
         {
             nearObject = col.gameObject;
+            if (nearObject.TryGetComponent(out Outlinable _outlinable))
+            {
+                _outlinable.enabled = true;
+            }
             Debug.Log("Near Object : " + nearObject.name);
         }
+    }
+
+    void OnTriggerExit(Collider col)
+    {
+        if (nearObject.TryGetComponent(out Outlinable _outlinable))
+        {
+            _outlinable.enabled = false;
+        }
+
     }
 
 
@@ -236,10 +253,6 @@ public class PlayerAction : MonoBehaviour
             {
 
                 IToolBase toolBase = nearObject.GetComponent<IToolBase>();
-                if (nearObject.TryGetComponent(out Outlinable _outlinable))
-                {
-                    _outlinable.enabled = true;
-                }
                 int toolIndex = toolBase.toolID;
 
                 hasTools[toolIndex] = true;

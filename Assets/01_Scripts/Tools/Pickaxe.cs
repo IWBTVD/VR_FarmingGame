@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Autohand;
+using EPOOutline;
 
 
 public class Pickaxe : MonoBehaviour, ICanBreak
@@ -10,6 +11,7 @@ public class Pickaxe : MonoBehaviour, ICanBreak
     public int Damage => _damage;
 
     private int _toolID;  // toolID 값을 저장할 필드
+    private Outlinable _outlinable;
 
     public int toolID
     {
@@ -19,7 +21,13 @@ public class Pickaxe : MonoBehaviour, ICanBreak
 
     void Awake()
     {
+        _outlinable = GetComponent<Outlinable>();
         toolID = 1;
+    }
+
+    void Start()
+    {
+        _outlinable.enabled = false;
     }
 
     public int GetID()

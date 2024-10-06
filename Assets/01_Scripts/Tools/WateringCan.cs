@@ -1,3 +1,4 @@
+using EPOOutline;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -18,6 +19,7 @@ public class WateringCan : MonoBehaviour, IToolBase
 
     private AudioSource audioSource;
     private Autohand.Grabbable grabbable;
+    private Outlinable _outlinable;
 
     private int _toolID;  // toolID 값을 저장할 필드
 
@@ -37,13 +39,17 @@ public class WateringCan : MonoBehaviour, IToolBase
     {
         audioSource = GetComponent<AudioSource>();
         grabbable = GetComponent<Autohand.Grabbable>();
+        _outlinable = GetComponent<Outlinable>();
         toolID = 2;
+
     }
 
     void Start()
     {
         wateringParticle.Stop();
         audioSource.Stop();
+
+        _outlinable.enabled = false;
     }
 
     void Update()
