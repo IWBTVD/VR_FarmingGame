@@ -1,3 +1,4 @@
+using EPOOutline;
 using Jun;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ public class PitchFork : MonoBehaviour, IToolBase
     private float forkedDistance;
     private CultivationField lastField;
     private AudioSource _audioSource;
+    private Outlinable _outlinable;
 
     private int _toolID;  // toolID 값을 저장할 필드
 
@@ -28,6 +30,10 @@ public class PitchFork : MonoBehaviour, IToolBase
     {
         grabbable = GetComponent<Autohand.Grabbable>();
         _audioSource = GetComponent<AudioSource>();
+        _outlinable = GetComponent<Outlinable>();
+
+        _outlinable.enabled = false;
+
         toolID = 0;
     }
 

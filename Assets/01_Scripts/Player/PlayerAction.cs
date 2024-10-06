@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using UnityEditor;
+using EPOOutline;
 
 public class PlayerAction : MonoBehaviour
 {
@@ -235,6 +236,10 @@ public class PlayerAction : MonoBehaviour
             {
 
                 IToolBase toolBase = nearObject.GetComponent<IToolBase>();
+                if (nearObject.TryGetComponent(out Outlinable _outlinable))
+                {
+                    _outlinable.enabled = true;
+                }
                 int toolIndex = toolBase.toolID;
 
                 hasTools[toolIndex] = true;
