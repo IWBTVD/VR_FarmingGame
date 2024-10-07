@@ -26,8 +26,9 @@ namespace Jun.Ground.Crops
                 DoAction(testPoint);
             }
 
-
         }
+
+
 
         public void DoAction(CropPoint cropPoint)
         {

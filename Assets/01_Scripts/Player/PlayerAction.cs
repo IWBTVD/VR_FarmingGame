@@ -180,6 +180,9 @@ public class PlayerAction : MonoBehaviour
     /// </summary>
     void ObstacleCheck()
     {
+        if (currentIndex != 1) return;
+
+
         Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - ObstacleOffset, transform.position.z);
         Collider[] hitColliders = Physics.OverlapSphere(spherePosition, ObstacleRadius, ObstacleLayers, QueryTriggerInteraction.Ignore);
 
@@ -193,6 +196,7 @@ public class PlayerAction : MonoBehaviour
                 if (hitCollider.CompareTag("Obstacle"))
                 {
                     nearBreakable = hitCollider.gameObject.GetComponent<BreakableObject>();
+                    nearBreakable.IsNear();
                     break;
                 }
             }

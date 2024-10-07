@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,17 +18,46 @@ namespace Jun
         [SerializeField] private Gradient equatorColor;
         [SerializeField] private Gradient sunColor;
 
+        // Events for day and night
+        public event EventHandler OnDayStart;
+        public event EventHandler OnDayEnd;
+
+        private static DayNightCycle _instance;
+        public static DayNightCycle Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = GameObject.FindObjectOfType<DayNightCycle>();
+                }
+                return _instance;
+            }
+        }
+
+
 
         private void Update()
         {
-            timeOfDay += Time.deltaTime * sunRotationSpeed;
-            if (timeOfDay > 24)
-            {
-                timeOfDay = 0;
-            }
+            DayLoop();
+
             UpdateLighting();
             UpdateSunRotation();
         }
+
+        private void DayLoop()
+        {
+            timeOfDay += Time.deltaTime * sunRotationSpeed;
+
+            if (timeOfDay > 24)
+            {
+                timeOfDay = 0;
+
+                OnDayEnd?.Invoke(this, EventArgs.Empty);
+
+            }
+        }
+
         private void UpdateSunRotation()
         {
             float sunRotation = Mathf.Lerp(-90, 270, timeOfDay / 24);

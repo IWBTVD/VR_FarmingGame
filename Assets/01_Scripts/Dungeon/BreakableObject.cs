@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using Photon.Realtime;
 using Jun;
 using UnityEngine.InputSystem;
+using EPOOutline;
 
 
 public class BreakableObject : MonoBehaviour, IObstacle, IBreakable
@@ -20,6 +21,7 @@ public class BreakableObject : MonoBehaviour, IObstacle, IBreakable
     #endregion
 
     public BreakableSO BreakableSO => _breakableSO;
+    private Outlinable _outlinable;
 
     public int Health { get => _health; set => _health = value; }
 
@@ -27,8 +29,19 @@ public class BreakableObject : MonoBehaviour, IObstacle, IBreakable
     {
         _health = _breakableSO.MaxHealth;
         toolParticleEffect = transform.GetChild(1).GetComponent<ToolParticleEffect>();
+
+        _outlinable = GetComponentInChildren<Outlinable>();
     }
 
+    void Start()
+    {
+        _outlinable.enabled = false;
+    }
+
+    public void IsNear()
+    {
+        _outlinable.enabled = true;
+    }
 
     #region IBreakable
     public void OnBreakWithMeleeWeapon(int damage)

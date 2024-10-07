@@ -1,6 +1,9 @@
+using Jun;
 using Jun.Ground.Crops;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -15,6 +18,7 @@ public class PlantBase : MonoBehaviour
     [SerializeField] protected GameObject matureVisual;
 
     protected CropPoint _cropPoint;
+    [SerializeField]
     protected CultivationField _cultivationField;
     protected int _dayPassed = 0;
     protected int _growthDays = 0;
@@ -44,12 +48,39 @@ public class PlantBase : MonoBehaviour
         OnPlanted();
     }
 
+    void OnEnable()
+    {
+        _cultivationField = GetComponentInParent<CultivationField>();
+        DayNightCycle.Instance.OnDayEnd += OnDayPassed;
+    }
+
+    void OnDisable()
+    {
+        DayNightCycle.Instance.OnDayEnd -= OnDayPassed;
+    }
+
+    private void OnDayPassed(object sender, EventArgs e)
+    {
+        _dayPassed += 1;
+
+        if (IsWatered) _growthDays += 1;
+    }
+
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        if (_dayPassed > 2)
         {
-            OnDayPassed();
+            sproutVisualList[1].SetActive(false);
+
+            matureVisual.SetActive(true);
         }
+        else if (_dayPassed > 1)
+        {
+            sproutVisualList[0].SetActive(false);
+            sproutVisualList[1].SetActive(true);
+        }
+
     }
     /// <summary>
     /// 막 심어졌을 때 메소드
@@ -62,7 +93,6 @@ public class PlantBase : MonoBehaviour
         }
         matureVisual.SetActive(false);
         sproutVisualList[0].SetActive(true);
-
 
     }
 

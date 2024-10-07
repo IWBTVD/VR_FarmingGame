@@ -30,13 +30,6 @@ public class Pickaxe : MonoBehaviour, ICanBreak
         _outlinable.enabled = false;
     }
 
-    public int GetID()
-    {
-        Debug.Log(toolID);
-        return toolID;
-    }
-
-
     public void DoAction(BreakableObject targetObstacle)
     {
         targetObstacle.OnBreakWithAxe(_damage);
