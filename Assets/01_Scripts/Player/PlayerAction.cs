@@ -7,6 +7,7 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 using UnityEditor;
 using EPOOutline;
+using Jun;
 
 public class PlayerAction : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class PlayerAction : MonoBehaviour
     bool tool0;
     bool tool1;
     bool tool2;
+    bool tool3;
 
     bool isAction;
     public bool isMining;
@@ -97,6 +99,7 @@ public class PlayerAction : MonoBehaviour
         if (tool0 && hasTools[0]) currentIndex = 0;
         if (tool1 && hasTools[1]) currentIndex = 1;
         if (tool2 && hasTools[2]) currentIndex = 2;
+        if (tool3 && hasTools[3]) currentIndex = 3;
 
         if (currentIndex == -1) return;
 
@@ -132,6 +135,12 @@ public class PlayerAction : MonoBehaviour
                         controllerFarmer._animator.SetBool("IsMining", isMining);
                         Tools[currentIndex].GetComponent<ICanBreak>().DoAction(nearBreakable);
                     }
+                }
+                break;
+            case 3:
+                if (isAction)
+                {
+                    Tools[currentIndex].GetComponent<IPlantBase>().Action();
                 }
                 break;
             default:
@@ -271,6 +280,16 @@ public class PlayerAction : MonoBehaviour
 
                 hasTools[breakerIndex] = true;
                 Debug.Log("Tool added to slot " + breakerIndex + ": " + nearObject.name);
+            }
+
+            if (nearObject.tag == "Seed")
+            {
+
+                IPlantBase seed = nearObject.GetComponent<IPlantBase>();
+                int seedIndex = seed.toolID;
+
+                hasTools[seedIndex] = true;
+                Debug.Log("Seed added to slot " + seedIndex + ": " + nearObject.name);
             }
         }
     }

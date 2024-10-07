@@ -43,6 +43,8 @@ public class PlantBase : MonoBehaviour
     /// </summary>
     public int GrowthDays => _growthDays;
 
+
+
     protected virtual void Start()
     {
         OnPlanted();
