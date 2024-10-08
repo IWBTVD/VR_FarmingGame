@@ -90,6 +90,8 @@ public class PlayerAction : MonoBehaviour
         tool0 = Input.GetButton("Tool0");
         tool1 = Input.GetButton("Tool1");
         tool2 = Input.GetButton("Tool2");
+        tool3 = Input.GetButton("Tool3");
+
         isAction = Input.GetButton("Fire1");
         isTestCode = Input.GetButton("TestCode");
     }
@@ -122,7 +124,8 @@ public class PlayerAction : MonoBehaviour
             case 2:
                 if (isAction && nearSoil != null)
                 {
-                    Tools[currentIndex].GetComponent<IToolBase>().DoAction(nearSoil);
+                    Tools[currentIndex].GetComponent<IFiledBase>().SetField(nearSoil);
+                    Tools[currentIndex].GetComponent<IToolBase>().DoAction();
                 }
                 break;
             case 1:
@@ -133,14 +136,15 @@ public class PlayerAction : MonoBehaviour
                         isMining = true;
                         controllerFarmer.isMining = true;
                         controllerFarmer._animator.SetBool("IsMining", isMining);
-                        Tools[currentIndex].GetComponent<ICanBreak>().DoAction(nearBreakable);
+
+                        Tools[currentIndex].GetComponent<IToolBase>().DoAction();
                     }
                 }
                 break;
             case 3:
                 if (isAction)
                 {
-                    Tools[currentIndex].GetComponent<IPlantBase>().Action();
+                    Tools[currentIndex].GetComponent<IToolBase>().DoAction();
                 }
                 break;
             default:
@@ -195,6 +199,8 @@ public class PlayerAction : MonoBehaviour
         Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - ObstacleOffset, transform.position.z);
         Collider[] hitColliders = Physics.OverlapSphere(spherePosition, ObstacleRadius, ObstacleLayers, QueryTriggerInteraction.Ignore);
 
+        if (nearBreakable != null)
+            nearBreakable._outlinable.OutlineParameters.Enabled = false;
         nearBreakable = null;
 
         if (hitColliders.Length > 0)
@@ -205,7 +211,8 @@ public class PlayerAction : MonoBehaviour
                 if (hitCollider.CompareTag("Obstacle"))
                 {
                     nearBreakable = hitCollider.gameObject.GetComponent<BreakableObject>();
-                    nearBreakable.IsNear();
+                    if (nearBreakable != null)
+                        nearBreakable._outlinable.OutlineParameters.Enabled = true;
                     break;
                 }
             }
@@ -231,7 +238,7 @@ public class PlayerAction : MonoBehaviour
             nearObject = col.gameObject;
             if (nearObject.TryGetComponent(out Outlinable _outlinable))
             {
-                _outlinable.enabled = true;
+                _outlinable.OutlineParameters.Enabled = true;
             }
             Debug.Log("Near Object : " + nearObject.name);
         }
@@ -241,7 +248,17 @@ public class PlayerAction : MonoBehaviour
             nearObject = col.gameObject;
             if (nearObject.TryGetComponent(out Outlinable _outlinable))
             {
-                _outlinable.enabled = true;
+                _outlinable.OutlineParameters.Enabled = true;
+            }
+            Debug.Log("Near Object : " + nearObject.name);
+        }
+
+        if (col.tag == "Seed")
+        {
+            nearObject = col.gameObject;
+            if (nearObject.TryGetComponent(out Outlinable _outlinable))
+            {
+                _outlinable.OutlineParameters.Enabled = true;
             }
             Debug.Log("Near Object : " + nearObject.name);
         }
@@ -249,10 +266,23 @@ public class PlayerAction : MonoBehaviour
 
     void OnTriggerExit(Collider col)
     {
-        if (nearObject.TryGetComponent(out Outlinable _outlinable))
+        if (nearObject != null)
         {
-            _outlinable.enabled = false;
+            if (nearObject.TryGetComponent(out Outlinable _outlinable))
+            {
+                _outlinable.OutlineParameters.Enabled = false;
+            }
         }
+
+        if (nearBreakable != null)
+        {
+            if (nearBreakable.TryGetComponent(out Outlinable _outlinable))
+            {
+                _outlinable.OutlineParameters.Enabled = false;
+            }
+        }
+
+
 
     }
 
@@ -275,7 +305,7 @@ public class PlayerAction : MonoBehaviour
 
             if (nearObject.tag == "Breaker")
             {
-                ICanBreak breaker = nearObject.GetComponent<ICanBreak>();
+                IToolBase breaker = nearObject.GetComponent<IToolBase>();
                 int breakerIndex = breaker.toolID;
 
                 hasTools[breakerIndex] = true;
@@ -285,7 +315,7 @@ public class PlayerAction : MonoBehaviour
             if (nearObject.tag == "Seed")
             {
 
-                IPlantBase seed = nearObject.GetComponent<IPlantBase>();
+                IToolBase seed = nearObject.GetComponent<IToolBase>();
                 int seedIndex = seed.toolID;
 
                 hasTools[seedIndex] = true;

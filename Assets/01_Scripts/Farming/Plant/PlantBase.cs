@@ -58,7 +58,8 @@ public class PlantBase : MonoBehaviour
 
     void OnDisable()
     {
-        DayNightCycle.Instance.OnDayEnd -= OnDayPassed;
+        if (DayNightCycle.Instance != null)
+            DayNightCycle.Instance.OnDayEnd -= OnDayPassed;
     }
 
     private void OnDayPassed(object sender, EventArgs e)

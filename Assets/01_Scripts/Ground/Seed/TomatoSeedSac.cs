@@ -1,12 +1,12 @@
+using EPOOutline;
 using UnityEngine;
 
 namespace Jun.Ground.Crops
 {
-    public class TomatoSeedSac : SeedSacBase, IPlantBase
+    public class TomatoSeedSac : SeedSacBase, IPlantBase, IToolBase
     {
         private int _toolID;  // toolID 값을 저장할 필드
 
-        [SerializeField] private CropPoint testPoint;
 
         [Header("Soils")]
         [SerializeField] private LayerMask CropPointLayers;
@@ -14,33 +14,38 @@ namespace Jun.Ground.Crops
         [SerializeField] private float CropPointRadius;
 
 
-        private CropPoint _nearCropPoint;
         private bool isCrop;
+        private Outlinable _outlinable;
 
         public int toolID
         {
             get => _toolID;
             set => _toolID = value;
         }
+        private CropPoint _nearCropPoint;
+        public CropPoint cropPoint
+        {
+            get => _nearCropPoint;
+            set => _nearCropPoint = value;
+        }
 
+
+        protected override void Awake()
+        {
+            _outlinable = GetComponent<Outlinable>();
+        }
         void Start()
         {
-            toolID = 4;
+            toolID = 3;
+
+            _outlinable.OutlineParameters.Enabled = false;
         }
 
         void Update()
         {
-
             CropPointCheck();
-
         }
 
-        public void Action()
-        {
-            if (_nearCropPoint == null) return;
-
-            DoAction(_nearCropPoint);
-        }
 
         void CropPointCheck()
         {
@@ -48,16 +53,25 @@ namespace Jun.Ground.Crops
 
             Collider[] hitColliders = Physics.OverlapSphere(spherePosition, CropPointRadius, CropPointLayers, QueryTriggerInteraction.Ignore);
 
+            if (_nearCropPoint != null)
+                _nearCropPoint._outlinable.OutlineParameters.Enabled = false;
+
             _nearCropPoint = null;
 
             if (hitColliders.Length > 0)
             {
                 isCrop = true;
+
                 foreach (Collider hitCollider in hitColliders)
                 {
+                    Debug.Log(hitCollider.name);
+
                     if (hitCollider.CompareTag("CropPoint"))
                     {
+                        Debug.Log("Near CropPoint");
                         _nearCropPoint = hitCollider.gameObject.GetComponent<CropPoint>();
+                        if (!_nearCropPoint.IsPlanted)
+                            _nearCropPoint._outlinable.OutlineParameters.Enabled = true;
                         break;
                     }
                 }
@@ -75,13 +89,15 @@ namespace Jun.Ground.Crops
             Gizmos.DrawWireSphere(spherePosition, CropPointRadius);
 
         }
-
-        private void DoAction(CropPoint cropPoint)
+        public void DoAction()
         {
-
-            cropPoint.PlantCrop(this);
+            if (_nearCropPoint == null) return;
+            _nearCropPoint.PlantCrop(this);
         }
 
-
+        public void SetCropPoint(CropPoint targetCropPoint)
+        {
+            _nearCropPoint = targetCropPoint;
+        }
     }
 }
