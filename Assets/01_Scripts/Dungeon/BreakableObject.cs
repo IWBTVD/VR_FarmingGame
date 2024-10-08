@@ -21,7 +21,7 @@ public class BreakableObject : MonoBehaviour, IObstacle, IBreakable
     #endregion
 
     public BreakableSO BreakableSO => _breakableSO;
-    private Outlinable _outlinable;
+    public Outlinable _outlinable;
 
     public int Health { get => _health; set => _health = value; }
 
@@ -35,12 +35,12 @@ public class BreakableObject : MonoBehaviour, IObstacle, IBreakable
 
     void Start()
     {
-        _outlinable.enabled = false;
+        _outlinable.OutlineParameters.Enabled = false;
     }
 
     public void IsNear()
     {
-        _outlinable.enabled = true;
+        _outlinable.OutlineParameters.Enabled = true;
     }
 
     #region IBreakable

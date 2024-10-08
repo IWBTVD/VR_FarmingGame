@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class PitchFork : MonoBehaviour, IToolBase
+public class PitchFork : MonoBehaviour, IToolBase, IFiledBase
 {
     [SerializeField] private List<ToolParticleEffect> plowParticleList;
 
@@ -13,7 +13,7 @@ public class PitchFork : MonoBehaviour, IToolBase
 
     private Vector3 lastClosestPoint;
     private float forkedDistance;
-    private CultivationField lastField;
+
     private AudioSource _audioSource;
     private Outlinable _outlinable;
 
@@ -25,6 +25,13 @@ public class PitchFork : MonoBehaviour, IToolBase
         set => _toolID = value;
     }
 
+    private CultivationField _lastField;
+    public CultivationField lastField
+    {
+        get => _lastField;
+        set => _lastField = value;
+    }
+
 
     private void Awake()
     {
@@ -32,16 +39,16 @@ public class PitchFork : MonoBehaviour, IToolBase
         _audioSource = GetComponent<AudioSource>();
         _outlinable = GetComponent<Outlinable>();
 
-        _outlinable.enabled = false;
+        _outlinable.OutlineParameters.Enabled = false;
 
         toolID = 0;
     }
 
-    public void DoAction(CultivationField targetField)
-    {
-        Debug.Log("PitchFork");
-        targetField.FullyPlowed();
-    }
+    // public void DoAction(CultivationField targetField)
+    // {
+    //     Debug.Log("PitchFork");
+    //     targetField.FullyPlowed();
+    // }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -114,6 +121,16 @@ public class PitchFork : MonoBehaviour, IToolBase
     {
         if (_audioSource.isPlaying) return;
         //_audioSource.PlayOneShot(SFX_Manager.GetPlowingSound());
+    }
+
+    public void DoAction()
+    {
+        lastField.FullyPlowed();
+    }
+
+    public void SetField(CultivationField targetField)
+    {
+        lastField = targetField;
     }
 }
 

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class WateringCan : MonoBehaviour, IToolBase
+public class WateringCan : MonoBehaviour, IToolBase, IFiledBase
 {
     [Header("물뿌리개 출수구 방향 시작점과 끝점")]
     public Transform neckStartTransform;
@@ -28,19 +28,31 @@ public class WateringCan : MonoBehaviour, IToolBase
         get => _toolID;
         set => _toolID = value;
     }
-
-
-    public void DoAction(CultivationField targetField)
+    private CultivationField _lastField;
+    public CultivationField lastField
     {
-        targetField.WaterGround(10);
+        get => _lastField;
+        set => _lastField = value;
     }
+
+    public void SetField(CultivationField targetField)
+    {
+        lastField = targetField;
+    }
+
+
+    public void DoAction()
+    {
+        lastField.FullyPlowed();
+    }
+
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
         grabbable = GetComponent<Autohand.Grabbable>();
         _outlinable = GetComponent<Outlinable>();
-        toolID = 2;
+
 
     }
 
@@ -49,7 +61,8 @@ public class WateringCan : MonoBehaviour, IToolBase
         wateringParticle.Stop();
         audioSource.Stop();
 
-        _outlinable.enabled = false;
+        _outlinable.OutlineParameters.Enabled = false;
+        toolID = 2;
     }
 
     void Update()
@@ -84,4 +97,6 @@ public class WateringCan : MonoBehaviour, IToolBase
             audioSource.Pause();
         }
     }
+
+
 }

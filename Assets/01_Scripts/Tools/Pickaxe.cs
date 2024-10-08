@@ -5,7 +5,7 @@ using Autohand;
 using EPOOutline;
 
 
-public class Pickaxe : MonoBehaviour, ICanBreak
+public class Pickaxe : MonoBehaviour, ICanBreak, IToolBase
 {
     private int _damage = 200;
     public int Damage => _damage;
@@ -19,6 +19,14 @@ public class Pickaxe : MonoBehaviour, ICanBreak
         set => _toolID = value;
     }
 
+    private BreakableObject _breakableObject;
+    public BreakableObject BreakableObject
+    {
+        get => _breakableObject;
+        set => _breakableObject = value;
+    }
+
+
     void Awake()
     {
         _outlinable = GetComponent<Outlinable>();
@@ -27,12 +35,7 @@ public class Pickaxe : MonoBehaviour, ICanBreak
 
     void Start()
     {
-        _outlinable.enabled = false;
-    }
-
-    public void DoAction(BreakableObject targetObstacle)
-    {
-        targetObstacle.OnBreakWithAxe(_damage);
+        _outlinable.OutlineParameters.Enabled = false;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -52,5 +55,16 @@ public class Pickaxe : MonoBehaviour, ICanBreak
                 }
             }
         }
+    }
+
+    public void DoAction()
+    {
+        if (_breakableObject == null) return;
+        _breakableObject.OnBreakWithAxe(_damage);
+    }
+
+    public void SetBreakableObject(BreakableObject target)
+    {
+        _breakableObject = target;
     }
 }
