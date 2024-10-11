@@ -35,24 +35,11 @@ public class WateringCan : MonoBehaviour, IToolBase, IFiledBase
         set => _lastField = value;
     }
 
-    public void SetField(CultivationField targetField)
-    {
-        lastField = targetField;
-    }
-
-
-    public void DoAction()
-    {
-        lastField.FullyPlowed();
-    }
-
-
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
         grabbable = GetComponent<Autohand.Grabbable>();
         _outlinable = GetComponent<Outlinable>();
-
 
     }
 
@@ -64,6 +51,19 @@ public class WateringCan : MonoBehaviour, IToolBase, IFiledBase
         _outlinable.OutlineParameters.Enabled = false;
         toolID = 2;
     }
+
+
+    public void SetField(CultivationField targetField)
+    {
+        lastField = targetField;
+    }
+
+
+    public void DoAction()
+    {
+        lastField.FullyWatered();
+    }
+
 
     void Update()
     {

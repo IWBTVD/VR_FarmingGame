@@ -130,13 +130,12 @@ public class PlayerActionRefac : MonoBehaviour
                 }
                 break;
             case 3: // Seed
-                    // Seed action handled directly
+
                 break;
             default:
                 return;
         }
 
-        // 공통 DoAction 호출 (중복 제거)
         Tools[currentIndex].GetComponent<IToolBase>().DoAction();
     }
 
