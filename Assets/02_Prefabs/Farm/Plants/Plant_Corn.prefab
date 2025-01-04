@@ -486,6 +486,7 @@ MonoBehaviour:
   - {fileID: 6263386142996236491}
   - {fileID: 3283158175958166256}
   matureVisual: {fileID: 1074153294413906368}
+  _cultivationField: {fileID: 0}
 --- !u!1001 &630256618890543587
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -552,6 +553,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Corn
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669459560889679875, guid: 020cecbd65d45e54f8246c574dc186e2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669459560889679875, guid: 020cecbd65d45e54f8246c574dc186e2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Harvest
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 020cecbd65d45e54f8246c574dc186e2, type: 3}
@@ -628,6 +639,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Corn
       objectReference: {fileID: 0}
+    - target: {fileID: 3669459560889679875, guid: 020cecbd65d45e54f8246c574dc186e2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669459560889679875, guid: 020cecbd65d45e54f8246c574dc186e2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Harvest
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 020cecbd65d45e54f8246c574dc186e2, type: 3}
 --- !u!4 &6085005635292067868 stripped
@@ -702,6 +723,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Corn
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669459560889679875, guid: 020cecbd65d45e54f8246c574dc186e2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669459560889679875, guid: 020cecbd65d45e54f8246c574dc186e2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Harvest
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 020cecbd65d45e54f8246c574dc186e2, type: 3}

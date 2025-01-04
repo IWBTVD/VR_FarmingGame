@@ -34,23 +34,37 @@ public class PlayerActionRefac : MonoBehaviour
     public float ObstacleRadius;
     bool isObstacle;
 
+    [Space(10)]
+    [Header("Harvest")]
+    public LayerMask HarvestLayers;
+    public float HarvestOffset = -0.14f;
+    public float HarvestRadius;
+    bool isHarvest;
+
+
     bool tool0;
     bool tool1;
     bool tool2;
     bool tool3;
 
     bool isAction;
+
+    [Space(10)]
     public bool isMining;
 
     bool isTestCode;
 
     public int currentIndex = -1;
-
+    [Space(10)]
     [SerializeField]
     GameObject nearObject;
+    [SerializeField]
+    GameObject nearNpc;
     CultivationField nearSoil;
     [SerializeField]
     BreakableObject nearBreakable;
+    [SerializeField]
+    GameObject nearHarvest;
 
     ThirdPersonController controllerFarmer;
 
@@ -72,6 +86,8 @@ public class PlayerActionRefac : MonoBehaviour
 
         SoilCheck();
         ObstacleCheck();
+
+        HarvestCheck();
 
         Interaction();
     }
@@ -198,6 +214,28 @@ public class PlayerActionRefac : MonoBehaviour
         if (nearBreakable != null)
         {
             nearBreakable._outlinable.OutlineParameters.Enabled = true;
+        }
+    }
+
+    void HarvestCheck()
+    {
+        Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - HarvestOffset, transform.position.z);
+        Collider[] hitColliders = Physics.OverlapSphere(spherePosition, HarvestRadius, HarvestLayers, QueryTriggerInteraction.Ignore);
+
+        isHarvest = false;
+        nearHarvest = null;
+
+        if (hitColliders.Length > 0)
+        {
+            foreach (Collider hitCollider in hitColliders)
+            {
+                if (hitCollider.CompareTag("Harvest"))
+                {
+                    nearHarvest = hitCollider.gameObject;
+                    isHarvest = true;
+                    break;
+                }
+            }
         }
     }
 

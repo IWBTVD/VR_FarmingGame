@@ -372,6 +372,7 @@ MonoBehaviour:
   - {fileID: 7439952263532778055}
   - {fileID: 4015731659732543491}
   matureVisual: {fileID: 8119463658470222325}
+  _cultivationField: {fileID: 0}
 --- !u!1 &8786148418755264036
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,6 +504,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tomato
       objectReference: {fileID: 0}
+    - target: {fileID: 6723435217960525287, guid: 503452cfb6f68cc4598a18da2ecfd41c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6723435217960525287, guid: 503452cfb6f68cc4598a18da2ecfd41c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Harvest
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 503452cfb6f68cc4598a18da2ecfd41c, type: 3}
 --- !u!4 &5671121407507782060 stripped
@@ -577,6 +588,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tomato
+      objectReference: {fileID: 0}
+    - target: {fileID: 6723435217960525287, guid: 503452cfb6f68cc4598a18da2ecfd41c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6723435217960525287, guid: 503452cfb6f68cc4598a18da2ecfd41c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Harvest
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 503452cfb6f68cc4598a18da2ecfd41c, type: 3}
@@ -675,6 +696,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tomato
       objectReference: {fileID: 0}
+    - target: {fileID: 6723435217960525287, guid: 503452cfb6f68cc4598a18da2ecfd41c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6723435217960525287, guid: 503452cfb6f68cc4598a18da2ecfd41c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Harvest
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 503452cfb6f68cc4598a18da2ecfd41c, type: 3}
 --- !u!4 &1139156495974148033 stripped
@@ -749,6 +780,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tomato
+      objectReference: {fileID: 0}
+    - target: {fileID: 6723435217960525287, guid: 503452cfb6f68cc4598a18da2ecfd41c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6723435217960525287, guid: 503452cfb6f68cc4598a18da2ecfd41c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Harvest
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 503452cfb6f68cc4598a18da2ecfd41c, type: 3}
